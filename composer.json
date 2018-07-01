@@ -1,0 +1,24 @@
+{
+    "name": "weirdan/psalm-doctrine-collections",
+    "description": "Stubs to let Psalm understand Doctrine Collections better",
+    "type": "psalm-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bruce Weirdan",
+            "email": "weirdan@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "pluginClass": "Weirdan\\PsalmDoctrineCollections\\Plugin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Weirdan\\PsalmDoctrineCollections\\": ["."]
+        }
+    },
+    "require-dev": {
+        "vimeo/psalm": "dev-master"
+    }
+}
