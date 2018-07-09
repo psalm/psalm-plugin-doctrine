@@ -1,10 +1,10 @@
 <?php
 namespace Weirdan\PsalmDoctrineCollections;
-use Psalm\PluginFacade;
+use Psalm\PluginApi;
 
 class Plugin
 {
-    public function __invoke(PluginFacade $psalm): void
+    public function __invoke(PluginApi\RegistrationInterface $psalm): void
     {
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/DoctrineCollections.php');
     }
