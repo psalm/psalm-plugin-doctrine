@@ -2,7 +2,7 @@
 namespace Weirdan\PsalmDoctrineCollections;
 use Psalm\PluginApi;
 
-class Plugin extends PluginApi\PluginEntryPointInterface
+class Plugin implements PluginApi\PluginEntryPointInterface
 {
     public function __invoke(PluginApi\RegistrationInterface $psalm): void
     {
