@@ -4,7 +4,8 @@ use Psalm\PluginApi;
 
 class Plugin implements PluginApi\PluginEntryPointInterface
 {
-    public function __invoke(PluginApi\RegistrationInterface $psalm): void
+    /** @return void */
+    public function __invoke(PluginApi\RegistrationInterface $psalm)
     {
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/DoctrineCollections.php');
     }
