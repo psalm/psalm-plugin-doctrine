@@ -19,6 +19,13 @@
         }
     },
     "require-dev": {
-        "vimeo/psalm": "dev-master"
-    }
+        "vimeo/psalm": "dev-plugin-loading"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:weirdan/psalm",
+            "no-api":true
+        }
+    ]
 }
