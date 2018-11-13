@@ -121,7 +121,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
     public function filter(Closure $p);
 
     /**
-     * @param Closure(TValue):bool $p
+     * @param Closure(TKey,TValue):bool $p
      * @return bool
      */
     public function forAll(Closure $p);
@@ -151,4 +151,16 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
      * @return array<TKey,TValue>
      */
     public function slice($offset, $length = null);
+}
+
+/**
+ * @template TKey
+ * @template TValue
+ */
+interface Selectable
+{
+    /**
+     * @return Collection<TKey,TValue>
+     */
+    public function matching(Criteria $criteria);
 }
