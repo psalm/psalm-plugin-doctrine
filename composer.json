@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "vimeo/psalm": "dev-master"
+        "vimeo/psalm": "dev-master",
+        "doctrine/collections": "^1.0"
     },
     "extra": {
         "pluginClass": "Weirdan\\PsalmDoctrineCollections\\Plugin"
