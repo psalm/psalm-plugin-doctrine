@@ -14,7 +14,9 @@
         "doctrine/collections": "^1.0"
     },
     "extra": {
-        "pluginClass": "Weirdan\\PsalmDoctrineCollections\\Plugin"
+        "psalm" : {
+            "pluginClass": "Weirdan\\PsalmDoctrineCollections\\Plugin"
+        }
     },
     "autoload": {
         "psr-4": {
