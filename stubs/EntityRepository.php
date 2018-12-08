@@ -17,12 +17,7 @@ class EntityRepository implements ObjectRepository, Selectable
     protected $_class;
 
     /** @param Mapping\ClassMetadata<T> $class */
-    public function __construct(EntityManagerInterface $em, Mapping\ClassMetadata $class)
-    {
-        $this->_entityName = $class->name;
-        $this->_em         = $em;
-        $this->_class      = $class;
-    }
+    public function __construct(EntityManagerInterface $em, Mapping\ClassMetadata $class) {}
 
     /** @return T[] */
     public function findAll() {}
