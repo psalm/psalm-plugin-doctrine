@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 namespace Doctrine\Common\Collections;
 
 use Closure;

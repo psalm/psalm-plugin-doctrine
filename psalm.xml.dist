@@ -9,10 +9,11 @@
         <directory name="." />
         <ignoreFiles>
             <directory name="vendor" />
+	    <directory name="stubs" />
         </ignoreFiles>
     </projectFiles>
     <plugins>
-	    <pluginClass class="Weirdan\PsalmDoctrineCollections\Plugin"/>
+	    <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
     </plugins>
 
 </psalm>
