@@ -1,6 +1,6 @@
 {
-    "name": "weirdan/psalm-doctrine-collections",
-    "description": "Stubs to let Psalm understand Doctrine Collections better",
+    "name": "weirdan/doctrine-psalm-plugin",
+    "description": "Stubs to let Psalm understand Doctrine better",
     "type": "psalm-plugin",
     "license": "MIT",
     "authors": [
@@ -15,12 +15,12 @@
     },
     "extra": {
         "psalm" : {
-            "pluginClass": "Weirdan\\PsalmDoctrineCollections\\Plugin"
+            "pluginClass": "Weirdan\\DoctrinePsalmPlugin\\Plugin"
         }
     },
     "autoload": {
         "psr-4": {
-            "Weirdan\\PsalmDoctrineCollections\\": ["."]
+            "Weirdan\\DoctrinePsalmPlugin\\": ["."]
         }
     },
     "require-dev": {

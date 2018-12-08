@@ -6,7 +6,6 @@
 
     <!-- Paths to check -->
     <file>Plugin.php</file>
-    <file>tests</file>
 
 
     <!-- inherit rules from: -->

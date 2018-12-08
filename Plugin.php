@@ -1,5 +1,5 @@
 <?php
-namespace Weirdan\PsalmDoctrineCollections;
+namespace Weirdan\DoctrinePsalmPlugin;
 
 use SimpleXMLElement;
 use Psalm\Plugin\PluginEntryPointInterface;
