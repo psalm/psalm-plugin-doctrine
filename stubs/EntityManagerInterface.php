@@ -1,7 +1,7 @@
 <?php
 namespace Doctrine\ORM;
 
-class EntityManager implements EntityManagerInterface
+class EntityManagerInterface
 {
     /**
      * @template T
@@ -10,14 +10,6 @@ class EntityManager implements EntityManagerInterface
      * @return EntityRepository<T>
      */
     public function getRepository(string $entityName) {}
-
-    /**
-     * @template T
-     * @param class-string $className
-     * @template-typeof T $className
-     * @return Mapping\ClassMetadata<T>
-     */
-    public function getClassMetadata(string $className) {}
 
     /**
      * @template T
