@@ -11,8 +11,9 @@ class Plugin implements PluginEntryPointInterface
     public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null)
     {
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/Collections.php');
-        $psalm->addStubFile(__DIR__ . '/' . 'stubs/EntityManager.php');
+        $psalm->addStubFile(__DIR__ . '/' . 'stubs/EntityManagerInterface.php');
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/EntityRepository.php');
+        $psalm->addStubFile(__DIR__ . '/' . 'stubs/ObjectManager.php');
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/Paginator.php');
     }
 }
