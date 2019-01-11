@@ -15,5 +15,6 @@ class Plugin implements PluginEntryPointInterface
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/EntityRepository.php');
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/ObjectManager.php');
         $psalm->addStubFile(__DIR__ . '/' . 'stubs/Paginator.php');
+        $psalm->addStubFile(__DIR__ . '/' . 'stubs/Expr.php');
     }
 }
