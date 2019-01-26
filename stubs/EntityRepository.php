@@ -4,9 +4,13 @@ namespace Doctrine\ORM;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\Common\Collections\Selectable;
 
-/** @template T */
+/**
+ * @template T
+ * @template-implements Selectable<int,T>
+ */
 class EntityRepository implements ObjectRepository, Selectable
 {
+
     /** @var string */
     protected $_entityName;
 
@@ -15,6 +19,7 @@ class EntityRepository implements ObjectRepository, Selectable
 
     /** @var Mapping\ClassMetadata */
     protected $_class;
+
 
     /** @param Mapping\ClassMetadata<T> $class */
     public function __construct(EntityManagerInterface $em, Mapping\ClassMetadata $class) {}
