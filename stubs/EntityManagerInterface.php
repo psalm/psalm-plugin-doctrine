@@ -1,7 +1,9 @@
 <?php
 namespace Doctrine\ORM;
 
-class EntityManagerInterface
+use Doctrine\Common\Persistence\ObjectManager;
+
+class EntityManagerInterface extends ObjectManager
 {
     /**
      * @template T
