@@ -4,5 +4,13 @@ php:
 before_install:
     phpenv config-rm xdebug.ini || true
 
-install: composer install
+install:
+  - if [[ "$DEPS" = 'high' ]]; then travis_retry composer $DEFAULT_COMPOSER_FLAGS update; fi
+  - if [[ "$DEPS" = 'low' ]]; then travis_retry composer $DEFAULT_COMPOSER_FLAGS --prefer-lowest --prefer-stable update; fi
+
 script: vendor/bin/codecept run -v
+
+env:
+    matrix:
+        - DEPS="low"
+        - DEPS="high"
