@@ -24,7 +24,16 @@
             "Weirdan\\DoctrinePsalmPlugin\\": ["."]
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Weirdan\\DoctrinePsalmPlugin\\Tests\\": [
+                "tests/_support", 
+                "tests/acceptance"
+            ]
+        }
+    },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.3"
+        "squizlabs/php_codesniffer": "^3.3",
+        "codeception/base": "^2.5"
     }
 }
