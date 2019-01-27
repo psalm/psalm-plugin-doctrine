@@ -24,7 +24,7 @@ class CollectionsCest
         '));
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::add expects string,'
-            . ' int(1) provided'
+            . ' int% provided'
         );
     }
 
@@ -37,7 +37,7 @@ class CollectionsCest
         '));
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::contains expects string,'
-            . ' int(1) provided'
+            . ' int% provided'
         );
     }
 
@@ -57,7 +57,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::remove expects int,'
-            . ' string(string key) provided'
+            . ' string% provided'
         );
     }
 
@@ -70,7 +70,7 @@ class CollectionsCest
         '));
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string,'
-            . ' int(1) provided'
+            . ' int% provided'
         );
     }
 
@@ -83,7 +83,7 @@ class CollectionsCest
         '));
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::containsKey expects int,'
-            . ' string(string key) provided'
+            . ' string% provided'
         );
     }
 
@@ -103,7 +103,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::get expects int,'
-            . ' string(string key) provided'
+            . ' string% provided'
         );
     }
 
@@ -117,7 +117,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 1 of atan expects float,'
-            . ' array<array-key, int> provided'
+            . ' array<%, int> provided'
         );
     }
 
@@ -131,7 +131,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 1 of atan expects float,'
-            . ' array<array-key, string> provided'
+            . ' array<%, string> provided'
         );
     }
 
@@ -145,7 +145,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::set expects int,'
-            . ' string(string key) provided'
+            . ' string% provided'
         );
     }
 
@@ -159,7 +159,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 2 of Doctrine\Common\Collections\Collection::set expects string,'
-            . ' int(1) provided'
+            . ' int% provided'
         );
     }
 
@@ -442,7 +442,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::indexOf expects string,'
-            . ' int(1) provided'
+            . ' int% provided'
         );
     }
 
@@ -470,7 +470,7 @@ class CollectionsCest
 
         $I->canSeePsalmFailsWith(
             'Argument 1 of Doctrine\Common\Collections\Collection::slice expects int,'
-            . ' string(string key) provided'
+            . ' string% provided'
         );
     }
 

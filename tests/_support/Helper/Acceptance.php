@@ -16,6 +16,11 @@ class Acceptance extends \Codeception\Module
     public function canSeePsalmFailsWith(string $message): void
     {
         $this->getModule('Cli')->seeResultCodeIs(1);
-        $this->getModule('Cli')->seeInShellOutput($message);
+        $this->getModule('Cli')->seeShellOutputMatches($this->convertToRegexp($message));
+    }
+
+    private function convertToRegexp(string $in): string
+    {
+        return '@' . str_replace('%', '.*', preg_quote($in, '@')) . '@';
     }
 }
