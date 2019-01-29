@@ -6,21 +6,4 @@ namespace Weirdan\DoctrinePsalmPlugin\Tests\Helper;
 
 class Acceptance extends \Codeception\Module
 {
-    private const FILENAME = 'tests/_run/somefile.php';
-    public function runPsalmWith(string $code): void
-    {
-        $this->getModule('Filesystem')->writeToFile(self::FILENAME, $code);
-        $this->getModule('Cli')->runShellCommand('vendor/bin/psalm --output-format=pylint ' . self::FILENAME, false);
-    }
-
-    public function canSeePsalmFailsWith(string $message): void
-    {
-        $this->getModule('Cli')->seeResultCodeIs(1);
-        $this->getModule('Cli')->seeShellOutputMatches($this->convertToRegexp($message));
-    }
-
-    private function convertToRegexp(string $in): string
-    {
-        return '@' . str_replace('%', '.*', preg_quote($in, '@')) . '@';
-    }
 }
