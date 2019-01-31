@@ -568,3 +568,14 @@ Feature: Collections
       | InvalidArgument | Argument 1 of atan expects float, array<int, string> provided |
     And I see no other errors
 
+  @Collections::ArrayAccess
+  Scenario: Adding an item to collection like an array
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c[] = "d";
+      """
+    And I have some future Psalm that supports this feature "ArrayAccess push, see vimeo/psalm#1260"
+    When I run Psalm
+    Then I see no errors

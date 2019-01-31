@@ -98,4 +98,12 @@ class AcceptanceTester extends \Codeception\Actor
             throw new \Codeception\Exception\Skip("This scenario requires Psalm $op $version because of $reason");
         }
     }
+
+    /**
+     * @Given I have some future Psalm that supports this feature :ref
+     */
+    public function iHaveSomeFuturePsalmThatSupportsThisFeature(string $ref)
+    {
+        throw new \Codeception\Exception\Skip("Future functionality that Psalm has yet to support: $ref");
+    }
 }
