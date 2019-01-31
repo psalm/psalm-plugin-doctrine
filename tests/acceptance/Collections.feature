@@ -454,7 +454,7 @@ Feature: Collections
   @Collection::partition
   Scenario: Invoking partition with a proper closure
     Given I have Psalm newer than "3.0.12" (because of "Psalm bug, see vimeo/psalm#1248")
-    Given I have the following code
+    And I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -570,7 +570,7 @@ Feature: Collections
 
   @Collections::ArrayAccess
   Scenario: Adding an item to collection like an array
-    Given I have some future Psalm that supports this feature "ArrayAccess push, see vimeo/psalm#1260"
+    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
     And I have the following code
       """
       /** @var Collection<int,string> */
@@ -579,3 +579,57 @@ Feature: Collections
       """
     When I run Psalm
     Then I see no errors
+
+  @Collections::ArrayAccess
+  Scenario: Adding an item to collection with array offset access
+    # This was fine previously, but only because no types were checked in this assignment
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c[10] = "d";
+      """
+    When I run Psalm
+    Then I see no errors
+
+  @Collections::ArrayAccess
+  Scenario: Adding an item of a wrong type with array-like push
+    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c[] = 1.1;
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                                                         |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float% provided |
+
+  @Collections::ArrayAccess
+  Scenario: Adding an item using wrong type with array offset access
+    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c[10] = 1.1;
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                                                         |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float% provided |
+
+  @Collections::ArrayAccess
+  Scenario: Adding an item using wrong key type with array offset access
+    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c["10"] = "aaa";
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                                                         |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects null\|int, string% provided |

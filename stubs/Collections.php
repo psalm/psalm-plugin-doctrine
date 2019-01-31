@@ -17,6 +17,13 @@ use ArrayAccess;
 interface Collection extends Countable, IteratorAggregate, ArrayAccess
 {
     /**
+     * @param ?TKey $offset
+     * @param TValue $value
+     * @return void
+     */
+    public function offsetSet($offset, $value);
+
+    /**
      * @param TValue $element
      * @return true
      */
