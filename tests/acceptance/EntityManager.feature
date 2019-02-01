@@ -1,28 +1,27 @@
-Feature: EntityManagerInterface
+Feature: EntityManager
   In order to use Doctrine EntityManager safely
   As a Psalm user
-  I need Psalm to typecheck EntityManagerInterface
+  I need Psalm to typecheck EntityManager
 
   Background:
     Given I have the following code preamble
       """
       <?php
-      use Doctrine\ORM\EntityManagerInterface;
       use Doctrine\ORM\EntityRepository;
+      use Doctrine\ORM\EntityManager;
 
       interface I {}
 
       /**
        * @psalm-suppress InvalidReturnType
-       * @return EntityManagerInterface
+       * @return EntityManager
        */
       function em() {}
 
       """
 
-
-  @EntityManagerInterface::getRepository
-  Scenario: Getting repository for a class (entity)
+  @EntityManager::getRepository
+  Scenario: EntityManager returns specialized EntityRepository
     Given I have the following code
       """
       atan(em()->getRepository(I::class));
@@ -33,7 +32,7 @@ Feature: EntityManagerInterface
       | InvalidArgument | Argument 1 of atan expects float, Doctrine\ORM\EntityRepository<I> provided |
     And I see no other errors
 
-  @EntityManagerInterface::getRepository
+  @EntityManager::getRepository
   Scenario: Getting repository for an invalid argument
     Given I have the following code
       """
@@ -41,11 +40,11 @@ Feature: EntityManagerInterface
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                              |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getRepository expects class-string, int% provided |
+      | Type                  | Message                                                                                     |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getRepository expects class-string, int% provided |
     And I see no other errors
 
-  @EntityManagerInterface::find
+  @EntityManager::find
   Scenario: Finding an entity
     Given I have the following code
       """
@@ -57,7 +56,7 @@ Feature: EntityManagerInterface
       | InvalidArgument | Argument 1 of atan expects float, null\|I provided |
     And I see no other errors
 
-  @EntityManagerInterface::find
+  @EntityManager::find
   Scenario: Calling find with a wrong argument type
     Given I have the following code
       """
@@ -65,11 +64,11 @@ Feature: EntityManagerInterface
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                     |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::find expects class-string, int% provided |
+      | Type                  | Message                                                                            |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::find expects class-string, int% provided |
     And I see no other errors
 
-  @EntityManagerInterface::getReference
+  @EntityManager::getReference
   Scenario: Getting a reference
     Given I have the following code
       """
@@ -81,7 +80,7 @@ Feature: EntityManagerInterface
       | InvalidArgument | Argument 1 of atan expects float, I provided |
     And I see no other errors
 
-  @EntityManagerInterface::getReference
+  @EntityManager::getReference
   Scenario: Calling getReference with a wrong argument type
     Given I have the following code
       """
@@ -89,6 +88,6 @@ Feature: EntityManagerInterface
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getReference expects class-string, int% provided |
+      | Type                  | Message                                                                                    |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getReference expects class-string, int% provided |
     And I see no other errors

@@ -1,9 +1,6 @@
 <?php
 namespace Doctrine\ORM;
-
-use Doctrine\Common\Persistence\ObjectManager;
-
-interface EntityManagerInterface extends ObjectManager
+class EntityManager implements EntityManagerInterface
 {
     /**
      * @template T
@@ -11,7 +8,7 @@ interface EntityManagerInterface extends ObjectManager
      * @template-typeof T $entityName
      * @return EntityRepository<T>
      */
-    public function getRepository(string $entityName);
+    public function getRepository(string $entityName) {}
 
     /**
      * @template T
@@ -20,7 +17,7 @@ interface EntityManagerInterface extends ObjectManager
      * @param mixed $id
      * @return ?T
      */
-    public function find(string $entityName, $id, ?int $lockMode = null, ?int $lockVersion = null);
+    public function find(string $entityName, $id, ?int $lockMode = null, ?int $lockVersion = null) {}
 
     /**
      * @template T
@@ -29,5 +26,5 @@ interface EntityManagerInterface extends ObjectManager
      * @param mixed $id
      * @return T
      */
-    public function getReference(string $entityName, $id);
+    public function getReference(string $entityName, $id) {}
 }

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\Selectable;
 /**
  * @template T
  * @template-implements Selectable<int,T>
+ * @template-implements ObjectRepository<T>
  */
 class EntityRepository implements ObjectRepository, Selectable
 {
