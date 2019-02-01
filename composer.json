@@ -1,6 +1,7 @@
 {
     "name": "weirdan/doctrine-psalm-plugin",
     "description": "Stubs to let Psalm understand Doctrine better",
+    "keywords": ["php", "code", "inspection", "doctrine", "orm", "doctrine2", "dbal", "psalm", "plugin", "psalm-plugin", "static analysis", "static-analysis", "extension"],
     "type": "psalm-plugin",
     "license": "MIT",
     "authors": [
