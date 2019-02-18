@@ -37,6 +37,6 @@
         "squizlabs/php_codesniffer": "^3.3",
         "codeception/base": "^2.5",
         "composer/semver": "^1.4",
-        "weirdan/codeception-psalm-module": "^0.2.0"
+        "weirdan/codeception-psalm-module": "^0.2.1"
     }
 }
