@@ -357,8 +357,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int, string):bool, Closure(int, int):bool provided |
+      | Type                  | Message                                                                                                                           |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int=, string=):bool, Closure(int, int):bool provided |
     And I see no other errors
 
   @Collection::exists
@@ -371,14 +371,13 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                           |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int, string):bool, Closure(int, string):int provided |
+      | Type                  | Message                                                                                                                             |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int=, string=):bool, Closure(int, string):int provided |
     And I see no other errors
 
   @Collection::exists
   Scenario: Invoking exists with a closure accepting just keys
-    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -389,8 +388,7 @@ Feature: Collections
 
   @Collection::exists
   Scenario: Invoking exists with a closure accepting nothing
-    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -423,8 +421,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                               |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string):bool, Closure(int):bool provided |
+      | Type                  | Message                                                                                                                |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string=):bool, Closure(int):bool provided |
     And I see no other errors
 
   @Collection::filter
@@ -437,8 +435,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string):bool, Closure(string):int provided |
+      | Type                  | Message                                                                                                                  |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string=):bool, Closure(string):int provided |
     And I see no other errors
 
   @Collection::filter
@@ -454,8 +452,7 @@ Feature: Collections
 
   @Collection::filter
   Scenario: Invoking filter with a closure accepting nothing
-    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -474,8 +471,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                               |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int, string):bool, Closure(string, string):bool provided |
+      | Type                  | Message                                                                                                                                 |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, Closure(string, string):bool provided |
     And I see no other errors
 
   @Collection::forAll
@@ -488,8 +485,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int, string):bool, Closure(int, int):bool provided |
+      | Type                  | Message                                                                                                                           |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, Closure(int, int):bool provided |
     And I see no other errors
 
   @Collection::forAll
@@ -502,14 +499,13 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                           |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int, string):bool, Closure(int, string):int provided |
+      | Type                  | Message                                                                                                                             |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, Closure(int, string):int provided |
     And I see no other errors
 
   @Collection::forAll
   Scenario: Invoking forAll with a closure accepting just keys
-    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -520,8 +516,7 @@ Feature: Collections
 
   @Collection::forAll
   Scenario: Invoking forAll with a closure accepting nothing
-    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -554,14 +549,13 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::map expects Closure(string):mixed, Closure(int):bool provided |
+      | Type                  | Message                                                                                                              |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::map expects Closure(string=):mixed, Closure(int):bool provided |
     And I see no other errors
 
   @Collection::map
   Scenario: Invoking map with a closure accepting nothing
-    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -572,8 +566,7 @@ Feature: Collections
 
   @Collection::partition
   Scenario: Invoking partition with a proper closure
-    Given I have Psalm newer than "3.0.12" (because of "Psalm bug, see vimeo/psalm#1248")
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -595,8 +588,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                  |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(string):bool, Closure(int):bool provided |
+      | Type                  | Message                                                                                                                   |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(string=):bool, Closure(int):bool provided |
     And I see no other errors
 
   @Collection::partition
@@ -609,14 +602,13 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                    |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(string):bool, Closure(string):int provided |
+      | Type                  | Message                                                                                                                     |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(string=):bool, Closure(string):int provided |
     And I see no other errors
 
   @Collection::partition
   Scenario: Invoking partition with a closure accepting nothing
-    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -701,8 +693,7 @@ Feature: Collections
 
   @Collections::ArrayAccess
   Scenario: Adding an item to collection like an array
-    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -713,8 +704,7 @@ Feature: Collections
 
   @Collections::ArrayAccess
   Scenario: Adding an item to collection with array offset access
-    # This was fine previously, but only because no types were checked in this assignment
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -725,8 +715,7 @@ Feature: Collections
 
   @Collections::ArrayAccess
   Scenario: Adding an item of a wrong type with array-like push
-    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -736,11 +725,11 @@ Feature: Collections
     Then I see these errors
       | Type                  | Message                                                                                         |
       | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float% provided |
+    And I see no other errors
 
   @Collections::ArrayAccess
   Scenario: Adding an item using wrong type with array offset access
-    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -750,11 +739,11 @@ Feature: Collections
     Then I see these errors
       | Type                  | Message                                                                                         |
       | InvalidScalarArgument | Argument 2 of %::offsetSet expects string, float% provided |
+    And I see no other errors
 
   @Collections::ArrayAccess
   Scenario: Adding an item using wrong key type with array offset access
-    Given I have Psalm newer than "3.0.13" (because of "Psalm bug, see vimeo/psalm#1260")
-    And I have the following code
+    Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
@@ -764,3 +753,4 @@ Feature: Collections
     Then I see these errors
       | Type                  | Message                                                                                         |
       | InvalidScalarArgument | Argument 1 of %::offsetSet expects null\|int, string% provided |
+    And I see no other errors

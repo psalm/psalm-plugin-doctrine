@@ -118,32 +118,32 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
     public function next();
 
     /**
-     * @param Closure(TKey,TValue):bool $p
+     * @param Closure(TKey=,TValue=):bool $p
      * @return bool
      */
     public function exists(Closure $p);
 
     /**
-     * @param Closure(TValue):bool $p
+     * @param Closure(TValue=):bool $p
      * @return Collection<TKey,TValue>
      */
     public function filter(Closure $p);
 
     /**
-     * @param Closure(TKey,TValue):bool $p
+     * @param Closure(TKey=,TValue=):bool $p
      * @return bool
      */
     public function forAll(Closure $p);
 
     /**
      * @template T
-     * @param Closure(TValue):T $func
+     * @param Closure(TValue=):T $func
      * @return Collection<TKey,T>
      */
     public function map(Closure $func);
 
     /**
-     * @param Closure(TValue):bool $p
+     * @param Closure(TValue=):bool $p
      * @return array{0:Collection<TKey,TValue>,1:Collection<TKey,TValue>}
      */
     public function partition(Closure $p);
