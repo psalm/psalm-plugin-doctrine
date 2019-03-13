@@ -25,6 +25,13 @@ class EntityRepository implements ObjectRepository, Selectable
     /** @param Mapping\ClassMetadata<T> $class */
     public function __construct(EntityManagerInterface $em, Mapping\ClassMetadata $class) {}
 
+    /**
+     * @param ?int $lockMode
+     * @param ?int $lockVersion
+     * @return ?T
+     */
+    public function find($id, $lockMode = null, $lockVersion = null) {}
+
     /** @return T[] */
     public function findAll() {}
     /**
