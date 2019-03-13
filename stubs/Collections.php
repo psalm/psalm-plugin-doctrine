@@ -8,7 +8,7 @@ use IteratorAggregate;
 use ArrayAccess;
 
 /**
- * @template TKey
+ * @template TKey as array-key
  * @template TValue
  *
  * @template-extends IteratorAggregate<TKey,TValue>
@@ -16,6 +16,7 @@ use ArrayAccess;
  */
 interface Collection extends Countable, IteratorAggregate, ArrayAccess
 {
+
     /**
      * @param ?TKey $offset
      * @param TValue $value
@@ -117,7 +118,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
     public function next();
 
     /**
-     * @param Closure(TValue):bool $p
+     * @param Closure(TKey,TValue):bool $p
      * @return bool
      */
     public function exists(Closure $p);
@@ -162,7 +163,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
 }
 
 /**
- * @template TKey
+ * @template TKey as array-key
  * @template TValue
  */
 interface Selectable

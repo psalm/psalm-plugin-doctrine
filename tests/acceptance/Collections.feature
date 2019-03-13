@@ -24,6 +24,30 @@ Feature: Collections
 
       """
 
+  @Collection::instantiation
+  Scenario: Instantiating a collection with incompatible key type
+    Given I have the following code
+    """
+    /** @var Collection<object,object> */
+    $c = new ArrayCollection;
+    """
+  When I run Psalm
+  Then I see these errors
+    | Type                 | Message                                                                |
+    | InvalidTemplateParam | Extended template param TKey expects type array-key, type object given |
+  And I see no other errors
+
+  @Collection::instantiation
+  Scenario: Instantiating a collection with compatible key type
+    Given I have the following code
+    """
+    /** @var Collection<string,object> */
+    $c = new ArrayCollection;
+    """
+  When I run Psalm
+  Then I see no errors
+
+
   @Collection::add
   Scenario: Adding an item of invalid type to the collection
     Given I have the following code
@@ -324,17 +348,17 @@ Feature: Collections
     And I see no other errors
 
   @Collection::exists
-  Scenario: Invoking exists with a closure accepting wrong type of argument
+  Scenario: Invoking exists with a closure accepting wrong type of value
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
-      $c->exists(function(int $_p): bool { return (bool) rand(0,1); });
+      $c->exists(function(int $_k, int $_v): bool { return (bool) rand(0,1); });
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                               |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(string):bool, Closure(int):bool provided |
+      | Type                  | Message                                                                                                                         |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int, string):bool, Closure(int, int):bool provided |
     And I see no other errors
 
   @Collection::exists
@@ -343,13 +367,37 @@ Feature: Collections
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
-      $c->exists(function(string $_p): int { return rand(0,1); });
+      $c->exists(function(int $_k, string $_v): int { return rand(0,1); });
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(string):bool, Closure(string):int provided |
+      | Type                  | Message                                                                                                                           |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int, string):bool, Closure(int, string):int provided |
     And I see no other errors
+
+  @Collection::exists
+  Scenario: Invoking exists with a closure accepting just keys
+    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->exists(function(int $_k): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
+
+  @Collection::exists
+  Scenario: Invoking exists with a closure accepting nothing
+    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->exists(function(): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
 
   @Collection::filter
   Scenario: Invoking filter with a valid closure
@@ -393,6 +441,29 @@ Feature: Collections
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string):bool, Closure(string):int provided |
     And I see no other errors
 
+  @Collection::filter
+  Scenario: Invoking filter with a closure accepting keys
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->filter(function(string $_v, int $_k): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
+
+  @Collection::filter
+  Scenario: Invoking filter with a closure accepting nothing
+    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->filter(function(): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
+
   @Collection::forAll
   Scenario: Invoking forAll with a closure having wrong first argument type
     Given I have the following code
@@ -435,6 +506,30 @@ Feature: Collections
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int, string):bool, Closure(int, string):int provided |
     And I see no other errors
 
+  @Collection::forAll
+  Scenario: Invoking forAll with a closure accepting just keys
+    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->forAll(function(int $_k): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
+
+  @Collection::forAll
+  Scenario: Invoking forAll with a closure accepting nothing
+    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->forAll(function(): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
+
   @Collection::map
   Scenario: Invoking map with a proper closure
     Given I have the following code
@@ -462,6 +557,18 @@ Feature: Collections
       | Type                  | Message                                                                                                             |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::map expects Closure(string):mixed, Closure(int):bool provided |
     And I see no other errors
+
+  @Collection::map
+  Scenario: Invoking map with a closure accepting nothing
+    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->map(function(): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
 
   @Collection::partition
   Scenario: Invoking partition with a proper closure
@@ -505,6 +612,18 @@ Feature: Collections
       | Type                  | Message                                                                                                                    |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(string):bool, Closure(string):int provided |
     And I see no other errors
+
+  @Collection::partition
+  Scenario: Invoking partition with a closure accepting nothing
+    Given I have some future Psalm that supports this feature "union of closures, see vimeo/psalm#1462"
+    And I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->partition(function(): bool { return (bool) rand(0,1); });
+      """
+    When I run Psalm
+    Then I see no errors
 
   @Collection::indexOf
   Scenario: Invoking indexOf with a wrong type
@@ -630,7 +749,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float% provided |
+      | InvalidScalarArgument | Argument 2 of %::offsetSet expects string, float% provided |
 
   @Collections::ArrayAccess
   Scenario: Adding an item using wrong key type with array offset access
@@ -644,4 +763,4 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects null\|int, string% provided |
+      | InvalidScalarArgument | Argument 1 of %::offsetSet expects null\|int, string% provided |
