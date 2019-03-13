@@ -33,6 +33,18 @@ Feature: EntityRepository
 
       """
 
+  @EntityRepository::find
+  Scenario: Finding an entity by ID
+    Given I have the following code
+    """
+    atan(repo(I::class)->find(1));
+    """
+    When I run Psalm
+    Then I see these errors
+        | Type            | Message                                                |
+        | InvalidArgument | Argument 1 of atan expects float, null\|I provided |
+    And I see no other errors
+
   @EntityRepository::findAll
   Scenario: Finding all entities
     Given I have the following code
