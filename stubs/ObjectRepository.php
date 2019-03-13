@@ -2,4 +2,7 @@
 namespace Doctrine\Common\Persistence;
 
 /** @template T */
-interface ObjectRepository {}
+interface ObjectRepository {
+    /** @return ?T */
+    public function find($id);
+}
