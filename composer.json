@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Weirdan\\DoctrinePsalmPlugin\\": ["."]
+            "Weirdan\\DoctrinePsalmPlugin\\": ["src"]
         }
     },
     "autoload-dev": {
