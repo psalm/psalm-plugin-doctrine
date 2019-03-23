@@ -12,9 +12,27 @@ Feature: EntityManager
           <directory name="."/>
         </projectFiles>
         <plugins>
-          <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin" />
+          <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin">
+            <doctrine>
+              <xml>
+                <path>mapping</path>
+              </xml>
+            </doctrine>
+          </pluginClass>
         </plugins>
       </psalm>
+      """
+    And I have the following mapping for "C"
+      """
+      <?xml version="1.0"?>
+      <doctrine-mapping
+        xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                            https://www.doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+        <entity name="C" table="c">
+        </entity>
+      </doctrine-mapping>
       """
     And I have the following code preamble
       """
@@ -22,7 +40,7 @@ Feature: EntityManager
       use Doctrine\ORM\EntityRepository;
       use Doctrine\ORM\EntityManager;
 
-      interface I {}
+      class C {}
 
       /**
        * @psalm-suppress InvalidReturnType
@@ -36,12 +54,12 @@ Feature: EntityManager
   Scenario: EntityManager returns specialized EntityRepository
     Given I have the following code
       """
-      atan(em()->getRepository(I::class));
+      atan(em()->getRepository(C::class));
       """
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                     |
-      | InvalidArgument | Argument 1 of atan expects float, Doctrine\ORM\EntityRepository<I> provided |
+      | InvalidArgument | Argument 1 of atan expects float, Doctrine\ORM\EntityRepository<C> provided |
     And I see no other errors
 
   @EntityManager::getRepository
@@ -60,12 +78,24 @@ Feature: EntityManager
   Scenario: Finding an entity
     Given I have the following code
       """
-      atan(em()->find(I::class, 1));
+      atan(em()->find(C::class, 1));
       """
     When I run Psalm
     Then I see these errors
       | Type            | Message                                            |
-      | InvalidArgument | Argument 1 of atan expects float, null\|I provided |
+      | InvalidArgument | Argument 1 of atan expects float, null\|C provided |
+    And I see no other errors
+
+  @EntityManager::find
+  Scenario: Finding a non-entity
+    Given I have the following code
+    """
+    em()->find(InvalidArgumentException::class, 1);
+    """
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                                      |
+      | InvalidArgument | Argument 1 of Doctrine\ORM\EntityManager::find expects entity class, non-entity class-string(InvalidArgumentException) given |
     And I see no other errors
 
   @EntityManager::find
@@ -84,12 +114,12 @@ Feature: EntityManager
   Scenario: Getting a reference
     Given I have the following code
       """
-      atan(em()->getReference(I::class, 1));
+      atan(em()->getReference(C::class, 1));
       """
     When I run Psalm
     Then I see these errors
       | Type            | Message                                      |
-      | InvalidArgument | Argument 1 of atan expects float, I provided |
+      | InvalidArgument | Argument 1 of atan expects float, C provided |
     And I see no other errors
 
   @EntityManager::getReference
