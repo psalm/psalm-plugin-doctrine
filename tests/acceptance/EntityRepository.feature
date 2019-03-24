@@ -12,7 +12,13 @@ Feature: EntityRepository
           <directory name="."/>
         </projectFiles>
         <plugins>
-          <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin" />
+          <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin">
+            <doctrine>
+              <xml>
+                <path>mapping</path>
+              </xml>
+            </doctrine>
+          </pluginClass>
         </plugins>
       </psalm>
       """

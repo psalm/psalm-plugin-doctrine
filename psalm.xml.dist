@@ -12,8 +12,4 @@
 	    <directory name="stubs" />
         </ignoreFiles>
     </projectFiles>
-    <plugins>
-	    <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin"/>
-    </plugins>
-
 </psalm>
