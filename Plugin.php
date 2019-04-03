@@ -19,6 +19,6 @@ class Plugin implements PluginEntryPointInterface
     /** @return string[] */
     private function getStubFiles(): array
     {
-        return glob(__DIR__ . '/' . 'stubs/*\\.php');
+        return glob(__DIR__ . '/' . 'stubs/*.php');
     }
 }
