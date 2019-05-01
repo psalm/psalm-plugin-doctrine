@@ -54,7 +54,7 @@ Feature: EntityManagerInterface
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                              |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getRepository expects class-string, int% provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::get%epository expects class-string, int% provided |
     And I see no other errors
 
   @EntityManagerInterface::find
@@ -102,5 +102,5 @@ Feature: EntityManagerInterface
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getReference expects class-string, int% provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::get%eference expects class-string, int% provided |
     And I see no other errors
