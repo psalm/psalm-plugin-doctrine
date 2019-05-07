@@ -53,8 +53,8 @@ Feature: EntityManagerInterface
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                              |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::get%epository expects class-string, int% provided |
+      | Type                  | Message                                                                                               |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::get%epository expects class-string%, int% provided |
     And I see no other errors
 
   @EntityManagerInterface::find
@@ -77,8 +77,8 @@ Feature: EntityManagerInterface
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                     |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::find expects class-string, int% provided |
+      | Type                  | Message                                                                                      |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::find expects class-string%, int% provided |
     And I see no other errors
 
   @EntityManagerInterface::getReference
@@ -101,6 +101,6 @@ Feature: EntityManagerInterface
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::get%eference expects class-string, int% provided |
+      | Type                  | Message                                                                                              |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::get%eference expects class-string%, int% provided |
     And I see no other errors
