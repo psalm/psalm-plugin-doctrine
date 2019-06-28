@@ -577,7 +577,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                                                                                        |
-      | InvalidArgument | Argument 1 of atan expects float, array{0:Doctrine\Common\Collections\Collection<int, string>, 1:Doctrine\Common\Collections\Collection<int, string>} provided |
+      | InvalidArgument | Argument 1 of atan expects float, array{0:%Doctrine\Common\Collections\Collection<int, string>, 1:%Doctrine\Common\Collections\Collection<int, string>} provided |
     And I see no other errors
 
   @Collection::partition
