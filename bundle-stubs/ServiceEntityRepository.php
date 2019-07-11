@@ -1,0 +1,18 @@
+<?php
+namespace Doctrine\Bundle\DoctrineBundle\Repository;
+
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityRepository;
+
+/**
+ * @template T
+ * @template-extends EntityRepository<T>
+ */
+class ServiceEntityRepository extends EntityRepository implements ServiceEntityRepositoryInterface
+{
+    /**
+     * @param string $entityClass The class name of the entity this repository manages
+     */
+    public function __construct(ManagerRegistry $registry, $entityClass) {}
+}
+
