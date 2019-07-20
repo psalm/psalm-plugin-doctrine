@@ -14,7 +14,11 @@ use function array_merge;
 use function class_exists;
 use function explode;
 use function glob;
+use function preg_grep;
 use function strpos;
+use function version_compare;
+
+use const PREG_GREP_INVERT;
 
 class Plugin implements PluginEntryPointInterface
 {
@@ -32,10 +36,16 @@ class Plugin implements PluginEntryPointInterface
     /** @return string[] */
     private function getStubFiles(): array
     {
-        return array_merge(
-            glob(__DIR__ . '/../stubs/*.phpstub') ?: [],
-            glob(__DIR__ . '/../stubs/DBAL/*.phpstub') ?: []
-        );
+        $files = glob(__DIR__ . '/../stubs/*.phpstub') ?: [];
+
+        if ($this->hasPackage('doctrine/collections')) {
+            [$ver] = explode('@', $this->getPackageVersion('doctrine/collections'));
+            if (version_compare($ver, 'v1.6.0', '>=')) {
+                $files = preg_grep('/Collections\.phpstub$/', $files, PREG_GREP_INVERT);
+            }
+        }
+
+        return array_merge($files, glob(__DIR__ . '/../stubs/DBAL/*.phpstub') ?: []);
     }
 
     private function hasPackage(string $packageName): bool
