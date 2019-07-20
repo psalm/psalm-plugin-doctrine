@@ -572,11 +572,11 @@ Feature: Collections
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
-      atan($c->partition(function(string $_p): bool { return (bool) rand(0,1); }));
+      atan($c->partition(function(int $_k, string $_p): bool { return (bool) rand(0,1); }));
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                                                                        |
+      | Type            | Message                                                                                                                                                          |
       | InvalidArgument | Argument 1 of atan expects float, array{0:%Doctrine\Common\Collections\Collection<int, string>, 1:%Doctrine\Common\Collections\Collection<int, string>} provided |
     And I see no other errors
 
@@ -586,12 +586,12 @@ Feature: Collections
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
-      $c->partition(function(int $_p): bool { return (bool) rand(0,1); });
+      $c->partition(function(string $_p): bool { return (bool) rand(0,1); });
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                   |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(string=):bool, Closure(int):bool provided |
+      | Type                  | Message                                                                                                                            |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(int=, string=):bool, Closure(string):bool provided |
     And I see no other errors
 
   @Collection::partition
@@ -600,12 +600,12 @@ Feature: Collections
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
-      $c->partition(function(string $_p): int { return rand(0,1); });
+      $c->partition(function(int $_p): int { return rand(0,1); });
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                     |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(string=):bool, Closure(string):int provided |
+      | Type                  | Message                                                                                                                        |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(int=, string=):bool, Closure(int):int provided |
     And I see no other errors
 
   @Collection::partition
