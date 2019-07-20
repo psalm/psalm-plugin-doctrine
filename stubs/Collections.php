@@ -143,7 +143,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
     public function map(Closure $func);
 
     /**
-     * @param Closure(TValue=):bool $p
+     * @param Closure(TKey=,TValue=):bool $p
      * @return array{0:Collection<TKey,TValue>,1:Collection<TKey,TValue>}
      */
     public function partition(Closure $p);
