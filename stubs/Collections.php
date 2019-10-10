@@ -155,7 +155,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
     public function indexOf($element);
 
     /**
-     * @param TKey $offset
+     * @param int $offset
      * @param int|null $length
      * @return array<TKey,TValue>
      */
