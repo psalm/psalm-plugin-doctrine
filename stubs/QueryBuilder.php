@@ -11,13 +11,13 @@ use Doctrine\ORM\Query\Expr;
 class QueryBuilder
 {
     /**
-     * @param string|null|array<array-key,string|Expr\Base>|Expr\Base $select
+     * @param string|null|array<array-key,string|Expr\Func>|Expr\Func $select
      * @param SelectExpr ...$selects
      */
     public function select($select = null, ...$selects): self {}
 
     /**
-     * @param string|null|array<array-key,string|Expr\Base>|Expr\Base $select
+     * @param string|null|array<array-key,string|Expr\Func>|Expr\Func $select
      * @param SelectExpr ...$selects
      */
     public function addSelect($select = null, ...$selects): self {}
