@@ -2,60 +2,59 @@
 
 namespace Doctrine\ORM;
 
+use Doctrine\ORM\Query\Expr;
+
 /**
- * @template WhereExpr as \Doctrine\ORM\Query\Expr\Base|string
- * @template WhereArg as \Doctrine\ORM\Query\Expr\Base|list<\Doctrine\ORM\Query\Expr\Base|string>|string
- *
- * @template SelectExpr as \Doctrine\ORM\Query\Expr\Func|string
- * @template SelectArg as \Doctrine\ORM\Query\Expr\Func|list<\Doctrine\ORM\Query\Expr\Func|string>|string|null
+ * @template WhereExpr as Expr\Base|string
+ * @template SelectExpr as Expr\Func|string
  */
 class QueryBuilder
 {
     /**
-     * @param SelectArg $select
+     * @param string|null|array<array-key,string|Expr\Base>|Expr\Base $select
      * @param SelectExpr ...$selects
      */
     public function select($select = null, ...$selects): self {}
 
     /**
-     * @param SelectArg $select
+     * @param string|null|array<array-key,string|Expr\Base>|Expr\Base $select
      * @param SelectExpr ...$selects
      */
     public function addSelect($select = null, ...$selects): self {}
 
     /**
-     * @param WhereArg $predicate
+     * @param array<array-key,string|Expr\Base>|Expr\Base|string $predicate
      * @param WhereExpr ...$predicates
      */
-    public function where($predicate = null, ...$predicates): self {}
+    public function where($predicate, ...$predicates): self {}
 
     /**
-     * @param WhereArg $predicate
+     * @param array<array-key,string|Expr\Base>|Expr\Base|string $predicate
      * @param WhereExpr ...$predicates
      */
-    public function andWhere($predicate = null, ...$predicates): self {}
+    public function andWhere($predicate, ...$predicates): self {}
 
     /**
-     * @param WhereArg $predicate
+     * @param array<array-key,string|Expr\Base>|Expr\Base|string $predicate
      * @param WhereExpr ...$predicates
      */
-    public function orWhere($predicate = null, ...$predicates): self {}
+    public function orWhere($predicate, ...$predicates): self {}
 
     /**
-     * @param WhereArg $predicate
+     * @param array<array-key,string|Expr\Base>|Expr\Base|string $predicate
      * @param WhereExpr ...$predicates
      */
-    public function having($predicate = null, ...$predicates): self {}
+    public function having($predicate, ...$predicates): self {}
 
     /**
-     * @param WhereArg $predicate
+     * @param array<array-key,string|Expr\Base>|Expr\Base|string $predicate
      * @param WhereExpr ...$predicates
      */
-    public function andHaving($predicate = null, ...$predicates): self {}
+    public function andHaving($predicate, ...$predicates): self {}
 
     /**
-     * @param WhereArg $predicate
+     * @param array<array-key,string|Expr\Base>|Expr\Base|string $predicate
      * @param WhereExpr ...$predicates
      */
-    public function orHaving($predicate = null, ...$predicates): self {}
+    public function orHaving($predicate, ...$predicates): self {}
 }

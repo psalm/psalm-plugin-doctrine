@@ -77,7 +77,7 @@ Feature: Paginator
   Scenario: Query builder having accepts expr
     Given I have the following code
       """
-      $expr = new Doctrine\ORM\Query\Expr\Andx('a = b');
+      $expr = new Doctrine\ORM\Query\Expr\Andx(['a = b']);
       builder()->having($expr)->distinct();
       """
     When I run Psalm
@@ -87,7 +87,7 @@ Feature: Paginator
   Scenario: Query builder andHaving accepts array expr
     Given I have the following code
       """
-      $expr = new Doctrine\ORM\Query\Expr\Andx('a = b');
+      $expr = new Doctrine\ORM\Query\Expr\Andx(['a = b']);
       builder()->having([$expr])->distinct();
       """
     When I run Psalm
