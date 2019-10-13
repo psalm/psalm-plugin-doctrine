@@ -1,7 +1,7 @@
-Feature: Paginator
-  In order to paginate Doctrine Queries safely
+Feature: QueryBuilder
+  In order to to use Doctrine QueryBuilder safely
   As a Psalm user
-  I need Psalm to typecheck Paginator
+  I need Psalm to typecheck QueryBuilder
 
   Background:
     Given I have the following config
@@ -20,6 +20,7 @@ Feature: Paginator
       """
       <?php
       use Doctrine\ORM\QueryBuilder;
+      use Doctrine\ORM\Query\Expr;
 
       /**
        * @psalm-suppress InvalidReturnType
@@ -77,7 +78,7 @@ Feature: Paginator
   Scenario: Query builder having accepts expr
     Given I have the following code
       """
-      $expr = new Doctrine\ORM\Query\Expr\Andx(['a = b']);
+      $expr = new Expr\Andx(['a = b']);
       builder()->having($expr)->distinct();
       """
     When I run Psalm
@@ -87,8 +88,31 @@ Feature: Paginator
   Scenario: Query builder andHaving accepts array expr
     Given I have the following code
       """
-      $expr = new Doctrine\ORM\Query\Expr\Andx(['a = b']);
+      $expr = new Expr\Andx(['a = b']);
       builder()->having([$expr])->distinct();
       """
     When I run Psalm
     Then I see no errors
+
+  @QueryBuilder
+  Scenario: QueryBuilder::select() rejects wrong stringable arguments
+    Given I have Psalm newer than "3.3.2" (because of "missing functionality")
+    And I have the following code
+      """
+      builder()->select(new Expr\Andx(['a = b']))->distinct();
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                 | Message                                                                                                                                                                                                                    |
+      | ImplicitToStringCast | Argument 1 of Doctrine\ORM\QueryBuilder::select expects array<array-key, string\|Doctrine\ORM\Query\Expr\Func>\|null\|string\|Doctrine\ORM\Query\Expr\Func, Doctrine\ORM\Query\Expr\Andx provided with a __toString method |
+
+  @QueryBuilder @x
+  Scenario: QueryBuilder::select() rejects wrong non-stringable arguments
+    Given I have the following code
+      """
+      builder()->select(2.2)->distinct();
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                                                                                                                                         |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects array<array-key, string\|Doctrine\ORM\Query\Expr\Func>\|null\|string\|Doctrine\ORM\Query\Expr\Func, float(2.2) provided |
