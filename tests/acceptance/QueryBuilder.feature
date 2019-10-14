@@ -106,7 +106,7 @@ Feature: QueryBuilder
       | Type                 | Message                                                                                                                                                                                                                    |
       | ImplicitToStringCast | Argument 1 of Doctrine\ORM\QueryBuilder::select expects array<array-key, string\|Doctrine\ORM\Query\Expr\Func>\|null\|string\|Doctrine\ORM\Query\Expr\Func, Doctrine\ORM\Query\Expr\Andx provided with a __toString method |
 
-  @QueryBuilder @x
+  @QueryBuilder
   Scenario: QueryBuilder::select() rejects wrong non-stringable arguments
     Given I have the following code
       """
@@ -116,3 +116,25 @@ Feature: QueryBuilder
     Then I see these errors
       | Type                  | Message                                                                                                                                                                         |
       | InvalidScalarArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects array<array-key, string\|Doctrine\ORM\Query\Expr\Func>\|null\|string\|Doctrine\ORM\Query\Expr\Func, float(2.2) provided |
+
+  @QueryBuilder
+  Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept Expr\Comparison
+    Given I have Psalm newer than "3.3.2" (because of "missing functionality")
+    And I have the following code
+      """
+      $expr = new Expr\Comparison('id', Expr\Comparison::EQ, 1);
+      builder()->where($expr)->andWhere($expr)->orWhere($expr)->distinct();
+      """
+    When I run Psalm
+    Then I see no errors
+
+  @QueryBuilder
+  Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept array with Expr\Comparison
+    Given I have Psalm newer than "3.3.2" (because of "missing functionality")
+    And I have the following code
+      """
+      $expr = new Expr\Comparison('id', Expr\Comparison::EQ, 1);
+      builder()->where([$expr])->andWhere([$expr])->orWhere([$expr])->distinct();
+      """
+    When I run Psalm
+    Then I see no errors
