@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.8.0 - 2019-10-17
+
+### Added
+
+- [#29](https://github.com/weirdan/doctrine-psalm-plugin/pull/29) Added ClassMetadataInfo::$sequenceGeneratorDefinition
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.7.1 - 2019-10-14
 
 ### Added
