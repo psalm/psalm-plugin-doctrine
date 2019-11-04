@@ -12,15 +12,23 @@ use Doctrine\Common\Collections\Selectable;
 class EntityRepository implements ObjectRepository, Selectable
 {
 
-    /** @var string */
+    /**
+     * @var string
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $_entityName;
 
-    /** @var EntityManagerInterface */
+    /**
+     * @var EntityManagerInterface
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $_em;
 
-    /** @var Mapping\ClassMetadata */
+    /**
+     * @var Mapping\ClassMetadata
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $_class;
-
 
     /** @param Mapping\ClassMetadata<T> $class */
     public function __construct(EntityManagerInterface $em, Mapping\ClassMetadata $class) {}
