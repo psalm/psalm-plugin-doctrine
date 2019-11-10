@@ -4,7 +4,6 @@ namespace Weirdan\DoctrinePsalmPlugin;
 
 use OutOfBoundsException;
 use PackageVersions\Versions;
-use Muglug\PackageVersions\Versions as LegacyVersions;
 use SimpleXMLElement;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
@@ -54,10 +53,6 @@ class Plugin implements PluginEntryPointInterface
     {
         if (class_exists(Versions::class)) {
             return (string) Versions::getVersion($packageName);
-        }
-
-        if (class_exists(LegacyVersions::class)) {
-            return (string) LegacyVersions::getVersion($packageName);
         }
 
         throw new OutOfBoundsException();
