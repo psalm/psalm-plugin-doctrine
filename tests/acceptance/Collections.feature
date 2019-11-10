@@ -58,8 +58,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, int% provided |
+      | Type                  | Message                                                                                   |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, int(1) provided |
     And I see no other errors
 
   @Collection::add
@@ -83,8 +83,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                      |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, int% provided |
+      | Type                  | Message                                                                                        |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, int(1) provided |
     And I see no other errors
 
   @Collection::contains
@@ -108,8 +108,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                    |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, string% provided |
+      | Type                  | Message                                                                                               |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, string(string key) provided |
     And I see no other errors
 
   @Collection::remove
@@ -136,8 +136,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                           |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove%lement expects string, int% provided |
+      | Type                  | Message                                                                                             |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string, int(1) provided |
     And I see no other errors
 
   @Collection::removeElement
@@ -164,8 +164,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains%ey expects int, string% provided |
+      | Type                  | Message                                                                                                    |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::containsKey expects int, string(string key) provided |
     And I see no other errors
 
   @Collection::containsKey
@@ -189,8 +189,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::get expects int, string% provided |
+      | Type                  | Message                                                                                            |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::get expects int, string(string key) provided |
     And I see no other errors
 
   @Collection::get
@@ -217,8 +217,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                  |
-      | InvalidArgument | Argument 1 of atan expects float, array<%, int> provided |
+      | Type            | Message                                                          |
+      | InvalidArgument | Argument 1 of atan expects float, array<array-key, int> provided |
     And I see no other errors
 
   @Collection::getValues
@@ -231,8 +231,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                     |
-      | InvalidArgument | Argument 1 of atan expects float, array<%, string> provided |
+      | Type            | Message                                                             |
+      | InvalidArgument | Argument 1 of atan expects float, array<array-key, string> provided |
     And I see no other errors
 
   @Collection::set
@@ -245,8 +245,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::set expects int, string% provided |
+      | Type                  | Message                                                                                            |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::set expects int, string(string key) provided |
     And I see no other errors
 
   @Collection::set
@@ -259,8 +259,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                 |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::set expects string, int% provided |
+      | Type                  | Message                                                                                   |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::set expects string, int(1) provided |
     And I see no other errors
 
   @Collection::toArray
@@ -316,7 +316,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                 |
-      | InvalidScalarArgument | Argument 1 of strlen expects string, null\|int provided |
+      | InvalidScalarArgument | Argument 1 of strlen expects string, int\|null provided |
     And I see no other errors
 
   @Collection::current
@@ -474,7 +474,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::for%ll expects Closure(int=, string=):bool, Closure(string, string):bool provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, Closure(string, string):bool provided |
     And I see no other errors
 
   @Collection::forAll
@@ -488,7 +488,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                           |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::for%ll expects Closure(int=, string=):bool, Closure(int, int):bool provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, Closure(int, int):bool provided |
     And I see no other errors
 
   @Collection::forAll
@@ -502,7 +502,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::for%ll expects Closure(int=, string=):bool, Closure(int, string):int provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, Closure(int, string):int provided |
     And I see no other errors
 
   @Collection::forAll
@@ -577,7 +577,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                                                                                          |
-      | InvalidArgument | Argument 1 of atan expects float, array{0:%Doctrine\Common\Collections\Collection<int, string>, 1:%Doctrine\Common\Collections\Collection<int, string>} provided |
+      | InvalidArgument | Argument 1 of atan expects float, array{0: Doctrine\Common\Collections\Collection<int, string>, 1: Doctrine\Common\Collections\Collection<int, string>} provided |
     And I see no other errors
 
   @Collection::partition
@@ -629,8 +629,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                     |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::index%f expects string, int% provided |
+      | Type                  | Message                                                                                       |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::indexOf expects string, int(1) provided |
     And I see no other errors
 
   @Collection::indexOf
@@ -657,8 +657,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                   |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::slice expects int, string% provided |
+      | Type                  | Message                                                                                              |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::slice expects int, string(string key) provided |
     And I see no other errors
 
   @Collection::slice
@@ -671,8 +671,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::slice expects int\|null, string% provided |
+      | Type                  | Message                                                                                              |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::slice expects int\|null, string(zzzz) provided |
     And I see no other errors
 
   @Collection::slice
@@ -725,8 +725,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offset%et expects string, float% provided |
+      | Type                  | Message                                                                                             |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float(1.1) provided |
     And I see no other errors
 
   @Collections::ArrayAccess
@@ -739,8 +739,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 2 of %::offset%et expects string, float% provided |
+      | Type                  | Message                                                                                             |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float(1.1) provided |
     And I see no other errors
 
   @Collections::ArrayAccess
@@ -753,6 +753,6 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 1 of %::offset%et expects null\|int, string% provided |
+      | Type                  | Message                                                                                                |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, string(10) provided |
     And I see no other errors

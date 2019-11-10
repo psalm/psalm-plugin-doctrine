@@ -50,8 +50,8 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                     |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::get%epository expects class-string%, int% provided |
+      | Type                  | Message                                                                                                        |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::getRepository expects class-string, int(123) provided |
 
   @ObjectManager::getClassMetadata
   Scenario: Calling getClassMetadata with a class-string argument
@@ -72,8 +72,8 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                        |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::get%lass%etadata expects class-string%, int% provided |
+      | Type                  | Message                                                                                                           |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::getClassMetadata expects class-string, int(123) provided |
 
   @ObjectManager::find
   Scenario: Calling find with a class-string argument
@@ -84,7 +84,7 @@ Feature: ObjectManager
     When I run Psalm
     Then I see these errors
       | Type            | Message                                            |
-      | InvalidArgument | Argument 1 of atan expects float, null\|I provided |
+      | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
 
   @ObjectManager::find
   Scenario: Calling find with a wrong argument type
@@ -94,5 +94,5 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                            |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::find expects class-string%, int% provided |
+      | Type                  | Message                                                                                               |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::find expects class-string, int(123) provided |

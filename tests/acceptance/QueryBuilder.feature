@@ -96,15 +96,14 @@ Feature: QueryBuilder
 
   @QueryBuilder
   Scenario: QueryBuilder::select() rejects wrong stringable arguments
-    Given I have Psalm newer than "3.3.2" (because of "missing functionality")
-    And I have the following code
+    Given I have the following code
       """
       builder()->select(new Expr\Andx(['a = b']))->distinct();
       """
     When I run Psalm
     Then I see these errors
       | Type                 | Message                                                                                                                                                                                                                    |
-      | ImplicitToStringCast | Argument 1 of Doctrine\ORM\QueryBuilder::select expects array<array-key, string\|Doctrine\ORM\Query\Expr\Func>\|null\|string\|Doctrine\ORM\Query\Expr\Func, Doctrine\ORM\Query\Expr\Andx provided with a __toString method |
+      | ImplicitToStringCast | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, Doctrine\ORM\Query\Expr\Andx provided with a __toString method |
 
   @QueryBuilder
   Scenario: QueryBuilder::select() rejects wrong non-stringable arguments
@@ -115,12 +114,11 @@ Feature: QueryBuilder
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects array<array-key, string\|Doctrine\ORM\Query\Expr\Func>\|null\|string\|Doctrine\ORM\Query\Expr\Func, float(2.2) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, float(2.2) provided |
 
   @QueryBuilder
   Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept Expr\Comparison
-    Given I have Psalm newer than "3.3.2" (because of "missing functionality")
-    And I have the following code
+    Given I have the following code
       """
       $expr = new Expr\Comparison('id', Expr\Comparison::EQ, 1);
       builder()->where($expr)->andWhere($expr)->orWhere($expr)->distinct();
@@ -130,8 +128,7 @@ Feature: QueryBuilder
 
   @QueryBuilder
   Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept array with Expr\Comparison
-    Given I have Psalm newer than "3.3.2" (because of "missing functionality")
-    And I have the following code
+    Given I have the following code
       """
       $expr = new Expr\Comparison('id', Expr\Comparison::EQ, 1);
       builder()->where([$expr])->andWhere([$expr])->orWhere([$expr])->distinct();

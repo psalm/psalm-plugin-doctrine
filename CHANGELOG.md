@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.9.0 - TBD
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Support for Psalm older than 3.6.2
+
+### Fixed
+
+- Nothing.
+
 ## 0.8.0 - 2019-10-17
 
 ### Added

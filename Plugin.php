@@ -1,4 +1,5 @@
 <?php
+
 namespace Weirdan\DoctrinePsalmPlugin;
 
 use OutOfBoundsException;
@@ -59,6 +60,6 @@ class Plugin implements PluginEntryPointInterface
             return (string) LegacyVersions::getVersion($packageName);
         }
 
-        throw new OutOfBoundsException;
+        throw new OutOfBoundsException();
     }
 }

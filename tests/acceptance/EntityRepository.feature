@@ -41,8 +41,8 @@ Feature: EntityRepository
     """
     When I run Psalm
     Then I see these errors
-        | Type            | Message                                                |
-        | InvalidArgument | Argument 1 of atan expects float, null\|I provided |
+        | Type            | Message                                            |
+        | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
     And I see no other errors
 
   @EntityRepository::findAll
@@ -53,8 +53,8 @@ Feature: EntityRepository
     """
     When I run Psalm
     Then I see these errors
-        | Type            | Message                                                |
-        | InvalidArgument | Argument 1 of atan expects float, array<%, I> provided |
+        | Type            | Message                                                        |
+        | InvalidArgument | Argument 1 of atan expects float, array<array-key, I> provided |
     And I see no other errors
 
   @EntityRepository::findBy
@@ -65,8 +65,8 @@ Feature: EntityRepository
     """
     When I run Psalm
     Then I see these errors
-        | Type            | Message                                                |
-        | InvalidArgument | Argument 1 of atan expects float, array<%, I> provided |
+        | Type            | Message                                                        |
+        | InvalidArgument | Argument 1 of atan expects float, array<array-key, I> provided |
     And I see no other errors
 
   @EntityRepository::findOneBy
@@ -78,5 +78,5 @@ Feature: EntityRepository
     When I run Psalm
     Then I see these errors
         | Type            | Message                                            |
-        | InvalidArgument | Argument 1 of atan expects float, null\|I provided |
+        | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
     And I see no other errors
