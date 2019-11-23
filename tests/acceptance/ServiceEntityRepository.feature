@@ -14,6 +14,13 @@ Feature: ServiceEntityRepository
         <plugins>
           <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin" />
         </plugins>
+        <issueHandlers>
+          <DeprecatedClass>
+            <errorLevel type="suppress">
+              <referencedClass name="Symfony\Bridge\Doctrine\RegistryInterface"/>
+            </errorLevel>
+          </DeprecatedClass>
+        </issueHandlers>
       </psalm>
       """
     And I have the following code preamble
