@@ -26,6 +26,7 @@ Feature: Collections
 
   @Collection::instantiation
   Scenario: Instantiating a collection with incompatible key type
+    Given I have Psalm older than "3.8" (because of "changes in labels")
     Given I have the following code
     """
     /** @var Collection<object,object> */
@@ -35,6 +36,20 @@ Feature: Collections
   Then I see these errors
     | Type                 | Message                                                                |
     | InvalidTemplateParam | Extended template param TKey expects type array-key, type object given |
+  And I see no other errors
+
+  @Collection::instantiation
+  Scenario: Instantiating a collection with incompatible key type
+    Given I have Psalm newer than "3.8" (because of "changes in labels")
+    Given I have the following code
+    """
+    /** @var Collection<object,object> */
+    $c = new ArrayCollection;
+    """
+  When I run Psalm
+  Then I see these errors
+    | Type                 | Message                                                                                                                          |
+    | InvalidTemplateParam | Extended template param TKey of Doctrine\Common\Collections\Collection<object, object> expects type array-key, type object given |
   And I see no other errors
 
   @Collection::instantiation
