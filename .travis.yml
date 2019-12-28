@@ -6,16 +6,17 @@ before_install:
     - phpenv config-rm xdebug.ini || true
 
 install:
-  - if [[ "$DEPS" = 'high' ]]; then travis_retry composer $DEFAULT_COMPOSER_FLAGS update; fi
-  - if [[ "$DEPS" = 'low' ]]; then travis_retry composer $DEFAULT_COMPOSER_FLAGS --prefer-lowest --prefer-stable update; fi
-  - if [[ "$DEPS" = 'stable' ]]; then travis_retry composer $DEFAULT_COMPOSER_FLAGS --prefer-stable update; fi
+  - if [[ "$DEPS" = 'high' ]]; then travis_retry composer --no-interaction --no-suggest update; fi
+  - if [[ "$DEPS" = 'low' ]]; then travis_retry composer --no-interaction --no-suggest --prefer-lowest --prefer-stable update; fi
+  - if [[ "$DEPS" = 'stable' ]]; then travis_retry composer --no-interaction --no-suggest --prefer-stable update; fi
 
 script: composer check
 
 env:
     matrix:
-        - DEPS="low"
-        - DEPS="high"
-        - DEPS="stable"
-    global:
-        - DEFAULT_COMPOSER_FLAGS="--no-interaction --no-suggest"
+        - DEPS=low
+        - DEPS=high
+        - DEPS=stable
+cache:
+  directories:
+    - $(composer config cache-files-dir)
