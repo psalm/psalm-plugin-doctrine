@@ -71,12 +71,12 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
     public function get($key);
 
     /**
-     * @return TKey[]
+     * @return list<TKey>
      */
     public function getKeys();
 
     /**
-     * @return TValue[]
+     * @return list<TValue>
      */
     public function getValues();
 
