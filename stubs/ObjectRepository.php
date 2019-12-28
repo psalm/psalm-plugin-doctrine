@@ -3,7 +3,7 @@ namespace Doctrine\Common\Persistence;
 
 /** @template T */
 interface ObjectRepository {
-    /** @return list<T> */
+    /** @return ?T */
     public function find($id);
 
     /** @return list<T> */
