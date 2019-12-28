@@ -33,8 +33,8 @@ Feature: Collections
     """
   When I run Psalm
   Then I see these errors
-    | Type                 | Message                                                                |
-    | InvalidTemplateParam | Extended template param TKey expects type array-key, type object given |
+    | Type                 | Message                                                                 |
+    | InvalidTemplateParam | Extended template param TKey% expects type array-key, type object given |
   And I see no other errors
 
   @Collection::instantiation
