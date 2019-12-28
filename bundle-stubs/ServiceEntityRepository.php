@@ -1,4 +1,5 @@
 <?php
+
 namespace Doctrine\Bundle\DoctrineBundle\Repository;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -13,6 +14,7 @@ class ServiceEntityRepository extends EntityRepository implements ServiceEntityR
     /**
      * @param string $entityClass The class name of the entity this repository manages
      */
-    public function __construct(ManagerRegistry $registry, $entityClass) {}
+    public function __construct(ManagerRegistry $registry, $entityClass)
+    {
+    }
 }
-

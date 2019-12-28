@@ -2,6 +2,7 @@
 
 namespace Doctrine\Common\Persistence\Mapping;
 
+/** @template T */
 interface ClassMetadata
 {
     /**
