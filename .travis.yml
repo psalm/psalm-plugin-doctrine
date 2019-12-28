@@ -18,3 +18,6 @@ env:
         - DEPS="stable"
     global:
         - DEFAULT_COMPOSER_FLAGS="--no-interaction --no-suggest"
+cache:
+  directories:
+    - $(composer config cache-files-dir)
