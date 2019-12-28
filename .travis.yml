@@ -9,7 +9,7 @@ install:
   - if [[ "$DEPS" = 'low' ]]; then travis_retry composer $DEFAULT_COMPOSER_FLAGS --prefer-lowest --prefer-stable update; fi
   - if [[ "$DEPS" = 'stable' ]]; then travis_retry composer $DEFAULT_COMPOSER_FLAGS --prefer-stable update; fi
 
-script: vendor/bin/codecept run -v
+script: composer check
 
 env:
     matrix:

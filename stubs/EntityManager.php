@@ -1,30 +1,44 @@
 <?php
+
 namespace Doctrine\ORM;
+
 class EntityManager implements EntityManagerInterface
 {
     /**
-     * @template T
      * @param class-string $entityName
-     * @template-typeof T $entityName
+     *
      * @return EntityRepository<T>
+     *
+     * @template T
+     * @template-typeof T $entityName
      */
-    public function getRepository(string $entityName) {}
+    public function getRepository(string $entityName)
+    {
+    }
 
     /**
-     * @template T
      * @param class-string $entityName
-     * @template-typeof T $entityName
-     * @param mixed $id
+     * @param mixed        $id
+     *
      * @return ?T
+     *
+     * @template T
+     * @template-typeof T $entityName
      */
-    public function find(string $entityName, $id, ?int $lockMode = null, ?int $lockVersion = null) {}
+    public function find(string $entityName, $id, ?int $lockMode = null, ?int $lockVersion = null)
+    {
+    }
 
     /**
-     * @template T
      * @param class-string $entityName
-     * @template-typeof T $entityName
-     * @param mixed $id
+     * @param mixed        $id
+     *
      * @return T
+     *
+     * @template T
+     * @template-typeof T $entityName
      */
-    public function getReference(string $entityName, $id) {}
+    public function getReference(string $entityName, $id)
+    {
+    }
 }

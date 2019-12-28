@@ -1,13 +1,39 @@
 <?xml version="1.0"?>
-<ruleset name="invajo">
+<ruleset
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+    name="doctrine-psalm-plugin">
     <!-- display progress -->
     <arg value="p"/>
     <arg name="colors"/>
 
     <!-- Paths to check -->
     <file>Plugin.php</file>
+    <file>stubs</file>
+    <file>bundle-stubs</file>
+    <file>tests</file>
+    <exclude-pattern>*/tests/_run/*</exclude-pattern>
 
+    <!-- Include full Doctrine Coding Standard -->
+    <rule ref="Doctrine">
+        <!-- inapplicable for this project -->
+        <exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
+        <exclude name="PSR2.Classes.PropertyDeclaration.Underscore" />
+        <exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn" />
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix" />
+        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing" />
+        <exclude name="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingTraversableTypeHintSpecification" />
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint" />
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint" />
+        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification" />
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint" />
+        <exclude name="SlevomatCodingStandard.Namespaces.UseSpacing.IncorrectLinesCountBetweenDifferentTypeOfUse" />
+        <exclude name="Squiz.NamingConventions.ValidVariableName.PublicHasUnderscore" />
 
+        <!-- conflicts with other rules -->
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" /> <!-- [> PSR12.Functions.ReturnTypeDeclaration <] -->
+    </rule>
+    
     <!-- inherit rules from: -->
     <rule ref="PSR12"/>
 
@@ -25,6 +51,12 @@
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
         <properties>
             <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.Namespaces.UseSpacing.UseSpacingSniff">
+        <properties>
+            <property name="linesCountBetweenUseTypes" value="1"/>
         </properties>
     </rule>
 </ruleset>
