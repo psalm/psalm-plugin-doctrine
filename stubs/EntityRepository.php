@@ -32,10 +32,10 @@ class EntityRepository implements ObjectRepository, Selectable
      */
     public function find($id, $lockMode = null, $lockVersion = null) {}
 
-    /** @return T[] */
+    /** @return list<T> */
     public function findAll() {}
     /**
-     * @return T[]
+     * @return list<T>
      * @param ?int $limit
      * @param ?int $offset
      */
