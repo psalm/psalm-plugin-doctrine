@@ -39,8 +39,8 @@ Feature: ServiceEntityRepository
     /**
      * @method I|null find($id, $lockMode = null, $lockVersion = null)
      * @method I|null findOneBy(array $criteria, array $orderBy = null)
-     * @method I[]    findAll()
-     * @method I[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+     * @method list<I>    findAll()
+     * @method list<I>    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
      * @template-extends ServiceEntityRepository<I>
      * @psalm-suppress PropertyNotSetInConstructor
      */
