@@ -9,14 +9,18 @@
 
     <!-- Paths to check -->
     <file>Plugin.php</file>
+    <file>stubs</file>
+    <file>bundle-stubs</file>
+    <file>tests</file>
+    <exclude-pattern>*/tests/_run/*</exclude-pattern>
 
     <!-- Include full Doctrine Coding Standard -->
     <rule ref="Doctrine">
         <!-- inapplicable for this project -->
         <exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
         <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses" />
-	<exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing" />
-	<exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint" />
+        <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing" />
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint" />
         <exclude name="SlevomatCodingStandard.Namespaces.UseSpacing.IncorrectLinesCountBetweenDifferentTypeOfUse" />
 
         <!-- conflicts with other rules -->
