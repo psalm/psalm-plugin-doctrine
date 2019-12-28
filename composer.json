@@ -45,8 +45,8 @@
     "scripts": {
         "check": [
             "@phpcs",
-            "@psalm",
-            "@test"
+            "@test",
+            "@psalm"
         ],
         "test": "codecept --colors run -v",
         "psalm": "psalm",
