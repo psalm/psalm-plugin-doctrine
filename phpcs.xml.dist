@@ -28,7 +28,6 @@
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint" />
         <exclude name="SlevomatCodingStandard.Namespaces.UseSpacing.IncorrectLinesCountBetweenDifferentTypeOfUse" />
         <exclude name="Squiz.NamingConventions.ValidVariableName.PublicHasUnderscore" />
-        <exclude name="Squiz.Classes.ClassFileName.NoMatch" />
 
         <!-- conflicts with other rules -->
         <exclude name="SlevomatCodingStandard.Namespaces.NamespaceSpacing" /> <!-- PSR12.Files.FileHeader -->
