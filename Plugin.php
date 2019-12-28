@@ -4,9 +4,13 @@ namespace Weirdan\DoctrinePsalmPlugin;
 
 use OutOfBoundsException;
 use PackageVersions\Versions;
-use SimpleXMLElement;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
+use SimpleXMLElement;
+
+use function array_merge;
+use function class_exists;
+use function glob;
 
 class Plugin implements PluginEntryPointInterface
 {
@@ -29,7 +33,7 @@ class Plugin implements PluginEntryPointInterface
     /** @return string[] */
     private function getBundleStubs(): array
     {
-        if (!$this->hasPackage('doctrine/doctrine-bundle')) {
+        if (! $this->hasPackage('doctrine/doctrine-bundle')) {
             return [];
         }
 
@@ -43,6 +47,7 @@ class Plugin implements PluginEntryPointInterface
         } catch (OutOfBoundsException $e) {
             return false;
         }
+
         return true;
     }
 

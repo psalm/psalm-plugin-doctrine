@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<ruleset name="invajo">
+<ruleset
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+    name="doctrine-psalm-plugin">
     <!-- display progress -->
     <arg value="p"/>
     <arg name="colors"/>
@@ -10,9 +13,10 @@
     <!-- Include full Doctrine Coding Standard -->
     <rule ref="Doctrine">
         <!-- inapplicable for this project -->
+        <exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
         <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses" />
         <exclude name="PSR2.Classes.PropertyDeclaration.Underscore" />
-        <exclude name="quiz.Classes.ClassFileName.NoMatch" />
+        <exclude name="Squiz.Classes.ClassFileName.NoMatch" />
         <exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn" />
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix" />
         <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing" />
@@ -22,6 +26,7 @@
         <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint" />
         <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingTraversableTypeHintSpecification" />
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint" />
+        <exclude name="SlevomatCodingStandard.Namespaces.UseSpacing.IncorrectLinesCountBetweenDifferentTypeOfUse" />
         <exclude name="Squiz.NamingConventions.ValidVariableName.PublicHasUnderscore" />
         <exclude name="Squiz.Classes.ClassFileName.NoMatch" />
 
@@ -47,6 +52,12 @@
     <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
         <properties>
             <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.Namespaces.UseSpacing.UseSpacingSniff">
+        <properties>
+            <property name="linesCountBetweenUseTypes" value="1"/>
         </properties>
     </rule>
 </ruleset>

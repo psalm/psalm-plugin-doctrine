@@ -41,5 +41,15 @@
         "doctrine/doctrine-bundle": "^1.11",
         "phly/keep-a-changelog": "^2.1",
         "doctrine/coding-standard": "^7.0"
+    },
+    "scripts": {
+        "check": [
+            "@test",
+            "@psalm",
+            "@phpcs"
+        ],
+        "test": "codecept --colors run -v",
+        "psalm": "psalm",
+        "phpcs": "phpcs --colors"
     }
 }
