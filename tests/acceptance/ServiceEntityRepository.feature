@@ -17,7 +17,7 @@ Feature: ServiceEntityRepository
         <issueHandlers>
           <DeprecatedClass>
             <errorLevel type="suppress">
-              <referencedClass name="Symfony\Bridge\Doctrine\RegistryInterface"/>
+              <referencedClass name="Doctrine\Common\Persistence\ManagerRegistry"/>
             </errorLevel>
           </DeprecatedClass>
         </issueHandlers>
@@ -27,7 +27,7 @@ Feature: ServiceEntityRepository
       """
       <?php
       use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-      use Symfony\Bridge\Doctrine\RegistryInterface;
+      use Doctrine\Common\Persistence\ManagerRegistry as RegistryInterface;
 
       interface I {}
       """
