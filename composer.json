@@ -39,6 +39,7 @@
         "composer/semver": "^1.4",
         "weirdan/codeception-psalm-module": "^0.2.2",
         "doctrine/doctrine-bundle": "^1.11",
-        "phly/keep-a-changelog": "^2.1"
+        "phly/keep-a-changelog": "^2.1",
+        "doctrine/coding-standard": "^7.0"
     }
 }

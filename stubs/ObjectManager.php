@@ -1,34 +1,42 @@
 <?php
+
 namespace Doctrine\Common\Persistence {
     interface ObjectManager
     {
         /**
-         * @template T
          * @param class-string $className
-         * @template-typeof T $className
+         *
          * @return ObjectRepository<T>
+         *
+         * @template T
+         * @template-typeof T $className
          */
         public function getRepository(string $className);
 
         /**
-         * @template T
          * @param class-string $className
-         * @template-typeof T $className
+         *
          * @return Mapping\ClassMetadata<T>
+         *
+         * @template T
+         * @template-typeof T $className
          */
         public function getClassMetadata(string $className);
 
         /**
-         * @template T
          * @param class-string $className
-         * @template-typeof T $className
+         *
          * @return ?T
+         *
+         * @template T
+         * @template-typeof T $className
          */
         public function find(string $className, $id);
     }
 }
-
 namespace Doctrine\Common\Persistence\Mapping {
     /** @template T */
-    interface ClassMetadata {}
+    interface ClassMetadata
+    {
+    }
 }
