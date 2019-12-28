@@ -54,7 +54,7 @@ Feature: EntityRepository
     When I run Psalm
     Then I see these errors
         | Type            | Message                                                        |
-        | InvalidArgument | Argument 1 of atan expects float, array<array-key, I> provided |
+        | InvalidArgument | Argument 1 of atan expects float, list<I> provided |
     And I see no other errors
 
   @EntityRepository::findBy
@@ -66,7 +66,7 @@ Feature: EntityRepository
     When I run Psalm
     Then I see these errors
         | Type            | Message                                                        |
-        | InvalidArgument | Argument 1 of atan expects float, array<array-key, I> provided |
+        | InvalidArgument | Argument 1 of atan expects float, list<I> provided |
     And I see no other errors
 
   @EntityRepository::findOneBy

@@ -218,7 +218,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                          |
-      | InvalidArgument | Argument 1 of atan expects float, array<array-key, int> provided |
+      | InvalidArgument | Argument 1 of atan expects float, list<int> provided |
     And I see no other errors
 
   @Collection::getValues
@@ -232,7 +232,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                             |
-      | InvalidArgument | Argument 1 of atan expects float, array<array-key, string> provided |
+      | InvalidArgument | Argument 1 of atan expects float, list<string> provided |
     And I see no other errors
 
   @Collection::set
