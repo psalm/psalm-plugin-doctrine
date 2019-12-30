@@ -18,7 +18,7 @@ Feature: ServiceEntityRepository
       Given I have the "doctrine/persistence" package satisfying the "< 1.3"
       And I have the following code
         """
-        use Doctrine\Common\Persistence\ManagerRegistry as RegistryInterface;
+        use Doctrine\Persistence\ManagerRegistry;
 
         interface I {}
         /**
@@ -30,7 +30,7 @@ Feature: ServiceEntityRepository
          * @psalm-suppress PropertyNotSetInConstructor
          */
         class IRepository extends ServiceEntityRepository {
-          public function __construct(RegistryInterface $registry) {
+          public function __construct(ManagerRegistry $registry) {
             parent::__construct($registry, I::class);
           }
         }
