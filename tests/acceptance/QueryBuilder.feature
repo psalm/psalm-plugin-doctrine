@@ -1,5 +1,5 @@
 Feature: QueryBuilder
-  In order to to use Doctrine QueryBuilder safely
+  In order to use Doctrine ORM QueryBuilder safely
   As a Psalm user
   I need Psalm to typecheck QueryBuilder
 
@@ -89,7 +89,7 @@ Feature: QueryBuilder
     Given I have the following code
       """
       $expr = new Expr\Andx(['a = b']);
-      builder()->having([$expr])->distinct();
+      builder()->andHaving([$expr])->distinct();
       """
     When I run Psalm
     Then I see no errors
