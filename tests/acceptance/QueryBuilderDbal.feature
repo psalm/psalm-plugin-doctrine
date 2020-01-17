@@ -33,7 +33,7 @@ Feature: QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::select accepts variadic arguments
     Given I have the following code
       """
-      builder()->select('field1', 'field2')->distinct();
+      builder()->select('field1', 'field2');
       """
     When I run Psalm
     Then I see no errors
@@ -42,7 +42,7 @@ Feature: QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::select accepts array argument
     Given I have the following code
       """
-      builder()->select(['field1', 'field1'])->distinct();
+      builder()->select(['field1', 'field1']);
       """
     When I run Psalm
     Then I see no errors
@@ -51,7 +51,7 @@ Feature: QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::addSelect accepts variadic arguments
     Given I have the following code
       """
-      builder()->addSelect('field1', 'field2')->distinct();
+      builder()->addSelect('field1', 'field2');
       """
     When I run Psalm
     Then I see no errors
@@ -60,7 +60,7 @@ Feature: QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::addSelect accepts array argument
     Given I have the following code
       """
-      builder()->addSelect(['field1', 'field2'])->distinct();
+      builder()->addSelect(['field1', 'field2']);
       """
     When I run Psalm
     Then I see no errors
@@ -71,8 +71,7 @@ Feature: QueryBuilderDbal
       """
       builder()->where('field1', 'field2')
                ->andWhere('field1', 'field2')
-               ->orWhere('field1', 'field2')
-               ->distinct();
+               ->orWhere('field1', 'field2');
       """
     When I run Psalm
     Then I see no errors
@@ -85,7 +84,7 @@ Feature: QueryBuilderDbal
       $orx = $expr->orX();
       $orx->add($expr->eq('field1', 1));
       $orx->add($expr->eq('field1', 2));
-      builder()->where($orx)->andWhere($orx)->orWhere($orx)->distinct();
+      builder()->where($orx)->andWhere($orx)->orWhere($orx);
       """
     When I run Psalm
     Then I see no errors
@@ -95,8 +94,7 @@ Feature: QueryBuilderDbal
     Given I have the following code
       """
       builder()->groupBy('field1', 'field2')
-               ->addGroupBy('field1', 'field2')
-               ->distinct();
+               ->addGroupBy('field1', 'field2');
       """
     When I run Psalm
     Then I see no errors
@@ -106,8 +104,7 @@ Feature: QueryBuilderDbal
     Given I have the following code
       """
       builder()->groupBy(['field1', 'field2'])
-               ->addGroupBy(['field1', 'field2'])
-               ->distinct();
+               ->addGroupBy(['field1', 'field2']);
       """
     When I run Psalm
     Then I see no errors
@@ -118,8 +115,7 @@ Feature: QueryBuilderDbal
       """
       builder()->having('field1', 'field2')
                ->orHaving('field1', 'field2')
-               ->andHaving('field1', 'field2')
-               ->distinct();
+               ->andHaving('field1', 'field2');
       """
     When I run Psalm
     Then I see no errors
@@ -129,7 +125,7 @@ Feature: QueryBuilderDbal
     Given I have the following code
       """
       $andx = builder()->expr()->andX('a = b');
-      builder()->having($andx)->orHaving($andx)->andHaving($andx)->distinct();
+      builder()->having($andx)->orHaving($andx)->andHaving($andx);
       """
     When I run Psalm
     Then I see no errors
