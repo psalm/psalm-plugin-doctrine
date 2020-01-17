@@ -12,6 +12,8 @@ use function array_merge;
 use function class_exists;
 use function glob;
 
+use const GLOB_BRACE;
+
 class Plugin implements PluginEntryPointInterface
 {
     /** @return void */
@@ -27,7 +29,7 @@ class Plugin implements PluginEntryPointInterface
     /** @return string[] */
     private function getStubFiles(): array
     {
-        return glob(__DIR__ . '/' . 'stubs/*.php');
+        return glob(__DIR__ . '/' . 'stubs/{,*/}*.php', GLOB_BRACE);
     }
 
     /** @return string[] */
