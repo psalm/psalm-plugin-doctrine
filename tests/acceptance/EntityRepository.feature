@@ -25,7 +25,7 @@ Feature: EntityRepository
 
       /**
        * @template T
-       * @template-typeof T $entityClass
+       * @param class-string<T> $entityClass
        * @psalm-suppress InvalidReturnType
        * @return EntityRepository<T>
        */
