@@ -25,8 +25,7 @@ Feature: Paginator
 
           /**
            * @template T
-           * @template-typeof T $type
-           * @param class-string $type
+           * @param class-string<T> $type
            * @return Paginator<T>
            * @psalm-suppress InvalidReturnType
            */
