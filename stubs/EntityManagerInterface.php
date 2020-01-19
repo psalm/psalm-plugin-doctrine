@@ -17,7 +17,7 @@ interface EntityManagerInterface extends ObjectManager
 
     /**
      * @param class-string<T> $entityName
-     * @param mixed        $id
+     * @param mixed           $id
      *
      * @return ?T
      *
@@ -27,7 +27,7 @@ interface EntityManagerInterface extends ObjectManager
 
     /**
      * @param class-string<T> $entityName
-     * @param mixed        $id
+     * @param mixed           $id
      *
      * @return T
      *
