@@ -135,3 +135,23 @@ Feature: QueryBuilder
       """
     When I run Psalm
     Then I see no errors
+
+  @QueryBuilder
+  Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept Expr\Func
+    Given I have the following code
+      """
+      $expr = new Expr\Func('id IN', [1]);
+      builder()->where($expr)->andWhere($expr)->orWhere($expr)->distinct();
+      """
+    When I run Psalm
+    Then I see no errors
+
+  @QueryBuilder
+  Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept array with Expr\Func
+    Given I have the following code
+      """
+      $expr = new Expr\Func('id IN', [1]);
+      builder()->where([$expr])->andWhere([$expr])->orWhere([$expr])->distinct();
+      """
+    When I run Psalm
+    Then I see no errors
