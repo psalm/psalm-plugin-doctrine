@@ -5,7 +5,7 @@ namespace Doctrine\ORM;
 use Doctrine\ORM\Query\Expr;
 
 /**
- * @psalm-type _WhereExpr=Expr\Base|Expr\Comparison|string
+ * @psalm-type _WhereExpr=Expr\Base|Expr\Comparison|Expr\Func|string
  * @psalm-type _SelectExpr=Expr\Func|string
  */
 class QueryBuilder
