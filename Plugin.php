@@ -28,8 +28,8 @@ class Plugin implements PluginEntryPointInterface
     private function getStubFiles(): array
     {
         return array_merge(
-            glob(__DIR__ . '/stubs/*.php'),
-            glob(__DIR__ . '/stubs/DBAL/*.php'),
+            glob(__DIR__ . '/stubs/*.php') ?: [],
+            glob(__DIR__ . '/stubs/DBAL/*.php') ?: [],
         );
     }
 
