@@ -15,6 +15,9 @@
         "doctrine/collections": "^1.0",
         "doctrine/orm": "^2.6" 
     },
+    "conflict": {
+        "slevomat/coding-standard": "6.1.1"
+    },
     "extra": {
         "psalm" : {
             "pluginClass": "Weirdan\\DoctrinePsalmPlugin\\Plugin"
