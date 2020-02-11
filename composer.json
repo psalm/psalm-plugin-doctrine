@@ -11,6 +11,7 @@
         }
     ],
     "require": {
+        "php": "^7.2|^8",
         "vimeo/psalm": "^3.6.2 || dev-master",
         "doctrine/collections": "^1.0",
         "doctrine/orm": "^2.6" 
