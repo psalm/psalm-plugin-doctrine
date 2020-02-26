@@ -6,11 +6,11 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#45](https://github.com/weirdan/doctrine-psalm-plugin/pull/29) Added support for DBAL Query Builder (thanks @mpolyakovsky)
 
 ### Changed
 
-- Nothing.
+@orklah and @mpolyakovsky contributed a number of improvements to the test suite and other misc fixes
 
 ### Deprecated
 
