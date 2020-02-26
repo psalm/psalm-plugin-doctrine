@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.10.0 - 2020-02-27
+
+### Added
+
+- [#48](https://github.com/weirdan/doctrine-psalm-plugin/pull/48) Added stub for Doctrine\DBAL\Query\Expression\ExpressionBuilder (thanks @mpolyakovsky)
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#49](https://github.com/weirdan/doctrine-psalm-plugin/pull/49) Allow WHERE IN clauses in the ORM QueryBuilder (thanks @jaikdean)
+
+- [#50](https://github.com/weirdan/doctrine-psalm-plugin/pull/50) Fixed compatibility with Alpine Linux (missing GLOB_BRACE) (thanks @bendavies)
+
 ## 0.9.0 - 2020-01-19
 
 ### Added
