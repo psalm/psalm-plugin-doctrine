@@ -29,7 +29,7 @@ interface EntityManagerInterface extends ObjectManager
      * @param class-string<T> $entityName
      * @param mixed           $id
      *
-     * @return T
+     * @return T|null
      *
      * @template T
      */
