@@ -88,8 +88,8 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                      |
-      | InvalidArgument | Argument 1 of atan expects float, I provided |
+      | Type            | Message                                            |
+      | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
     And I see no other errors
 
   @EntityManager::getReference
