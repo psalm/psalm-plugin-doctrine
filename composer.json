@@ -39,9 +39,9 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.3",
-        "codeception/base": "^2.5 || ^3.0",
+        "codeception/codeception": "^4.0",
         "composer/semver": "^1.4",
-        "weirdan/codeception-psalm-module": "^0.2.2",
+        "weirdan/codeception-psalm-module": "^0.6",
         "doctrine/doctrine-bundle": "^1.11",
         "phly/keep-a-changelog": "^2.1",
         "doctrine/coding-standard": "^7.0"
