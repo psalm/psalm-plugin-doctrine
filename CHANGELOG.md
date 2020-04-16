@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.11.1 - 2020-04-16
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#55](https://github.com/weirdan/doctrine-psalm-plugin/pull/55) Fixed EntityManager::getReference() type to be nullable (thanks @seferov)
+
 ## 0.11.0 - 2020-03-30
 
 ### Added
