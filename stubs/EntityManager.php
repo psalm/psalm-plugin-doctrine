@@ -31,7 +31,7 @@ class EntityManager implements EntityManagerInterface
      * @param class-string<T> $entityName
      * @param mixed           $id
      *
-     * @return T
+     * @return ?T
      *
      * @template T
      */
