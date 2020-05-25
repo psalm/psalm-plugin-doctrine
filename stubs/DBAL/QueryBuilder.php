@@ -12,6 +12,8 @@ class QueryBuilder
     /**
      * @param _SelectExpr|_SelectExpr[]|null $select
      * @param _SelectExpr                    ...$selects
+     *
+     * @return static
      */
     public function select($select = null, ...$selects): self
     {
@@ -20,6 +22,8 @@ class QueryBuilder
     /**
      * @param _SelectExpr|_SelectExpr[]|null $select
      * @param _SelectExpr                    ...$selects
+     *
+     * @return static
      */
     public function addSelect($select = null, ...$selects): self
     {
@@ -28,6 +32,8 @@ class QueryBuilder
     /**
      * @param _WhereExpr $predicate
      * @param _WhereExpr ...$predicates
+     *
+     * @return static
      */
     public function where($predicate, ...$predicates): self
     {
@@ -36,6 +42,8 @@ class QueryBuilder
     /**
      * @param _WhereExpr $predicate
      * @param _WhereExpr ...$predicates
+     *
+     * @return static
      */
     public function andWhere($predicate, ...$predicates): self
     {
@@ -44,6 +52,8 @@ class QueryBuilder
     /**
      * @param _WhereExpr $predicate
      * @param _WhereExpr ...$predicates
+     *
+     * @return static
      */
     public function orWhere($predicate, ...$predicates): self
     {
@@ -52,6 +62,8 @@ class QueryBuilder
     /**
      * @param _GroupExpr|_GroupExpr[] $predicate
      * @param _GroupExpr              ...$predicates
+     *
+     * @return static
      */
     public function groupBy($predicate, ...$predicates): self
     {
@@ -60,6 +72,8 @@ class QueryBuilder
     /**
      * @param _GroupExpr|_GroupExpr[] $predicate
      * @param _GroupExpr              ...$predicates
+     *
+     * @return static
      */
     public function addGroupBy($predicate, ...$predicates): self
     {
@@ -68,6 +82,8 @@ class QueryBuilder
     /**
      * @param _WhereExpr $predicate
      * @param _WhereExpr ...$predicates
+     *
+     * @return static
      */
     public function having($predicate, ...$predicates): self
     {
@@ -76,6 +92,8 @@ class QueryBuilder
     /**
      * @param _WhereExpr $predicate
      * @param _WhereExpr ...$predicates
+     *
+     * @return static
      */
     public function andHaving($predicate, ...$predicates): self
     {
@@ -84,6 +102,8 @@ class QueryBuilder
     /**
      * @param _WhereExpr $predicate
      * @param _WhereExpr ...$predicates
+     *
+     * @return static
      */
     public function orHaving($predicate, ...$predicates): self
     {
