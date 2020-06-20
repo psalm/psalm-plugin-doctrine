@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.11.3 - 2020-06-21
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Changed stub files extension to hide them from some IDEs
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- Nothing.
+
 ## 0.11.2 - 2020-06-20
 
 ### Added
