@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 0.11.2 - 2020-06-20
+
+### Added
+
+- Nothing.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- Nothing.
+
+### Fixed
+
+- [#57](https://github.com/weirdan/doctrine-psalm-plugin/pull/57) Allow classes extending query builder to return instances of themselves (thanks @enumag)
+
 ## 0.11.1 - 2020-04-16
 
 ### Added
