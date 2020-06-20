@@ -28,8 +28,8 @@ class Plugin implements PluginEntryPointInterface
     private function getStubFiles(): array
     {
         return array_merge(
-            glob(__DIR__ . '/../stubs/*.php') ?: [],
-            glob(__DIR__ . '/../stubs/DBAL/*.php') ?: []
+            glob(__DIR__ . '/../stubs/*.phpstub') ?: [],
+            glob(__DIR__ . '/../stubs/DBAL/*.phpstub') ?: []
         );
     }
 
@@ -40,7 +40,7 @@ class Plugin implements PluginEntryPointInterface
             return [];
         }
 
-        return glob(__DIR__ . '/../' . 'bundle-stubs/*.php');
+        return glob(__DIR__ . '/../' . 'bundle-stubs/*.phpstub');
     }
 
     private function hasPackage(string $packageName): bool
