@@ -8,7 +8,7 @@
     <arg name="colors"/>
 
     <!-- Paths to check -->
-    <file>Plugin.php</file>
+    <file>src</file>
     <file>stubs</file>
     <file>bundle-stubs</file>
     <file>tests</file>
