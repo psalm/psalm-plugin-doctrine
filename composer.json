@@ -42,7 +42,7 @@
         "codeception/codeception": "^4.0",
         "composer/semver": "^1.4 || ^2.0 || ^3.0",
         "weirdan/codeception-psalm-module": "^0.8.0",
-        "doctrine/doctrine-bundle": "^1.11",
+        "doctrine/doctrine-bundle": "^1.11 || ^2.0",
         "phly/keep-a-changelog": "^2.1",
         "doctrine/coding-standard": "^7.0"
     },
