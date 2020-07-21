@@ -20,6 +20,8 @@ Feature: EntityRepository
       """
       <?php
       use Doctrine\ORM\EntityRepository;
+      use Doctrine\Common\Collections\Collection;
+      use Doctrine\Common\Collections\Criteria;
 
       interface I {}
 
@@ -80,3 +82,15 @@ Feature: EntityRepository
         | Type            | Message                                            |
         | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
     And I see no other errors
+
+  @EntityRepository::matching
+  Scenario: matching is typed
+    Given I have the following code
+      """
+      /** @return Collection<int, I> */
+      function f(): Collection {
+        return repo(I::class)->matching(Criteria::create());
+      }
+      """
+    When I run Psalm
+    Then I see no errors

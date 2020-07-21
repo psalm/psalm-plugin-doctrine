@@ -3,6 +3,8 @@
 namespace Doctrine\ORM;
 
 use Doctrine\Common\Collections\Selectable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ObjectRepository;
 
 /**
@@ -53,6 +55,13 @@ class EntityRepository implements ObjectRepository, Selectable
 
     /** @return ?T */
     public function findOneBy(array $criteria, ?array $orderBy = null)
+    {
+    }
+
+    /**
+     * @return Collection<int,T>
+     */
+    public function matching(Criteria $criteria)
     {
     }
 }
