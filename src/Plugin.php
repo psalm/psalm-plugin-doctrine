@@ -12,7 +12,9 @@ use SimpleXMLElement;
 use function array_merge;
 use function array_search;
 use function class_exists;
+use function explode;
 use function glob;
+use function strpos;
 
 class Plugin implements PluginEntryPointInterface
 {
@@ -77,11 +79,11 @@ class Plugin implements PluginEntryPointInterface
     private function hasPackageOfVersion(string $packageName, string $constraints): bool
     {
         $packageVersion = $this->getPackageVersion($packageName);
-        if (false !== strpos($packageVersion, '@')) {
+        if (strpos($packageVersion, '@') !== false) {
             [$packageVersion] = explode('@', $packageVersion);
         }
 
-        if (0 === strpos($packageVersion, 'dev-')) {
+        if (strpos($packageVersion, 'dev-') === 0) {
             $packageVersion = '9999999-dev';
         }
 
