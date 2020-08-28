@@ -12,7 +12,7 @@ use ArrayAccess;
  * @template TValue
  *
  * @template-extends IteratorAggregate<TKey,TValue>
- * @template-extends ArrayAccess<TKey,TValue>
+ * @template-extends ArrayAccess<TKey|null,TValue>
  */
 interface Collection extends Countable, IteratorAggregate, ArrayAccess
 {
