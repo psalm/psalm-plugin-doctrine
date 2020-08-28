@@ -708,7 +708,7 @@ Feature: Collections
   Scenario: Adding an item to array collection like an array (#66)
     Given I have the following code
       """
-      /** @var ArrayCollection<int,string> */
+      /** @var ArrayCollection<int,string> $c */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c[] = "d";
       """

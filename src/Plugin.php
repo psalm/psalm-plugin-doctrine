@@ -2,6 +2,7 @@
 
 namespace Weirdan\DoctrinePsalmPlugin;
 
+use Composer\Semver\Semver;
 use OutOfBoundsException;
 use PackageVersions\Versions;
 use Psalm\Plugin\PluginEntryPointInterface;
@@ -9,6 +10,7 @@ use Psalm\Plugin\RegistrationInterface;
 use SimpleXMLElement;
 
 use function array_merge;
+use function array_search;
 use function class_exists;
 use function glob;
 
@@ -27,10 +29,16 @@ class Plugin implements PluginEntryPointInterface
     /** @return string[] */
     private function getStubFiles(): array
     {
-        return array_merge(
+        $files = array_merge(
             glob(__DIR__ . '/../stubs/*.phpstub') ?: [],
             glob(__DIR__ . '/../stubs/DBAL/*.phpstub') ?: []
         );
+
+        if ($this->hasPackageOfVersion('doctrine/collections', '>= 1.6.0')) {
+            unset($files[array_search(__DIR__ . '/../stubs/ArrayCollection.phpstub', $files, true)]);
+        }
+
+        return $files;
     }
 
     /** @return string[] */
@@ -64,5 +72,19 @@ class Plugin implements PluginEntryPointInterface
         }
 
         throw new OutOfBoundsException();
+    }
+
+    private function hasPackageOfVersion(string $packageName, string $constraints): bool
+    {
+        $packageVersion = $this->getPackageVersion($packageName);
+        if (false !== strpos($packageVersion, '@')) {
+            [$packageVersion] = explode('@', $packageVersion);
+        }
+
+        if (0 === strpos($packageVersion, 'dev-')) {
+            $packageVersion = '9999999-dev';
+        }
+
+        return Semver::satisfies($packageVersion, $constraints);
     }
 }
