@@ -50,6 +50,13 @@ class Plugin implements PluginEntryPointInterface
             return [];
         }
 
+        if (
+            $this->hasPackage('doctrine/persistence')
+            && $this->hasPackageOfVersion('doctrine/persistence', '>= 1.3.0')
+        ) {
+            return glob(__DIR__ . '/../' . 'bundle-stubs/persistence-1.3+/*.phpstub');
+        }
+
         return glob(__DIR__ . '/../' . 'bundle-stubs/*.phpstub');
     }
 

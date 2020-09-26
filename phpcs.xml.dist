@@ -36,7 +36,10 @@
     </rule>
     
     <!-- inherit rules from: -->
-    <rule ref="PSR12"/>
+    <rule ref="PSR12">
+        <!-- conflicts with other rules -->
+        <exclude name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+    </rule>
 
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
     <rule ref="Generic.Files.ByteOrderMark"/>
