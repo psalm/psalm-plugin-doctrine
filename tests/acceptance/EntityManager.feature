@@ -103,3 +103,12 @@ Feature: EntityManager
       | Type                  | Message                                                                                        |
       | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getReference expects class-string, int(123) provided |
     And I see no other errors
+
+  @EntityManager::inheritance
+  Scenario: Can extend EntityManager
+    Given I have the following code
+      """
+      class MyManager extends EntityManager {}
+      """
+    When I run Psalm
+    Then I see no errors
