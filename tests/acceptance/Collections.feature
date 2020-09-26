@@ -371,8 +371,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int=, string=):bool, Closure(int, string):int provided |
+      | Type                  | Message                                                                                                                                                |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int provided/ |
     And I see no other errors
 
   @Collection::exists
@@ -435,8 +435,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                  |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string=):bool, Closure(string):int provided |
+      | Type                  | Message                                                                                                                                     |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, (impure-)?Closure\(string\):int provided/ |
     And I see no other errors
 
   # TODO: find out if this is applicable
@@ -501,8 +501,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, Closure(int, string):int provided |
+      | Type                  | Message                                                                                                                                                |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int provided/ |
     And I see no other errors
 
   @Collection::forAll
@@ -604,8 +604,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                        |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(int=, string=):bool, Closure(int):int provided |
+      | Type                  | Message                                                                                                                                           |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, (impure-)?Closure\(int\):int provided/ |
     And I see no other errors
 
   @Collection::partition
