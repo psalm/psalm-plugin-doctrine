@@ -8,7 +8,7 @@ interface ObjectRepository
     /** @return ?T */
     public function find($id);
 
-    /** @return list<T> */
+    /** @return T[] */
     public function findAll();
 
     /**
