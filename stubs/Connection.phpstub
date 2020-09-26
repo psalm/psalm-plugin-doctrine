@@ -3,6 +3,7 @@
 namespace Doctrine\DBAL;
 
 use Doctrine\DBAL\Driver\Connection as DriverConnection;
+use Doctrine\DBAL\Driver\Statement as DriverStatement;
 
 class Connection implements DriverConnection
 {
@@ -38,4 +39,43 @@ class Connection implements DriverConnection
 
     /** @var int */
     public const ARRAY_PARAM_OFFSET = 100;
+
+    /**
+     * @throws DBALException
+     * @psalm-taint-sink sql $statement
+     */
+    public function prepare(string $statement): DriverStatement {}
+
+    /**
+     * @psalm-taint-sink sql $statement
+     */
+    public function exec(string $statement): int {}
+
+    /**
+     * @psalm-param string[] $query The SQL query parts.
+     *
+     * @throws DBALException
+     * @psalm-taint-sink sql $query
+     */
+    public function query(...$query): DriverStatement {}
+
+    /**
+     * @psalm-param scalar[]        $params The query parameters.
+     * @psalm-param int[]|string[]  $types  The parameter types.
+     *
+     * @throws DBALException
+     * @psalm-taint-sink sql $query
+     */
+    public function executeUpdate(string $query, array $params = [], array $types = []): int {}
+
+    /**
+     * @psalm-pure
+     *
+     * @psalm-param scalar $input
+     * @psalm-return string
+     *
+     * @psalm-taint-escape sql
+     * @psalm-flow ($input) -> return
+     */
+    public function quote($input, int $type = ParameterType::STRING);
 }
