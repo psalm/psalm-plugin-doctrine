@@ -5,37 +5,36 @@ namespace Doctrine\ORM;
 class EntityManager implements EntityManagerInterface
 {
     /**
+     * @template T
      * @param class-string<T> $entityName
      *
      * @return EntityRepository<T>
-     *
-     * @template T
      */
-    public function getRepository(string $entityName)
+    public function getRepository($entityName)
     {
     }
 
     /**
+     * @template T
      * @param class-string<T> $entityName
      * @param mixed           $id
+     * @param null|int        $lockMode
+     * @param null|int        $lockVersion
      *
-     * @return ?T
-     *
-     * @template T
+     * @return null|T
      */
-    public function find(string $entityName, $id, ?int $lockMode = null, ?int $lockVersion = null)
+    public function find($entityName, $id, $lockMode = null, $lockVersion = null)
     {
     }
 
     /**
+     * @template T
      * @param class-string<T> $entityName
      * @param mixed           $id
      *
-     * @return ?T
-     *
-     * @template T
+     * @return null|T
      */
-    public function getReference(string $entityName, $id)
+    public function getReference($entityName, $id)
     {
     }
 }

@@ -11,7 +11,7 @@ install:
   - if [[ "$DEPS" = 'low' ]]; then travis_retry composer --no-interaction --no-suggest --prefer-lowest --prefer-stable update; fi
   - if [[ "$DEPS" = 'stable' ]]; then travis_retry composer --no-interaction --no-suggest --prefer-stable update; fi
 
-script: composer check
+script: composer run-script --timeout=0 check
 
 env:
     matrix:
