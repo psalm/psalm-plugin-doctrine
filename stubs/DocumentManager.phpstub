@@ -1,0 +1,43 @@
+<?php
+
+namespace Doctrine\ODM\MongoDB;
+
+use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+
+class DocumentManager implements ObjectManager
+{
+    /**
+     * @template T of object
+     * @param class-string<T> $documentName
+     * @param mixed           $id
+     * @param null|int        $lockMode
+     * @param null|int        $lockVersion
+     *
+     * @return null|T
+     */
+    public function find($documentName, $id, $lockMode = null, $lockVersion = null)
+    {
+    }
+
+    /**
+     * @template T of object
+     * @param class-string<T> $documentName
+     *
+     * @return DocumentRepository<T>
+     */
+    public function getRepository($documentName)
+    {
+    }
+
+    /**
+     * @template T of object
+     * @param class-string<T> $documentName
+     * @param mixed           $id
+     *
+     * @return T
+     */
+    public function getReference($documentName, $id)
+    {
+    }
+}

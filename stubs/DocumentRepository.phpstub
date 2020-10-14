@@ -1,0 +1,48 @@
+<?php
+
+namespace Doctrine\ODM\MongoDB\Repository;
+
+use Doctrine\Common\Collections\Selectable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Doctrine\ODM\MongoDB\DocumentManager;
+
+/**
+ * @template T of object
+ * @template-implements Selectable<int,T>
+ * @template-implements ObjectRepository<T>
+ */
+class DocumentRepository implements ObjectRepository, Selectable
+{
+    /**
+     * @param mixed $id
+     * @param ?int  $lockMode
+     * @param ?int  $lockVersion
+     *
+     * @return ?T
+     */
+    public function find($id, $lockMode = null, $lockVersion = null)
+    {
+    }
+
+    /** @return list<T> */
+    public function findAll()
+    {
+    }
+
+    /**
+     * @param ?int $limit
+     * @param ?int $offset
+     *
+     * @return list<T>
+     */
+    public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null)
+    {
+    }
+
+    /** @return ?T */
+    public function findOneBy(array $criteria, ?array $orderBy = null)
+    {
+    }
+}

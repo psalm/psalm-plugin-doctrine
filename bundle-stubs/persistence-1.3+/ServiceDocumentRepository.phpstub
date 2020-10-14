@@ -1,0 +1,20 @@
+<?php
+
+namespace Doctrine\Bundle\MongoDBBundle\Repository;
+
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
+
+/**
+ * @template T of object
+ * @template-extends DocumentRepository<T>
+ */
+class ServiceDocumentRepository extends DocumentRepository implements ServiceDocumentRepositoryInterface
+{
+    /**
+     * @param string $documentClass The class name of the document this repository manages
+     */
+    public function __construct(ManagerRegistry $registry, $documentClass)
+    {
+    }
+}
