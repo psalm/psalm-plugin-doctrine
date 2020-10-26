@@ -78,7 +78,25 @@ Feature: QueryBuilderDbal
 
   @QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::where, ::orWhere and ::andWhere accept CompositeExpression
-    Given I have the following code
+    Given I have the "doctrine/dbal" package satisfying the ">= 2.11.0"
+    And I have the following code
+      """
+      $expr = builder()->expr();
+      $orx = $expr->orX();
+      $orx->add($expr->eq('field1', 1));
+      $orx->add($expr->eq('field1', 2));
+      builder()->where($orx)->andWhere($orx)->orWhere($orx);
+      """
+    When I run Psalm
+    Then I see these errors
+      | DeprecatedMethod | The method Doctrine\DBAL\Query\Expression\ExpressionBuilder::orX has been marked as deprecated   |
+      | DeprecatedMethod | The method Doctrine\DBAL\Query\Expression\CompositeExpression::add has been marked as deprecated |
+      | DeprecatedMethod | The method Doctrine\DBAL\Query\Expression\CompositeExpression::add has been marked as deprecated |
+
+  @QueryBuilderDbal
+  Scenario: Dbal QueryBuilder ::where, ::orWhere and ::andWhere accept CompositeExpression
+    Given I have the "doctrine/dbal" package satisfying the "< 2.11.0"
+    And I have the following code
       """
       $expr = builder()->expr();
       $orx = $expr->orX();
@@ -122,7 +140,20 @@ Feature: QueryBuilderDbal
 
   @QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::having, ::orHaving and ::andHaving accept CompositeExpression
-    Given I have the following code
+    Given I have the "doctrine/dbal" package satisfying the ">= 2.11.0"
+    And I have the following code
+      """
+      $andx = builder()->expr()->andX('a = b');
+      builder()->having($andx)->orHaving($andx)->andHaving($andx);
+      """
+    When I run Psalm
+    Then I see these errors
+      | DeprecatedMethod | The method Doctrine\DBAL\Query\Expression\ExpressionBuilder::andX has been marked as deprecated |
+
+  @QueryBuilderDbal
+  Scenario: Dbal QueryBuilder ::having, ::orHaving and ::andHaving accept CompositeExpression
+    Given I have the "doctrine/dbal" package satisfying the "< 2.11.0"
+    And I have the following code
       """
       $andx = builder()->expr()->andX('a = b');
       builder()->having($andx)->orHaving($andx)->andHaving($andx);
