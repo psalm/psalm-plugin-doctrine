@@ -76,6 +76,7 @@ class Plugin implements PluginEntryPointInterface
     private function getPackageVersion(string $packageName): string
     {
         if (class_exists(Versions::class)) {
+            /** @psalm-suppress RedundantCondition */
             return (string) Versions::getVersion($packageName);
         }
 
