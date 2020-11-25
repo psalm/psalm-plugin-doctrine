@@ -128,10 +128,11 @@ jobs:
     tests:
         name: Test on ${{matrix.php}} - ${{matrix.deps}} deps
         runs-on: ubuntu-20.04
-        continue-on-error: ${{matrix.php == '8.0'}}
+        # continue-on-error: ${{matrix.php == '8.0'}}
         strategy:
             matrix:
-                php: ['7.2', '7.3', '7.4', '8.0']
+                # php: ['7.2', '7.3', '7.4', '8.0']
+                php: ['7.2', '7.3', '7.4']
                 deps: ['high', 'low', 'stable']
             fail-fast: false
         steps:
