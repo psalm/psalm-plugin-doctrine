@@ -18,8 +18,7 @@ use function strpos;
 
 class Plugin implements PluginEntryPointInterface
 {
-    /** @return void */
-    public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null)
+    public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null): void
     {
         $stubs = $this->getStubFiles();
         $stubs = array_merge($stubs, $this->getBundleStubs());
