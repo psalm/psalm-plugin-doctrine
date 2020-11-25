@@ -59,6 +59,9 @@ jobs:
               env:
                   COMPOSER_ROOT_VERSION: dev-master
 
+            - name: Generate aux code
+              run: vendor/bin/codecept build
+
             - name: Run Psalm
               run: vendor/bin/psalm --output-format=github --shepherd
 
