@@ -1,0 +1,187 @@
+name: CI
+on: 
+    push:
+    pull_request:
+    schedule:
+        - cron: '0 4 * * 6' # Every Saturday on 4am
+
+jobs:
+    psalm:
+        name: Static analysis
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '7.4'
+                  tools: composer:v2
+                  coverage: none
+              env:
+                  fail-fast: true
+
+            - name: Get Composer Cache Directories
+              id: composer-cache
+              run: |
+                  echo "::set-output name=files_cache::$(composer config cache-files-dir)"
+                  echo "::set-output name=vcs_cache::$(composer config cache-vcs-dir)"
+
+              # the way cache keys are set up will always cause a cache miss
+              # but will restore the cache generated during the previous run
+              # based on partial match
+            - name: Composer cache
+              uses: actions/cache@v2
+              with:
+                  path: |
+                    ${{ steps.composer-cache.outputs.files_cache }}
+                    ${{ steps.composer-cache.outputs.vcs_cache }}
+                  key: ${{ runner.os }}-composer-${{ github.sha }}
+                  restore-keys: |
+                    ${{ runner.os }}-composer-
+
+              # the way cache keys are set up will always cause a cache miss
+              # but will restore the cache generated during the previous run
+              # based on partial match
+            - name: Psalm cache
+              uses: actions/cache@v2
+              with:
+                  # we really need a way for Psalm to tell where cache is located
+                  path: |
+                      ~/.cache/psalm
+                  key: ${{ runner.os }}-psalm-cache-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-psalm-cache-
+
+            - name: Install composer dependencies
+              run: composer update --prefer-dist
+              env:
+                  COMPOSER_ROOT_VERSION: dev-master
+
+            - name: Run Psalm
+              run: vendor/bin/psalm --output-format=github --shepherd
+
+    phpcs:
+        name: Code style
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '7.4'
+                  tools: composer:v2, cs2pr
+                  coverage: none
+              env:
+                  fail-fast: true
+
+            - name: Get Composer Cache Directories
+              id: composer-cache
+              run: |
+                  echo "::set-output name=files_cache::$(composer config cache-files-dir)"
+                  echo "::set-output name=vcs_cache::$(composer config cache-vcs-dir)"
+
+              # the way cache keys are set up will always cause a cache miss
+              # but will restore the cache generated during the previous run
+            - name: Retrieve cached packages
+              uses: actions/cache@v2
+              with:
+                  path: |
+                    ${{ steps.composer-cache.outputs.files_cache }}
+                    ${{ steps.composer-cache.outputs.vcs_cache }}
+                  key: ${{ runner.os }}-composer-${{ github.sha }}
+                  restore-keys: |
+                    ${{ runner.os }}-composer-
+
+              # the way cache keys are set up will always cause a cache miss
+              # but will restore the cache generated during the previous run
+              # based on partial match
+            - name: Retrieve PHPCS cache
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      ~/.cache/phpcs
+                  key: ${{ runner.os }}-phpcs-cache-${{ github.sha }}
+                  restore-keys: |
+                      ${{ runner.os }}-phpcs-cache-
+
+              # PHPCS may be unable to create the cache file (in a home folder?)
+            - name: Ensure PHPCS cache exists
+              run: |
+                  [ -e ~/.cache ] || mkdir -p ~/.cache
+                  [ -e ~/.cache/phpcs ] || touch ~/.cache/phpcs
+
+            - name: Install composer dependencies
+              run: composer update --prefer-dist
+              env:
+                  COMPOSER_ROOT_VERSION: dev-master
+
+            - name: Run PHPCodeSniffer
+              run: vendor/bin/phpcs --report=checkstyle --cache=~/.cache/phpcs -q --parallel=1 | cs2pr
+
+    tests:
+        name: Test on ${{matrix.php}} - ${{matrix.deps}} deps
+        runs-on: ubuntu-20.04
+        continue-on-error: ${{matrix.php == '8.0'}}
+        strategy:
+            matrix:
+                php: ['7.2', '7.3', '7.4', '8.0']
+                deps: ['high', 'low', 'stable']
+            fail-fast: false
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{matrix.php}}
+                  tools: composer:v2
+                  coverage: none
+              env:
+                  fail-fast: true
+
+            - name: Get Composer Cache Directories
+              id: composer-cache
+              run: |
+                  echo "::set-output name=files_cache::$(composer config cache-files-dir)"
+                  echo "::set-output name=vcs_cache::$(composer config cache-vcs-dir)"
+
+              # the way cache keys are set up will always cause a cache miss
+              # but will restore the cache generated during the previous run
+            - name: Retrieve cached packages
+              uses: actions/cache@v2
+              with:
+                  path: |
+                    ${{ steps.composer-cache.outputs.files_cache }}
+                    ${{ steps.composer-cache.outputs.vcs_cache }}
+                  key: ${{ runner.os }}-composer-${{ github.sha }}
+                  restore-keys: |
+                    ${{ runner.os }}-composer-
+
+            - name: Install composer dependencies (high deps)
+              run: composer update --prefer-dist --no-interaction
+              if: ${{ matrix.deps == 'high' }}
+              env:
+                  COMPOSER_ROOT_VERSION: dev-master
+
+            - name: Install composer dependencies (low deps)
+              run: composer update --prefer-dist --no-interaction --prefer-stable --prefer-lowest
+              if: ${{ matrix.deps == 'low' }}
+              env:
+                  COMPOSER_ROOT_VERSION: dev-master
+
+            - name: Install composer dependencies (stable deps)
+              run: composer update --prefer-dist --no-interaction --prefer-stable
+              if: ${{ matrix.deps == 'stable' }}
+              env:
+                  COMPOSER_ROOT_VERSION: dev-master
+
+            - name: Show Psalm version
+              run: vendor/bin/psalm --version
+
+            - name: Run tests
+              run: vendor/bin/codecept run -v
