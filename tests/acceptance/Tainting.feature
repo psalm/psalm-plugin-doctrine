@@ -42,8 +42,8 @@ Feature: Tainting
       """
     When I run Psalm with taint analysis
     Then I see these errors
-      | Type         | Message              |
-      | TaintedInput | Detected tainted sql |
+      | Type                       | Message                       |
+      | /TaintedInput\|TaintedSql/ | /Detected tainted (sql\|SQL)/ |
     And I see no other errors
   Examples:
     | method        |
