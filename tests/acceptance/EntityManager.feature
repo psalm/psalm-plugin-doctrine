@@ -31,6 +31,8 @@ Feature: EntityManager
       function em() {}
 
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @EntityManager::getRepository
   Scenario: EntityManager returns specialized EntityRepository

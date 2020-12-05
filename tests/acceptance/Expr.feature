@@ -28,6 +28,8 @@ Feature: Expr
        */
       function builder() {}
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @Expr
   Scenario: Expr::andX() accepts variadic arguments

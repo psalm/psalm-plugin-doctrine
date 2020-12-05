@@ -28,6 +28,8 @@ Feature: QueryBuilderDbal
        */
       function builder() {}
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::select accepts variadic arguments

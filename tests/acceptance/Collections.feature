@@ -23,6 +23,8 @@ Feature: Collections
       use Doctrine\Common\Collections\ArrayCollection;
 
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @Collection::instantiation
   Scenario: Instantiating a collection with incompatible key type

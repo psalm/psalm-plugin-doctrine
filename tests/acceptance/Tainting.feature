@@ -29,6 +29,8 @@ Feature: Tainting
       function connection() {}
 
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @Connection::prepare
   @Connection::exec

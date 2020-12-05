@@ -30,6 +30,8 @@ Feature: ObjectManager
       function om() {}
 
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @ObjectManager::getRepository
   Scenario: Calling getRepository with a class-string argument

@@ -32,6 +32,8 @@ Feature: Paginator
           function paginate(string $type) {}
 
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @Paginator
   Scenario: Paginator allows iteration
