@@ -41,7 +41,7 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.3",
         "codeception/codeception": "^4.0",
-        "weirdan/codeception-psalm-module": "^0.13.0",
+        "weirdan/codeception-psalm-module": "^0.13.1",
         "doctrine/doctrine-bundle": "^1.11 || ^2.0",
         "phly/keep-a-changelog": "^2.1",
         "doctrine/coding-standard": "^8.1"
