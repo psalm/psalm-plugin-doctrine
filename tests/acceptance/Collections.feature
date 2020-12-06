@@ -359,8 +359,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                             |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                       |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::exists
@@ -423,8 +423,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                  |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                            |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::filter
@@ -475,8 +475,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                                   |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, Closure\(string, string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                             |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(string, string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::forAll
@@ -489,8 +489,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                             |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                       |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::forAll
@@ -553,8 +553,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::map expects Closure\(string=\):mixed, Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                          |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::map expects Closure\(string=\):mixed, (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::map
@@ -592,8 +592,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                              |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, Closure\(string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                        |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, (impure-)?Closure\(string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::partition
