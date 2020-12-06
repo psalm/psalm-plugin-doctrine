@@ -13,11 +13,11 @@
     "require": {
         "php": "^7.2|^8",
         "vimeo/psalm": "^3.6.2 || dev-master",
-        "doctrine/collections": "^1.0",
-        "doctrine/orm": "^2.6",
         "composer/semver": "^1.4 || ^2.0 || ^3.0" 
     },
     "conflict": {
+        "doctrine/collections": "<1.0",
+        "doctrine/orm": "<2.6",
         "slevomat/coding-standard": "6.1.1"
     },
     "extra": {
@@ -43,6 +43,8 @@
         "codeception/codeception": "^4.0",
         "weirdan/codeception-psalm-module": "^0.9.1",
         "doctrine/doctrine-bundle": "^1.11 || ^2.0",
+        "doctrine/collections": "^1.0",
+        "doctrine/orm": "^2.6",
         "phly/keep-a-changelog": "^2.1",
         "doctrine/coding-standard": "^8.1"
     },
