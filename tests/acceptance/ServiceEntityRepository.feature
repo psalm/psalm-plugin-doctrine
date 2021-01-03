@@ -21,6 +21,8 @@ Feature: ServiceEntityRepository
       <?php
       use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
     @ServiceEntityRepository::inheritance
     Scenario: Extending a ServiceEntityRepository

@@ -28,6 +28,8 @@ Feature: QueryBuilder
        */
       function builder() {}
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @QueryBuilder
   Scenario: Query builder select accepts variadic arguments

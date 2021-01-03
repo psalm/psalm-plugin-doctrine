@@ -23,21 +23,18 @@ Feature: EntityManagerInterface
       use Doctrine\ORM\EntityRepository;
 
       interface I {}
-
-      /**
-       * @psalm-suppress InvalidReturnType
-       * @return EntityManagerInterface
-       */
-      function em() {}
-
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
 
   @EntityManagerInterface::getRepository
   Scenario: Getting repository for a class (entity)
     Given I have the following code
       """
-      atan(em()->getRepository(I::class));
+      function f(EntityManagerInterface $em): void {
+        atan($em->getRepository(I::class));
+      }
       """
     When I run Psalm
     Then I see these errors
@@ -49,7 +46,9 @@ Feature: EntityManagerInterface
   Scenario: Getting repository for an invalid argument
     Given I have the following code
       """
-      em()->getRepository(123);
+      function f(EntityManagerInterface $em): void {
+        $em->getRepository(123);
+      }
       """
     When I run Psalm
     Then I see these errors
@@ -61,7 +60,9 @@ Feature: EntityManagerInterface
   Scenario: Finding an entity
     Given I have the following code
       """
-      atan(em()->find(I::class, 1));
+      function f(EntityManagerInterface $em): void {
+        atan($em->find(I::class, 1));
+      }
       """
     When I run Psalm
     Then I see these errors
@@ -73,7 +74,9 @@ Feature: EntityManagerInterface
   Scenario: Calling find with a wrong argument type
     Given I have the following code
       """
-      em()->find(123, 1);
+      function f(EntityManagerInterface $em): void {
+        $em->find(123, 1);
+      }
       """
     When I run Psalm
     Then I see these errors
@@ -85,7 +88,9 @@ Feature: EntityManagerInterface
   Scenario: Getting a reference
     Given I have the following code
       """
-      atan(em()->getReference(I::class, 1));
+      function f(EntityManagerInterface $em): void {
+        atan($em->getReference(I::class, 1));
+      }
       """
     When I run Psalm
     Then I see these errors
@@ -97,7 +102,9 @@ Feature: EntityManagerInterface
   Scenario: Calling getReference with a wrong argument type
     Given I have the following code
       """
-      em()->getReference(123, 1);
+      function f(EntityManagerInterface $em): void {
+        $em->getReference(123, 1);
+      }
       """
     When I run Psalm
     Then I see these errors

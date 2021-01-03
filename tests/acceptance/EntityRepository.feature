@@ -34,6 +34,8 @@ Feature: EntityRepository
       function repo(string $entityClass) {}
 
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @EntityRepository::find
   Scenario: Finding an entity by ID

@@ -36,6 +36,8 @@ Feature: ObjectRepository
       /** @return void */
       function acceptsI(I $i) {}
       """
+    # Psalm enables cache when there's a composer.lock file
+    And I have empty composer.lock
 
   @ObjectRepository::find
   Scenario: Calling find returns typed object
