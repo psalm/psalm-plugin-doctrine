@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 1.0.0 - 2021-01-03
+
+### Added
+
+- [#61](https://github.com/weirdan/doctrine-psalm-plugin/pull/61) Added taint sinks for DBAL\Connection (@adrienlucas)
+
+- [#67](https://github.com/weirdan/doctrine-psalm-plugin/pull/67) [#66](https://github.com/weirdan/doctrine-psalm-plugin/issues/66) Allow pushed to ArrayCollection
+
+- [#64](https://github.com/weirdan/doctrine-psalm-plugin/pull/64) [#63](https://github.com/weirdan/doctrine-psalm-plugin/issues/63) EntityRepository::matching() stub (@ygottschalk)
+
+### Changed
+
+- [#72](https://github.com/weirdan/doctrine-psalm-plugin/pull/72) [#71](https://github.com/weirdan/doctrine-psalm-plugin/issues/71) Return type of ObjectRepository::findAll() from list<T> to T[]
+
+- [#62](https://github.com/weirdan/doctrine-psalm-plugin/pull/62) Test on Symfony 5 (@amberovsky)
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- [#78](https://github.com/weirdan/doctrine-psalm-plugin/pull/78) Removed support for Psalm <4.3.2 (@tugmaks)
+
+### Fixed
+
+- [#75](https://github.com/weirdan/doctrine-psalm-plugin/pull/75) [#69](https://github.com/weirdan/doctrine-psalm-plugin/issues/69) MethodSignatureMismatch on EntityManager methods
+
+- [#74](https://github.com/weirdan/doctrine-psalm-plugin/pull/74) [#70](https://github.com/weirdan/doctrine-psalm-plugin/issues/70) ManagerRegistry deprecation/removal
+
 ## 0.11.3 - 2020-06-21
 
 ### Added
