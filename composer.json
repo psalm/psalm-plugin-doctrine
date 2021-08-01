@@ -1,8 +1,22 @@
 {
     "name": "weirdan/doctrine-psalm-plugin",
-    "description": "Stubs to let Psalm understand Doctrine better",
-    "keywords": ["php", "code", "inspection", "doctrine", "orm", "doctrine2", "dbal", "psalm", "plugin", "psalm-plugin", "static analysis", "static-analysis", "extension"],
     "type": "psalm-plugin",
+    "description": "Stubs to let Psalm understand Doctrine better",
+    "keywords": [
+        "php",
+        "code",
+        "inspection",
+        "doctrine",
+        "orm",
+        "doctrine2",
+        "dbal",
+        "psalm",
+        "plugin",
+        "psalm-plugin",
+        "static analysis",
+        "static-analysis",
+        "extension"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -11,17 +25,30 @@
         }
     ],
     "require": {
-        "php": "^7.2|^8",
-        "vimeo/psalm": "^4.9 || dev-master",
-        "doctrine/collections": "^1.0",
-        "doctrine/orm": "^2.6",
-        "composer/semver": "^1.4 || ^2.0 || ^3.0"
+        "php": "^7.2 || ^8",
+        "composer/semver": "^1.4 || ^2.0 || ^3.0",
+        "vimeo/psalm": "^4.9 || dev-master"
     },
     "conflict": {
+        "doctrine/collections": "<1.0",
+        "doctrine/orm": "<2.6",
         "slevomat/coding-standard": "6.1.1"
     },
+    "require-dev": {
+        "codeception/codeception": "^4.0",
+        "doctrine/coding-standard": "^8.1",
+        "doctrine/collections": "^1.0",
+        "doctrine/doctrine-bundle": "^1.11 || ^2.0",
+        "doctrine/orm": "^2.6",
+        "phly/keep-a-changelog": "^2.1",
+        "squizlabs/php_codesniffer": "^3.3",
+        "weirdan/codeception-psalm-module": "^0.13.1"
+    },
+    "config": {
+        "sort-packages": true
+    },
     "extra": {
-        "psalm" : {
+        "psalm": {
             "pluginClass": "Weirdan\\DoctrinePsalmPlugin\\Plugin"
         }
     },
@@ -38,22 +65,14 @@
             ]
         }
     },
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.3",
-        "codeception/codeception": "^4.0",
-        "weirdan/codeception-psalm-module": "^0.13.1",
-        "doctrine/doctrine-bundle": "^1.11 || ^2.0",
-        "phly/keep-a-changelog": "^2.1",
-        "doctrine/coding-standard": "^8.1"
-    },
     "scripts": {
         "check": [
             "@phpcs",
             "@test",
             "@psalm"
         ],
-        "test": "codecept --colors run -v",
+        "phpcs": "phpcs --colors",
         "psalm": "psalm",
-        "phpcs": "phpcs --colors"
+        "test": "codecept --colors run -v"
     }
 }
