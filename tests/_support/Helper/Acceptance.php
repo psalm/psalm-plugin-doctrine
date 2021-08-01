@@ -6,6 +6,11 @@ use Codeception\Exception\ModuleRequireException;
 use Codeception\Module;
 use Codeception\TestInterface;
 
+use function array_map;
+use function explode;
+use function implode;
+use function sprintf;
+
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
@@ -15,13 +20,9 @@ class Acceptance extends Module
      * @var mixed[]
      * @psalm-suppress NonInvariantDocblockPropertyType
      */
-    protected $config = [
-        'default_dir' => 'tests/_run/',
-    ];
+    protected $config = ['default_dir' => 'tests/_run/'];
 
-    /**
-     * @var list<string>
-     */
+    /** @var list<string> */
     private $suppressedIssueHandlers = [];
 
     public function _before(TestInterface $test): void
@@ -48,14 +49,17 @@ class Acceptance extends Module
      */
     public function configureCommonPsalmconfig(string $configuration = ''): void
     {
-        $suppressedIssueHandlers = implode("\n", array_map(function (string $issueHandler) {
-            return "<$issueHandler errorLevel=\"info\"/>";
+        $suppressedIssueHandlers = implode("\n", array_map(static function (string $issueHandler): string {
+            return sprintf('<%s errorLevel="info"/>', $issueHandler);
         }, $this->suppressedIssueHandlers));
 
         $psalmModule = $this->getModule(\Weirdan\Codeception\Psalm\Module::class);
 
-        if (!$psalmModule instanceof Module) {
-            throw new ModuleRequireException($this, sprintf('Needs "%s" module', Module::class));
+        if (! $psalmModule instanceof \Weirdan\Codeception\Psalm\Module) {
+            throw new ModuleRequireException(
+                $this,
+                sprintf('Needs "%s" module', \Weirdan\Codeception\Psalm\Module::class)
+            );
         }
 
         $psalmModule->haveTheFollowingConfig(<<<XML
