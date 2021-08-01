@@ -4,18 +4,7 @@ Feature: EntityManagerInterface
   I need Psalm to typecheck EntityManagerInterface
 
   Background:
-    Given I have the following config
-      """
-      <?xml version="1.0"?>
-      <psalm totallyTyped="true">
-        <projectFiles>
-          <directory name="."/>
-        </projectFiles>
-        <plugins>
-          <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin" />
-        </plugins>
-      </psalm>
-      """
+    Given I have Doctrine plugin enabled
     And I have the following code preamble
       """
       <?php
@@ -53,7 +42,7 @@ Feature: EntityManagerInterface
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                  |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getRepository expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getRepository expects class-string, 123 provided |
     And I see no other errors
 
   @EntityManagerInterface::find
@@ -81,7 +70,7 @@ Feature: EntityManagerInterface
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::find expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::find expects class-string, 123 provided |
     And I see no other errors
 
   @EntityManagerInterface::getReference
@@ -109,5 +98,5 @@ Feature: EntityManagerInterface
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getReference expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManagerInterface::getReference expects class-string, 123 provided |
     And I see no other errors

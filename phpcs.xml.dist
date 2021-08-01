@@ -19,6 +19,7 @@
         <!-- inapplicable for this project -->
         <exclude name="Generic.Strings.UnnecessaryStringConcat.Found" />
         <exclude name="PSR2.Classes.PropertyDeclaration.Underscore" />
+        <exclude name="PSR2.Methods.MethodDeclaration.Underscore" />
         <exclude name="Squiz.Commenting.FunctionComment.InvalidNoReturn" />
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix" />
         <exclude name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.DeclareStrictTypesMissing" />
@@ -34,7 +35,7 @@
         <!-- conflicts with other rules -->
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" /> <!-- [> PSR12.Functions.ReturnTypeDeclaration <] -->
     </rule>
-    
+
     <!-- inherit rules from: -->
     <rule ref="PSR12">
         <!-- conflicts with other rules -->

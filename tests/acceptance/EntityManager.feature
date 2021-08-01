@@ -4,18 +4,7 @@ Feature: EntityManager
   I need Psalm to typecheck EntityManager
 
   Background:
-    Given I have the following config
-      """
-      <?xml version="1.0"?>
-      <psalm totallyTyped="true">
-        <projectFiles>
-          <directory name="."/>
-        </projectFiles>
-        <plugins>
-          <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin" />
-        </plugins>
-      </psalm>
-      """
+    Given I have Doctrine plugin enabled
     And I have the following code preamble
       """
       <?php
@@ -55,7 +44,7 @@ Feature: EntityManager
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getRepository expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getRepository expects class-string, 123 provided |
     And I see no other errors
 
   @EntityManager::find
@@ -79,7 +68,7 @@ Feature: EntityManager
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::find expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::find expects class-string, 123 provided |
     And I see no other errors
 
   @EntityManager::getReference
@@ -103,7 +92,7 @@ Feature: EntityManager
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                        |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getReference expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getReference expects class-string, 123 provided |
     And I see no other errors
 
   @EntityManager::inheritance

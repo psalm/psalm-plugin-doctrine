@@ -4,19 +4,7 @@ Feature: Tainting
   I need Psalm to spot taint sources and sinks
 
   Background:
-    Given I have Psalm newer than "3.12" (because of "taint analysis")
-    And I have the following config
-      """
-      <?xml version="1.0"?>
-      <psalm totallyTyped="true">
-        <projectFiles>
-          <directory name="."/>
-        </projectFiles>
-        <plugins>
-          <pluginClass class="Weirdan\DoctrinePsalmPlugin\Plugin" />
-        </plugins>
-      </psalm>
-      """
+    Given I have Doctrine plugin enabled
     And I have the following code preamble
       """
       <?php
