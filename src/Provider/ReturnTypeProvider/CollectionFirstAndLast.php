@@ -46,9 +46,14 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         $type = $event->getContext()->vars_in_scope[$scopedVarName];
 
         if ($type->isFalse()) {
-            return new Type\Union([
-                new Type\Atomic\TGenericObject()
-            ]);
+            $returnType = $event->getSource()->getNodeTypeProvider()->getType($stmt);
+            if (null === $returnType) {
+                return null;
+            }
+
+            $returnType->removeType('bool');
+
+            return $returnType;
         }
 
         return Type::getFalse();
