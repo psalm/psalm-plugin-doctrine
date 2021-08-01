@@ -27,7 +27,9 @@ class Plugin implements PluginEntryPointInterface
             $psalm->addStubFile($file);
         }
 
-        $psalm->registerHooksFromClass(CollectionFirstAndLast::class);
+        if (class_exists(CollectionFirstAndLast::class)) {
+            $psalm->registerHooksFromClass(CollectionFirstAndLast::class);
+        }
     }
 
     /** @return string[] */
