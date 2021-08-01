@@ -21,7 +21,7 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
     {
         if (
             $event->getMethodNameLowercase() !== 'first'
-            || $event->getMethodNameLowercase() !== 'last'
+            && $event->getMethodNameLowercase() !== 'last'
         ) {
             return null;
         }
