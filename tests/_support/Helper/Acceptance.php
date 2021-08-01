@@ -26,7 +26,11 @@ class Acceptance extends Module
 
     public function _before(TestInterface $test): void
     {
-        $this->suppressedIssueHandlers = [];
+        $this->suppressedIssueHandlers = [
+            'UnusedVariable',
+            'UnusedFunctionCall',
+            'UnusedParam',
+        ];
     }
 
     /**

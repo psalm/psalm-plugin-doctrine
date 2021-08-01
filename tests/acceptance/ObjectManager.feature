@@ -42,7 +42,7 @@ Feature: ObjectManager
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                        |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::getRepository expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::getRepository expects class-string, 123 provided |
 
   @ObjectManager::getClassMetadata
   Scenario: Calling getClassMetadata with a class-string argument
@@ -64,7 +64,7 @@ Feature: ObjectManager
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                           |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::getClassMetadata expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::getClassMetadata expects class-string, 123 provided |
 
   @ObjectManager::find
   Scenario: Calling find with a class-string argument
@@ -86,4 +86,4 @@ Feature: ObjectManager
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                               |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::find expects class-string, int(123) provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Persistence\ObjectManager::find expects class-string, 123 provided |
