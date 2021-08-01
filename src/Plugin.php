@@ -8,6 +8,7 @@ use PackageVersions\Versions;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
 use SimpleXMLElement;
+use Weirdan\DoctrinePsalmPlugin\Provider\ReturnTypeProvider\CollectionFirstAndLast;
 
 use function array_merge;
 use function array_search;
@@ -25,6 +26,8 @@ class Plugin implements PluginEntryPointInterface
         foreach ($stubs as $file) {
             $psalm->addStubFile($file);
         }
+
+        $psalm->registerHooksFromClass(CollectionFirstAndLast::class);
     }
 
     /** @return string[] */
