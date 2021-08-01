@@ -39,7 +39,7 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
             return null;
         }
 
-        $scopedVarName = '$' . $stmt->var->name . '->isEmpty()';
+        $scopedVarName = '$' . $stmt->var->name . '->isempty()';
         if (!isset($event->getContext()->vars_in_scope[$scopedVarName])) {
             return null;
         }
@@ -47,14 +47,27 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         $type = $event->getContext()->vars_in_scope[$scopedVarName];
 
         if ($type->isFalse()) {
-            $returnType = $event->getSource()->getNodeTypeProvider()->getType($stmt);
-            if (null === $returnType) {
+            $collectionType = $event->getSource()->getNodeTypeProvider()->getType($stmt->var);
+            if (null === $collectionType) {
                 return null;
             }
 
-            $returnType->removeType('bool');
+            $atomicTypes = $collectionType->getAtomicTypes();
+            if (count($atomicTypes) !== 1) {
+                return null;
+            }
 
-            return $returnType;
+            $type = current($atomicTypes);
+            if (!$type instanceof Type\Atomic\TGenericObject) {
+                return null;
+            }
+
+            $childNode = $type->getChildNodes();
+            if (!isset($childNode[1])) {
+                return null;
+            }
+
+            return $childNode[1] ?? null;
         }
 
         return Type::getFalse();
