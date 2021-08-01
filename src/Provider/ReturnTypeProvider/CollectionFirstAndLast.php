@@ -70,6 +70,10 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
             return $childNode[1] ?? null;
         }
 
-        return Type::getFalse();
+        if ($type->isTrue()) {
+            return Type::getFalse();
+        }
+
+        return null;
     }
 }
