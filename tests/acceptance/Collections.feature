@@ -293,7 +293,10 @@ Feature: Collections
       }
       """
     When I run Psalm
-    Then I see no errors
+    Then I see these errors
+      | Type                  | Message                                                  |
+      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+    And I see no other errors
 
   @Collection::last
   Scenario: Getting last item of the collection
@@ -320,7 +323,10 @@ Feature: Collections
       }
       """
     When I run Psalm
-    Then I see no errors
+    Then I see these errors
+      | Type                  | Message                                                  |
+      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+    And I see no other errors
 
   @Collection::key
   Scenario: Getting current key of the collection

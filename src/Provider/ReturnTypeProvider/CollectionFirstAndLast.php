@@ -4,20 +4,27 @@ declare(strict_types=1);
 
 namespace Weirdan\DoctrinePsalmPlugin\Provider\ReturnTypeProvider;
 
+use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Expr\Variable;
 use Psalm\Plugin\EventHandler\Event\MethodReturnTypeProviderEvent;
 use Psalm\Plugin\EventHandler\MethodReturnTypeProviderInterface;
 use Psalm\Type;
 
+use function count;
+use function current;
 use function is_string;
 
 class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
 {
-    public static function getClassLikeNames() : array
+    /**
+     * @return array<string>
+     */
+    public static function getClassLikeNames(): array
     {
         return ['Doctrine\Common\Collections\Collection'];
     }
 
-    public static function getMethodReturnType(MethodReturnTypeProviderEvent $event) : ?Type\Union
+    public static function getMethodReturnType(MethodReturnTypeProviderEvent $event): ?Type\Union
     {
         if (
             $event->getMethodNameLowercase() !== 'first'
@@ -27,20 +34,20 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         }
 
         $stmt = $event->getStmt();
-        if (!$stmt instanceof \PhpParser\Node\Expr\MethodCall) {
+        if (! $stmt instanceof MethodCall) {
             return null;
         }
 
-        if (!$stmt->var instanceof \PhpParser\Node\Expr\Variable) {
+        if (! $stmt->var instanceof Variable) {
             return null;
         }
 
-        if (!is_string($stmt->var->name)) {
+        if (! is_string($stmt->var->name)) {
             return null;
         }
 
         $scopedVarName = '$' . $stmt->var->name . '->isempty()';
-        if (!isset($event->getContext()->vars_in_scope[$scopedVarName])) {
+        if (! isset($event->getContext()->vars_in_scope[$scopedVarName])) {
             return null;
         }
 
@@ -48,7 +55,7 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
 
         if ($type->isFalse()) {
             $collectionType = $event->getSource()->getNodeTypeProvider()->getType($stmt->var);
-            if (null === $collectionType) {
+            if ($collectionType === null) {
                 return null;
             }
 
@@ -58,12 +65,12 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
             }
 
             $type = current($atomicTypes);
-            if (!$type instanceof Type\Atomic\TGenericObject) {
+            if (! $type instanceof Type\Atomic\TGenericObject) {
                 return null;
             }
 
             $childNode = $type->getChildNodes();
-            if (!isset($childNode[1])) {
+            if (! isset($childNode[1])) {
                 return null;
             }
 
