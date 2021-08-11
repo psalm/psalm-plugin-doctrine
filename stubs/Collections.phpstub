@@ -43,7 +43,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
 
     /**
      * @return bool
-     * @psalm-pure
+     * @psalm-mutation-free
      */
     public function isEmpty();
 
