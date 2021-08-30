@@ -26,13 +26,6 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
 
     public static function getMethodReturnType(MethodReturnTypeProviderEvent $event): ?Type\Union
     {
-        if (
-            $event->getMethodNameLowercase() !== 'first'
-            && $event->getMethodNameLowercase() !== 'last'
-        ) {
-            return null;
-        }
-
         $stmt = $event->getStmt();
         if (! $stmt instanceof MethodCall) {
             return null;
@@ -47,7 +40,22 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         }
 
         $scopedVarName = '$' . $stmt->var->name . '->isempty()';
-        if (! isset($event->getContext()->vars_in_scope[$scopedVarName])) {
+
+        if (
+            $event->getMethodNameLowercase() === 'add'
+            || $event->getMethodNameLowercase() === 'remove'
+            || $event->getMethodNameLowercase() === 'removeelement'
+        ) {
+            unset($event->getContext()->vars_in_scope[$scopedVarName]);
+
+            return null;
+        }
+
+        if (
+            ! isset($event->getContext()->vars_in_scope[$scopedVarName])
+            || $event->getMethodNameLowercase() !== 'first'
+            && $event->getMethodNameLowercase() !== 'last'
+        ) {
             return null;
         }
 
