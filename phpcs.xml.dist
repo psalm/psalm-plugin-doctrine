@@ -36,6 +36,14 @@
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing" /> <!-- [> PSR12.Functions.ReturnTypeDeclaration <] -->
     </rule>
 
+    <!-- override doctrine rule for early exits -->
+    <rule ref="SlevomatCodingStandard.ControlStructures.EarlyExit">
+        <properties>
+            <property name="ignoreStandaloneIfInScope" value="true"/>
+            <property name="ignoreOneLineTrailingIf" value="true"/>
+        </properties>
+    </rule>
+
     <!-- inherit rules from: -->
     <rule ref="PSR12">
         <!-- conflicts with other rules -->

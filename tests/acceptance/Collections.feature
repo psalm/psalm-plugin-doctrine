@@ -282,6 +282,22 @@ Feature: Collections
       | InvalidScalarArgument | Argument 1 of atan expects float, false\|string provided |
     And I see no other errors
 
+  @Collection::first
+  Scenario: Getting first item of a non empty collection
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      if (!$c->isEmpty()) {
+        atan($c->first());
+      }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                  |
+      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+    And I see no other errors
+
   @Collection::last
   Scenario: Getting last item of the collection
     Given I have the following code
@@ -294,6 +310,22 @@ Feature: Collections
     Then I see these errors
       | Type                  | Message                                                  |
       | InvalidScalarArgument | Argument 1 of atan expects float, false\|string provided |
+    And I see no other errors
+
+  @Collection::last
+  Scenario: Getting last item of a non empty collection
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      if (!$c->isEmpty()) {
+        atan($c->last());
+      }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                  |
+      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
     And I see no other errors
 
   @Collection::key
