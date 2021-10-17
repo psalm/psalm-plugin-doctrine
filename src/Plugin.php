@@ -54,6 +54,10 @@ class Plugin implements PluginEntryPointInterface
             return [];
         }
 
+        if ($this->hasPackageOfVersion('doctrine/doctrine-bundle', '>= 2.3.0')) {
+            return [];
+        }
+
         if (
             $this->hasPackage('doctrine/persistence')
             && $this->hasPackageOfVersion('doctrine/persistence', '>= 1.3.0')
