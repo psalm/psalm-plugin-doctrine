@@ -30,7 +30,7 @@
         "vimeo/psalm": "^4.9 || dev-master"
     },
     "conflict": {
-        "doctrine/collections": "<1.0",
+        "doctrine/collections": "<1.6",
         "doctrine/orm": "<2.6"
     },
     "require-dev": {

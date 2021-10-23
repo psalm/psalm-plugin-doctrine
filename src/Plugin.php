@@ -11,7 +11,6 @@ use SimpleXMLElement;
 use Weirdan\DoctrinePsalmPlugin\Provider\ReturnTypeProvider\CollectionFirstAndLast;
 
 use function array_merge;
-use function array_search;
 use function class_exists;
 use function explode;
 use function glob;
@@ -35,16 +34,10 @@ class Plugin implements PluginEntryPointInterface
     /** @return string[] */
     private function getStubFiles(): array
     {
-        $files = array_merge(
+        return array_merge(
             glob(__DIR__ . '/../stubs/*.phpstub') ?: [],
             glob(__DIR__ . '/../stubs/DBAL/*.phpstub') ?: []
         );
-
-        if ($this->hasPackageOfVersion('doctrine/collections', '>= 1.6.0')) {
-            unset($files[array_search(__DIR__ . '/../stubs/ArrayCollection.phpstub', $files, true)]);
-        }
-
-        return $files;
     }
 
     /** @return string[] */
