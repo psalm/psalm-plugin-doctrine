@@ -790,3 +790,12 @@ Feature: Collections
       | Type                  | Message                                                                                                |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, "10" provided |
     And I see no other errors
+
+  @Collections::ArrayCollection
+  Scenario: Extending ArrayCollection gives no error
+    Given I have the following code
+      """
+      class MyCollection extends ArrayCollection {}
+      """
+    When I run Psalm
+    Then I see no error
