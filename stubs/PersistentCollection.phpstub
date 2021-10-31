@@ -1,8 +1,6 @@
 <?php
 
-namespace Doctrine\Common\Collections;
-
-use Closure;
+namespace Doctrine\ORM;
 
 /**
  * @template TKey of array-key
@@ -10,7 +8,7 @@ use Closure;
  * @template-implements Collection<TKey,T>
  * @template-implements Selectable<TKey,T>
  */
-class ArrayCollection implements Collection, Selectable
+class PersistentCollection implements Collection, Selectable
 {
     /**
      * @return bool

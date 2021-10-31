@@ -2,15 +2,12 @@
 
 namespace Doctrine\Common\Collections;
 
-use Closure;
-
 /**
  * @template TKey of array-key
  * @template T
  * @template-implements Collection<TKey,T>
- * @template-implements Selectable<TKey,T>
  */
-class ArrayCollection implements Collection, Selectable
+class AbstractLazyCollection implements Collection
 {
     /**
      * @return bool

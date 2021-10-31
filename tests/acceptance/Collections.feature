@@ -395,7 +395,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int provided/ |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::exists
@@ -459,7 +459,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                     |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, (impure-)?Closure\(string\):int provided/ |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, (impure-)?Closure\(string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   # TODO: find out if this is applicable
@@ -525,7 +525,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int provided/ |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::forAll
@@ -628,7 +628,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                           |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, (impure-)?Closure\(int\):int provided/ |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, (impure-)?Closure\(int\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::partition
@@ -790,3 +790,12 @@ Feature: Collections
       | Type                  | Message                                                                                                |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, "10" provided |
     And I see no other errors
+
+  @Collections::ArrayCollection
+  Scenario: Extending ArrayCollection gives no error
+    Given I have the following code
+      """
+      class MyCollection extends ArrayCollection {}
+      """
+    When I run Psalm
+    Then I see no error
