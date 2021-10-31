@@ -20,9 +20,7 @@ class Plugin implements PluginEntryPointInterface
 {
     public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null): void
     {
-        $stubs = $this->getStubFiles();
-        $stubs = array_merge($stubs, $this->getBundleStubs());
-        foreach ($stubs as $file) {
+        foreach ($this->getStubFiles() as $file) {
             $psalm->addStubFile($file);
         }
 
@@ -38,16 +36,6 @@ class Plugin implements PluginEntryPointInterface
             glob(__DIR__ . '/../stubs/*.phpstub') ?: [],
             glob(__DIR__ . '/../stubs/DBAL/*.phpstub') ?: []
         );
-    }
-
-    /** @return string[] */
-    private function getBundleStubs(): array
-    {
-        if (! $this->hasPackage('doctrine/doctrine-bundle')) {
-            return [];
-        }
-
-        return glob(__DIR__ . '/../' . 'bundle-stubs/*.phpstub');
     }
 
     private function hasPackage(string $packageName): bool
