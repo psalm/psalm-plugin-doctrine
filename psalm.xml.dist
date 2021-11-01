@@ -10,7 +10,6 @@
         <ignoreFiles>
             <directory name="vendor" />
             <directory name="stubs" />
-            <directory name="bundle-stubs" />
             <directory name="tests/_support/_generated" />
             <directory name="tests/_run" />
         </ignoreFiles>
