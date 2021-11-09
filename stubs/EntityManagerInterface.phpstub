@@ -21,7 +21,7 @@ interface EntityManagerInterface extends ObjectManager
      *
      * @return ?T
      *
-     * @template T
+     * @template T of object
      */
     public function find(string $entityName, $id, ?int $lockMode = null, ?int $lockVersion = null);
 
