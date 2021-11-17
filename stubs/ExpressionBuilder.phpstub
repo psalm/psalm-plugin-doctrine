@@ -1,0 +1,22 @@
+<?php
+
+namespace Doctrine\Common\Collections;
+
+use Doctrine\Common\Collections\Expr\CompositeExpression;
+
+class ExpressionBuilder
+{
+    /**
+     * @param mixed ...$x
+     */
+    public function andX(...$x): CompositeExpression
+    {
+    }
+
+    /**
+     * @param mixed ...$x
+     */
+    public function orX(...$x): CompositeExpression
+    {
+    }
+}
