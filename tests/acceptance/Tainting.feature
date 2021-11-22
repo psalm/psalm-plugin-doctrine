@@ -24,6 +24,7 @@ Feature: Tainting
   @Connection::exec
   @Connection::query
   @Connection::executeUpdate
+  @Connection::executeStatement
   Scenario Outline: Using user input on Connection's query methods
     Given I have the following code
       """
@@ -36,11 +37,12 @@ Feature: Tainting
       | /TaintedInput\|TaintedSql/ | /Detected tainted (sql\|SQL)/ |
     And I see no other errors
   Examples:
-    | method        |
-    | prepare       |
-    | exec          |
-    | query         |
-    | executeUpdate |
+    | method           |
+    | prepare          |
+    | exec             |
+    | query            |
+    | executeUpdate    |
+    | executeStatement |
 
   @Connection::quote
   Scenario: Using Connection's quote method on user input
