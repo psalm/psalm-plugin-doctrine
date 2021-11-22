@@ -73,7 +73,7 @@ class Connection implements DriverConnection
      * @psalm-param int[]|string[]  $types  The parameter types.
      *
      * @throws DBALException
-     * @psalm-taint-sink sql $query
+     * @psalm-taint-sink sql $sql
      */
     public function executeStatement($sql, array $params = [], array $types = []): int {}
 
