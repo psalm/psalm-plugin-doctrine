@@ -69,6 +69,15 @@ class Connection implements DriverConnection
     public function executeUpdate(string $query, array $params = [], array $types = []): int {}
 
     /**
+     * @psalm-param scalar[]        $params The query parameters.
+     * @psalm-param int[]|string[]  $types  The parameter types.
+     *
+     * @throws DBALException
+     * @psalm-taint-sink sql $query
+     */
+    public function executeStatement($sql, array $params = [], array $types = []): int {}
+
+    /**
      * @psalm-pure
      *
      * @psalm-param scalar $input
