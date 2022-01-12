@@ -5,24 +5,6 @@ namespace Doctrine\ORM;
 class EntityManager implements EntityManagerInterface
 {
     /**
-     * @var string
-     * @psalm-supress PropertyNotSetInConstructor
-     */
-    protected $_entityName;
-
-    /**
-     * @var EntityManagerInterface
-     * @psalm-supress PropertyNotSetInConstructor
-     */
-    protected $_em;
-
-    /**
-     * @var Mapping\ClassMetadata
-     * @psalm-supress PropertyNotSetInConstructor
-     */
-    protected $_class;
-
-    /**
      * @template T
      * @param class-string<T> $entityName
      *
