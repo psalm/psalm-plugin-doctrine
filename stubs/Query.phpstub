@@ -1,0 +1,23 @@
+<?php
+
+namespace Doctrine\ORM;
+
+/**
+* @template T
+*/
+class Query extends AbstractQuery
+{
+    /**
+     * @param int $hydrationMode
+     *
+     * @psalm-return (
+     *    $hydrationMode is self::HYDRATE_OBJECT
+     *    ? list<T>
+     *    : mixed
+     * )
+     */
+    public function getResult($hydrationMode = self::HYDRATE_OBJECT)
+    {
+        
+    }
+}
