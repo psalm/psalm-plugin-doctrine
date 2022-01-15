@@ -27,7 +27,7 @@
     "require": {
         "php": "^7.2 || ^8",
         "composer/semver": "^1.4 || ^2.0 || ^3.0",
-        "vimeo/psalm": "^4.9 || dev-master"
+        "vimeo/psalm": "^4.9"
     },
     "conflict": {
         "doctrine/collections": "<1.6",
