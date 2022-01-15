@@ -18,7 +18,7 @@ interface ObjectManager
      *
      * @return Mapping\ClassMetadata<T>
      *
-     * @template T
+     * @template T of object
      */
     public function getClassMetadata(string $className);
 
@@ -27,7 +27,7 @@ interface ObjectManager
      *
      * @return ?T
      *
-     * @template T
+     * @template T of object
      */
     public function find(string $className, $id);
 }

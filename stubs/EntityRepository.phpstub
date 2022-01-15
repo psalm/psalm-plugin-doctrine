@@ -14,13 +14,22 @@ use Doctrine\Persistence\ObjectRepository;
  */
 class EntityRepository implements ObjectRepository, Selectable
 {
-    /** @var string */
+    /**
+     * @var class-string<T>
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $_entityName;
 
-    /** @var EntityManagerInterface */
+    /**
+     * @var EntityManagerInterface
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $_em;
 
-    /** @var Mapping\ClassMetadata */
+    /**
+     * @var Mapping\ClassMetadata
+     * @psalm-suppress PropertyNotSetInConstructor
+     */
     protected $_class;
 
     /** @param Mapping\ClassMetadata<T> $class */
@@ -44,8 +53,10 @@ class EntityRepository implements ObjectRepository, Selectable
     }
 
     /**
-     * @param ?int $limit
-     * @param ?int $offset
+     * @param array<string, mixed>       $criteria
+     * @param array<string, string>|null $orderBy
+     * @param ?int                       $limit
+     * @param ?int                       $offset
      *
      * @return list<T>
      */
@@ -53,7 +64,12 @@ class EntityRepository implements ObjectRepository, Selectable
     {
     }
 
-    /** @return ?T */
+    /**
+     * @psalm-param array<string, mixed>       $criteria
+     * @psalm-param array<string, string>|null $orderBy
+     *
+     * @return ?T
+     */
     public function findOneBy(array $criteria, ?array $orderBy = null)
     {
     }
@@ -62,6 +78,13 @@ class EntityRepository implements ObjectRepository, Selectable
      * @return Collection<int,T>
      */
     public function matching(Criteria $criteria)
+    {
+    }
+
+    /**
+     * @return class-string<T>
+     */
+    public function getClassName()
     {
     }
 }

@@ -12,13 +12,19 @@ interface ObjectRepository
     public function findAll();
 
     /**
-     * @param ?int $limit
-     * @param ?int $offset
+     * @param array<string, mixed> $criteria
+     * @param string[]|null        $orderBy
+     * @param ?int                 $limit
+     * @param ?int                 $offset
      *
      * @return list<T>
      */
     public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null);
 
-    /** @return ?T */
+    /**
+     * @param array<string, mixed> $criteria
+     *
+     * @return ?T
+     */
     public function findOneBy(array $criteria);
 }
