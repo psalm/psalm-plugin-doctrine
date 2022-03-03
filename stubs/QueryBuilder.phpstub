@@ -7,7 +7,6 @@ use Doctrine\ORM\Query\Expr;
 /**
  * @psalm-type _WhereExpr=Expr\Base|Expr\Comparison|Expr\Func|string
  * @psalm-type _SelectExpr=Expr\Func|string
- * @template T
  */
 class QueryBuilder
 {
@@ -93,7 +92,7 @@ class QueryBuilder
 
 
     /**
-     * @return Query<T>
+     * @return Query<mixed>
      */
     public function getQuery(): Query
     {

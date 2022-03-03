@@ -8,7 +8,7 @@ namespace Doctrine\ORM;
 class Query extends AbstractQuery
 {
     /**
-     * @param int $hydrationMode
+     * @param int|string $hydrationMode
      *
      * @psalm-return (
      *    $hydrationMode is self::HYDRATE_OBJECT

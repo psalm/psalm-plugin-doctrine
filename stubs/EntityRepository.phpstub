@@ -73,12 +73,4 @@ class EntityRepository implements ObjectRepository, Selectable
     public function matching(Criteria $criteria)
     {
     }
-
-    /**
-     * @return QueryBuilder<T>
-     */
-    public function createQueryBuilder($alias, $indexBy = null): QueryBuilder
-    {
-        
-    }
 }
