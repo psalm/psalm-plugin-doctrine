@@ -3,7 +3,8 @@
 namespace Doctrine\ORM;
 
 /**
-* @template T
+* @template TKey as array-key
+* @template TValue
 */
 class Query extends AbstractQuery
 {
@@ -12,7 +13,7 @@ class Query extends AbstractQuery
      *
      * @psalm-return (
      *    $hydrationMode is self::HYDRATE_OBJECT
-     *    ? array<T>
+     *    ? array<TKey, TValue>
      *    : mixed
      * )
      */
