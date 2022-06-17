@@ -5,6 +5,7 @@ namespace Doctrine\ORM;
 use Doctrine\ORM\Query\Expr;
 
 /**
+ * @template T of mixed
  * @psalm-type _WhereExpr=Expr\Base|Expr\Comparison|Expr\Func|string
  * @psalm-type _SelectExpr=Expr\Func|string
  */
@@ -92,7 +93,7 @@ class QueryBuilder
 
 
     /**
-     * @return Query<mixed>
+     * @return Query<T>
      */
     public function getQuery(): Query
     {
