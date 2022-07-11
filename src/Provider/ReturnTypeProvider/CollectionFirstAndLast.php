@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Weirdan\DoctrinePsalmPlugin\Provider\ReturnTypeProvider;
 
 use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
+use PhpParser\Node\Identifier;
 use Psalm\Plugin\EventHandler\Event\MethodReturnTypeProviderEvent;
 use Psalm\Plugin\EventHandler\MethodReturnTypeProviderInterface;
 use Psalm\Type;
@@ -31,22 +33,27 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
             return null;
         }
 
-        if (! $stmt->var instanceof Variable) {
+        // Get variable or property string
+        $varStmt = $stmt->var;
+        $varParts = [];
+        while ($varStmt instanceof PropertyFetch && $varStmt->name instanceof Identifier) {
+            $varParts[] = $varStmt->name->name;
+            $varStmt = $varStmt->var;
+        }
+        if (!$varStmt instanceof Variable || !is_string($varStmt->name)) {
+            return null;
+        }
+        $varParts[] = $varStmt->name;
+        $scopedVarName = '$' . implode("->", array_reverse($varParts)) . '->isempty()';
+
+        if ($event->getMethodNameLowercase() === "add") {
+            $event->getContext()->vars_in_scope[$scopedVarName] = Type::getFalse();
+
             return null;
         }
 
-        if (! is_string($stmt->var->name)) {
-            return null;
-        }
-
-        $scopedVarName = '$' . $stmt->var->name . '->isempty()';
-
-        if (
-            $event->getMethodNameLowercase() === 'add'
-            || $event->getMethodNameLowercase() === 'remove'
-            || $event->getMethodNameLowercase() === 'removeelement'
-        ) {
-            unset($event->getContext()->vars_in_scope[$scopedVarName]);
+        if ($event->getMethodNameLowercase() === 'remove' || $event->getMethodNameLowercase() === 'removeelement') {
+            $event->getContext()->remove($scopedVarName);
 
             return null;
         }
