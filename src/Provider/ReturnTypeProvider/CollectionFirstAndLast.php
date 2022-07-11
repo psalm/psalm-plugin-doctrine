@@ -12,8 +12,10 @@ use Psalm\Plugin\EventHandler\Event\MethodReturnTypeProviderEvent;
 use Psalm\Plugin\EventHandler\MethodReturnTypeProviderInterface;
 use Psalm\Type;
 
+use function array_reverse;
 use function count;
 use function current;
+use function implode;
 use function is_string;
 
 class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
@@ -34,19 +36,21 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         }
 
         // Get variable or property string
-        $varStmt = $stmt->var;
+        $varStmt  = $stmt->var;
         $varParts = [];
         while ($varStmt instanceof PropertyFetch && $varStmt->name instanceof Identifier) {
             $varParts[] = $varStmt->name->name;
-            $varStmt = $varStmt->var;
+            $varStmt    = $varStmt->var;
         }
-        if (!$varStmt instanceof Variable || !is_string($varStmt->name)) {
+
+        if (! $varStmt instanceof Variable || ! is_string($varStmt->name)) {
             return null;
         }
-        $varParts[] = $varStmt->name;
-        $scopedVarName = '$' . implode("->", array_reverse($varParts)) . '->isempty()';
 
-        if ($event->getMethodNameLowercase() === "add") {
+        $varParts[]    = $varStmt->name;
+        $scopedVarName = '$' . implode('->', array_reverse($varParts)) . '->isempty()';
+
+        if ($event->getMethodNameLowercase() === 'add') {
             $event->getContext()->vars_in_scope[$scopedVarName] = Type::getFalse();
 
             return null;
