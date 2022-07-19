@@ -298,6 +298,38 @@ Feature: Collections
       | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
     And I see no other errors
 
+  @Collection::first
+  Scenario: Getting first item of a collection that has been added to
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection([]);
+      $c->add("a");
+      $c->add("b");
+      $c->add("c");
+      atan($c->first());
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                  |
+      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+    And I see no other errors
+
+  @Collection::first
+  Scenario: Getting first item of a collection that is a deeply nested property
+    Given I have the following code
+      """
+      /** @var object{bar: object{baz: object{a: object{b: object{c: Collection<int,string>}}}}} $foo */
+      if (!$foo->bar->baz->a->b->c->isEmpty()) {
+        atan($foo->bar->baz->a->b->c->first());
+      }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                  |
+      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+    And I see no other errors
+
   @Collection::last
   Scenario: Getting last item of the collection
     Given I have the following code
