@@ -13,6 +13,6 @@ class AcceptanceTester extends Actor
      */
     public function iHaveEmptyComposerlock(): void
     {
-        $this->writeToFile('tests/_run/composer.lock', '{}');
+        $this->writeToFile('tests/_run/composer.lock', '{"packages":[]}');
     }
 }
