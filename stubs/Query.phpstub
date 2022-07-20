@@ -3,9 +3,9 @@
 namespace Doctrine\ORM;
 
 /**
-* @template TKey as array-key
-* @template TValue
-*/
+ * @template TKey as array-key
+ * @template TValue
+ */
 class Query extends AbstractQuery
 {
     /**
@@ -19,6 +19,5 @@ class Query extends AbstractQuery
      */
     public function getResult($hydrationMode = self::HYDRATE_OBJECT)
     {
-        
     }
 }
