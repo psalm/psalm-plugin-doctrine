@@ -146,3 +146,12 @@ Feature: QueryBuilder
       """
     When I run Psalm
     Then I see no errors
+
+  @QueryBuilder
+  Scenario: QueryBuilder::getQuery() doesn't cause an error
+    Given I have the following code
+      """
+      builder()->getQuery();
+      """
+    When I run Psalm
+    Then I see no errors
