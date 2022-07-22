@@ -2,11 +2,12 @@
 // phpcs:ignoreFile
 namespace Doctrine\DBAL;
 
-use Doctrine\DBAL\Driver\Connection as DriverConnection;
-use Doctrine\DBAL\Driver\Statement as DriverStatement;
+use Doctrine\DBAL\Driver\Result;
+use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\Statement;
 use Doctrine\DBAL\Types\Type;
 
-class Connection implements DriverConnection
+class Connection
 {
     /**
      * @var int
@@ -42,10 +43,10 @@ class Connection implements DriverConnection
     public const ARRAY_PARAM_OFFSET = 100;
 
     /**
-     * @throws DBALException
+     * @throws Exception
      * @psalm-taint-sink sql $statement
      */
-    public function prepare(string $statement): DriverStatement {}
+    public function prepare(string $statement): Statement {}
 
     /**
      * @psalm-taint-sink sql $statement
@@ -53,18 +54,17 @@ class Connection implements DriverConnection
     public function exec(string $statement): int {}
 
     /**
-     * @psalm-param string[] $query The SQL query parts.
-     *
-     * @throws DBALException
+     * @deprecated
+     * @throws Exception
      * @psalm-taint-sink sql $query
      */
-    public function query(...$query): DriverStatement {}
+    public function query(string $sql): Result {}
 
     /**
      * @psalm-param array<mixed>           $params The query parameters.
      * @psalm-param array<int|string|null> $types  The parameter types.
      *
-     * @throws DBALException
+     * @throws Exception
      * @psalm-taint-sink sql $query
      */
     public function executeUpdate(string $query, array $params = [], array $types = []): int {}
@@ -73,7 +73,7 @@ class Connection implements DriverConnection
      * @psalm-param list<mixed>|array<string, mixed>                                     $params Statement parameters
      * @psalm-param array<int, int|string|Type|null>|array<string, int|string|Type|null> $types  Parameter types
      *
-     * @throws DBALException
+     * @throws Exception
      * @psalm-taint-sink sql $sql
      */
     public function executeStatement($sql, array $params = [], array $types = []): int {}
