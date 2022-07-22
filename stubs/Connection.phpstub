@@ -56,7 +56,7 @@ class Connection
     /**
      * @deprecated
      * @throws Exception
-     * @psalm-taint-sink sql $query
+     * @psalm-taint-sink sql $sql
      */
     public function query(string $sql): Result {}
 
