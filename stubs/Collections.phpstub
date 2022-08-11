@@ -170,6 +170,7 @@ interface Collection extends Countable, IteratorAggregate, ArrayAccess
 interface Selectable
 {
     /**
+     * @psalm-mutation-free
      * @return Collection<TKey,TValue>
      */
     public function matching(Criteria $criteria);
