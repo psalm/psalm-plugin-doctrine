@@ -8,7 +8,7 @@ Feature: Criteria
     And I have the following code preamble
       """
       <?php
-      use Doctrine\Common\Collections\ArrayCollection;
+      use Doctrine\Common\Collections\Collection;
       use Doctrine\Common\Collections\Criteria;
       """
     # Psalm enables cache when there's a composer.lock file
@@ -19,10 +19,9 @@ Feature: Criteria
       Given I have the following code
       """
       /** @psalm-pure */
-      function foo(): void
+      function foo(Collection $collection): Collection
       {
-        $collection = new ArrayCollection();
-        $collection->matching(Criteria::create());
+          return $collection->matching(Criteria::create());
       }
       """
     When I run Psalm
@@ -33,10 +32,9 @@ Feature: Criteria
       Given I have the following code
       """
       /** @psalm-pure */
-      function foo(): void
+      function foo(Collection $collection): Collection
       {
-        $collection = new ArrayCollection();
-        $collection->matching(Criteria::create()->orderBy('foo' => Criteria::ASC));
+          return $collection->matching(Criteria::create()->orderBy(['foo' => Criteria::ASC]));
       }
       """
     When I run Psalm
@@ -47,10 +45,9 @@ Feature: Criteria
       Given I have the following code
       """
       /** @psalm-pure */
-      function foo(): void
+      function foo(Collection $collection): Collection
       {
-        $collection = new ArrayCollection();
-        $collection->matching(Criteria::create()->orderBy('foo' => 'bar'));
+          return $collection->matching(Criteria::create()->orderBy(['foo' => 'bar']));
       }
       """
     When I run Psalm
