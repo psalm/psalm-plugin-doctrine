@@ -9,9 +9,7 @@ Feature: Criteria
       """
       <?php
       use Doctrine\Common\Collections\ArrayCollection;
-      use Doctrine\Common\Collections\Collection;
       use Doctrine\Common\Collections\Criteria;
-      use Doctrine\Common\Collections\Selectable;
       """
     # Psalm enables cache when there's a composer.lock file
     And I have empty composer.lock
