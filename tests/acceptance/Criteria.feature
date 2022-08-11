@@ -8,8 +8,9 @@ Feature: Criteria
     And I have the following code preamble
       """
       <?php
-      use Doctrine\Common\Collections\Selectable;
+      use Doctrine\Common\Collections\Collection;
       use Doctrine\Common\Collections\Criteria;
+      use Doctrine\Common\Collections\Selectable;
       """
     # Psalm enables cache when there's a composer.lock file
     And I have empty composer.lock
@@ -19,7 +20,7 @@ Feature: Criteria
       Given I have the following code
       """
       /** @psalm-pure */
-      function foo(Selectable $collection): Selectable
+      function foo(Selectable $collection): Collection
       {
           return $collection->matching(Criteria::create());
       }
@@ -32,7 +33,7 @@ Feature: Criteria
       Given I have the following code
       """
       /** @psalm-pure */
-      function foo(Selectable $collection): Selectable
+      function foo(Selectable $collection): Collection
       {
           return $collection->matching(Criteria::create()->orderBy(['foo' => Criteria::ASC]));
       }
@@ -45,7 +46,7 @@ Feature: Criteria
       Given I have the following code
       """
       /** @psalm-pure */
-      function foo(Selectable $collection): Selectable
+      function foo(Selectable $collection): Collection
       {
           return $collection->matching(Criteria::create()->orderBy(['foo' => 'bar']));
       }
