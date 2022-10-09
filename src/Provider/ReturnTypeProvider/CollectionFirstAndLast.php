@@ -25,7 +25,10 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
      */
     public static function getClassLikeNames(): array
     {
-        return ['Doctrine\Common\Collections\Collection'];
+        return [
+            'Doctrine\Common\Collections\Collection',
+            'Doctrine\Common\Collections\ReadableCollection'
+        ];
     }
 
     public static function getMethodReturnType(MethodReturnTypeProviderEvent $event): ?Type\Union

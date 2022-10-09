@@ -30,8 +30,8 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                             |
-      | InvalidArgument | Argument 1 of atan expects float, Doctrine\Persistence\ObjectRepository<I> provided |
+      | Type            | Message                                                                                 |
+      | InvalidArgument | Argument 1 of atan expects float, but Doctrine\Persistence\ObjectRepository<I> provided |
 
   @ObjectManager::getRepository
   Scenario: Calling getRepository with a wrong argument type
@@ -41,8 +41,8 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                            |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Persistence\ObjectManager::getRepository expects class-string, 123 provided |
+      | Type                  | Message                                                                                                |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Persistence\ObjectManager::getRepository expects class-string, but 123 provided |
 
   @ObjectManager::getClassMetadata
   Scenario: Calling getClassMetadata with a class-string argument
@@ -52,8 +52,8 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                  |
-      | InvalidArgument | Argument 1 of atan expects float, Doctrine\Persistence\Mapping\ClassMetadata<I> provided |
+      | Type            | Message                                                                                      |
+      | InvalidArgument | Argument 1 of atan expects float, but Doctrine\Persistence\Mapping\ClassMetadata<I> provided |
 
   @ObjectManager::getClassMetadata
   Scenario: Calling getClassMetadata with a wrong argument type
@@ -63,8 +63,8 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                               |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Persistence\ObjectManager::getClassMetadata expects class-string, 123 provided |
+      | Type                  | Message                                                                                                   |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Persistence\ObjectManager::getClassMetadata expects class-string, but 123 provided |
 
   @ObjectManager::find
   Scenario: Calling find with a class-string argument
@@ -74,8 +74,8 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                            |
-      | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
+      | Type            | Message                                                |
+      | InvalidArgument | Argument 1 of atan expects float, but I\|null provided |
 
   @ObjectManager::find
   Scenario: Calling find with a wrong argument type
@@ -85,5 +85,5 @@ Feature: ObjectManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                   |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Persistence\ObjectManager::find expects class-string, 123 provided |
+      | Type                  | Message                                                                                       |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Persistence\ObjectManager::find expects class-string, but 123 provided |

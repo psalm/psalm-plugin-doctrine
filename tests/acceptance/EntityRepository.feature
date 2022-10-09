@@ -34,8 +34,8 @@ Feature: EntityRepository
     """
     When I run Psalm
     Then I see these errors
-        | Type            | Message                                            |
-        | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
+        | Type            | Message                                                |
+        | InvalidArgument | Argument 1 of atan expects float, but I\|null provided |
     And I see no other errors
 
   @EntityRepository::findAll
@@ -46,8 +46,8 @@ Feature: EntityRepository
     """
     When I run Psalm
     Then I see these errors
-        | Type            | Message                                                        |
-        | InvalidArgument | Argument 1 of atan expects float, list<I> provided |
+        | Type            | Message                                                            |
+        | InvalidArgument | Argument 1 of atan expects float, but list<I> provided |
     And I see no other errors
 
   @EntityRepository::findBy
@@ -58,8 +58,8 @@ Feature: EntityRepository
     """
     When I run Psalm
     Then I see these errors
-        | Type            | Message                                                        |
-        | InvalidArgument | Argument 1 of atan expects float, list<I> provided |
+        | Type            | Message                                                            |
+        | InvalidArgument | Argument 1 of atan expects float, but list<I> provided |
     And I see no other errors
 
   @EntityRepository::findOneBy
@@ -70,8 +70,8 @@ Feature: EntityRepository
     """
     When I run Psalm
     Then I see these errors
-        | Type            | Message                                            |
-        | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
+        | Type            | Message                                                |
+        | InvalidArgument | Argument 1 of atan expects float, but I\|null provided |
     And I see no other errors
 
   @EntityRepository::matching

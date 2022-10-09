@@ -31,8 +31,8 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                     |
-      | InvalidArgument | Argument 1 of atan expects float, Doctrine\ORM\EntityRepository<I> provided |
+      | Type            | Message                                                                         |
+      | InvalidArgument | Argument 1 of atan expects float, but Doctrine\ORM\EntityRepository<I> provided |
     And I see no other errors
 
   @EntityManager::getRepository
@@ -43,8 +43,8 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getRepository expects class-string, 123 provided |
+      | Type                  | Message                                                                                             |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getRepository expects class-string, but 123 provided |
     And I see no other errors
 
   @EntityManager::find
@@ -55,8 +55,8 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                            |
-      | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
+      | Type            | Message                                                |
+      | InvalidArgument | Argument 1 of atan expects float, but I\|null provided |
     And I see no other errors
 
   @EntityManager::find
@@ -67,8 +67,8 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::find expects class-string, 123 provided |
+      | Type                  | Message                                                                                    |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::find expects class-string, but 123 provided |
     And I see no other errors
 
   @EntityManager::getReference
@@ -79,8 +79,8 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                            |
-      | InvalidArgument | Argument 1 of atan expects float, I\|null provided |
+      | Type            | Message                                                |
+      | InvalidArgument | Argument 1 of atan expects float, but I\|null provided |
     And I see no other errors
 
   @EntityManager::getReference
@@ -91,8 +91,8 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                        |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getReference expects class-string, 123 provided |
+      | Type                  | Message                                                                                            |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\EntityManager::getReference expects class-string, but 123 provided |
     And I see no other errors
 
   @EntityManager::inheritance
