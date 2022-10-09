@@ -9,6 +9,7 @@ Feature: Collections
       """
       <?php
       use Doctrine\Common\Collections\Collection;
+      use Doctrine\Common\Collections\ReadableCollection;
       use Doctrine\Common\Collections\ArrayCollection;
 
       """
@@ -49,8 +50,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                   |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, 1 provided |
+      | Type                  | Message                                                                                       |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, but 1 provided |
     And I see no other errors
 
   @Collection::add
@@ -74,8 +75,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                        |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, 1 provided |
+      | Type                  | Message                                                                                            |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, but 1 provided |
     And I see no other errors
 
   @Collection::contains
@@ -99,8 +100,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                               |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, "string key" provided |
+      | Type                  | Message                                                                                                   |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, but "string key" provided |
     And I see no other errors
 
   @Collection::remove
@@ -113,8 +114,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                 |
-      | InvalidScalarArgument | Argument 1 of atan expects float, null\|string provided |
+      | Type                  | Message                                                     |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but null\|string provided |
     And I see no other errors
 
   @Collection::removeElement
@@ -127,8 +128,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                             |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string, 1 provided |
+      | Type                  | Message                                                                                                 |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string, but 1 provided |
     And I see no other errors
 
   @Collection::removeElement
@@ -141,8 +142,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                         |
-      | InvalidScalarArgument | Argument 1 of atan expects float, bool provided |
+      | Type                  | Message                                             |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but bool provided |
     And I see no other errors
 
   @Collection::containsKey
@@ -155,8 +156,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                    |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::containsKey expects int, "string key" provided |
+      | Type                  | Message                                                                                                        |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::containsKey expects int, but "string key" provided |
     And I see no other errors
 
   @Collection::containsKey
@@ -180,8 +181,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                            |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::get expects int, "string key" provided |
+      | Type                  | Message                                                                                                |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::get expects int, but "string key" provided |
     And I see no other errors
 
   @Collection::get
@@ -194,8 +195,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                 |
-      | InvalidScalarArgument | Argument 1 of atan expects float, null\|string provided |
+      | Type                  | Message                                                     |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but null\|string provided |
     And I see no other errors
 
   @Collection::getKeys
@@ -208,8 +209,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                          |
-      | InvalidArgument | Argument 1 of atan expects float, list<int> provided |
+      | Type            | Message                                                              |
+      | InvalidArgument | Argument 1 of atan expects float, but list<int> provided |
     And I see no other errors
 
   @Collection::getValues
@@ -222,8 +223,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                             |
-      | InvalidArgument | Argument 1 of atan expects float, list<string> provided |
+      | Type            | Message                                                                 |
+      | InvalidArgument | Argument 1 of atan expects float, but list<string> provided |
     And I see no other errors
 
   @Collection::set
@@ -236,8 +237,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                            |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::set expects int, "string key" provided |
+      | Type                  | Message                                                                                                |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::set expects int, but "string key" provided |
     And I see no other errors
 
   @Collection::set
@@ -250,8 +251,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                   |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::set expects string, 1 provided |
+      | Type                  | Message                                                                                       |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::set expects string, but 1 provided |
     And I see no other errors
 
   @Collection::toArray
@@ -264,8 +265,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                       |
-      | InvalidArgument | Argument 1 of atan expects float, array<int, string> provided |
+      | Type            | Message                                                           |
+      | InvalidArgument | Argument 1 of atan expects float, but array<int, string> provided |
     And I see no other errors
 
   @Collection::first
@@ -278,8 +279,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, false\|string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but false\|string provided |
     And I see no other errors
 
   @Collection::first
@@ -294,8 +295,24 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
+    And I see no other errors
+
+  @Collection::first
+  Scenario: Getting first item of a non empty readable collection
+    Given I have the following code
+      """
+      /** @var ReadableCollection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      if (!$c->isEmpty()) {
+        atan($c->first());
+      }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
   @Collection::first
@@ -311,8 +328,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
   @Collection::first
@@ -326,8 +343,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
   @Collection::last
@@ -340,8 +357,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, false\|string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but false\|string provided |
     And I see no other errors
 
   @Collection::last
@@ -356,8 +373,24 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
+    And I see no other errors
+
+  @Collection::last
+  Scenario: Getting last item of a non empty readable collection
+    Given I have the following code
+      """
+      /** @var ReadableCollection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      if (!$c->isEmpty()) {
+        atan($c->last());
+      }
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
   @Collection::key
@@ -370,8 +403,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                 |
-      | InvalidScalarArgument | Argument 1 of strlen expects string, int\|null provided |
+      | Type                  | Message                                                     |
+      | InvalidScalarArgument | Argument 1 of strlen expects string, but int\|null provided |
     And I see no other errors
 
   @Collection::current
@@ -384,8 +417,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, false\|string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but false\|string provided |
     And I see no other errors
 
   @Collection::next
@@ -398,8 +431,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of atan expects float, false\|string provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of atan expects float, but false\|string provided |
     And I see no other errors
 
   @Collection::exists
@@ -412,8 +445,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                                       |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                           |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::exists
@@ -426,8 +459,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
+      | Type                  | Message                                                                                                                                                    |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::exists
@@ -462,8 +495,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                        |
-      | InvalidArgument | Argument 1 of atan expects float, Doctrine\Common\Collections\Collection<int, string> provided |
+      | Type            | Message                                                                                            |
+      | InvalidArgument | Argument 1 of atan expects float, but Doctrine\Common\Collections\Collection<int, string> provided |
     And I see no other errors
 
   @Collection::filter
@@ -476,8 +509,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                            |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, but (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::filter
@@ -490,8 +523,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                     |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, (impure-)?Closure\(string\):int(<0, 1>)? provided/ |
+      | Type                  | Message                                                                                                                                         |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, but (impure-)?Closure\(string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   # TODO: find out if this is applicable
@@ -528,8 +561,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                                             |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(string, string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                                 |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, but (impure-)?Closure\(string, string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::forAll
@@ -542,8 +575,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                                       |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                           |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::forAll
@@ -556,8 +589,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
+      | Type                  | Message                                                                                                                                                    |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::forAll
@@ -592,8 +625,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                      |
-      | InvalidArgument | Argument 1 of atan expects float, Doctrine\Common\Collections\Collection<int, bool> provided |
+      | Type            | Message                                                                                          |
+      | InvalidArgument | Argument 1 of atan expects float, but Doctrine\Common\Collections\Collection<int, bool> provided |
     And I see no other errors
 
   @Collection::map
@@ -606,8 +639,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                          |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::map expects Closure\(string=\):mixed, (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                              |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::map expects Closure\(string=\):mixed, but (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::map
@@ -631,8 +664,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                                                                          |
-      | InvalidArgument | Argument 1 of atan expects float, array{0: Doctrine\Common\Collections\Collection<int, string>, 1: Doctrine\Common\Collections\Collection<int, string>} provided |
+      | Type            | Message                                                                                                                                                              |
+      | InvalidArgument | Argument 1 of atan expects float, but array{0: Doctrine\Common\Collections\Collection<int, string>, 1: Doctrine\Common\Collections\Collection<int, string>} provided |
     And I see no other errors
 
   @Collection::partition
@@ -645,8 +678,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                                                        |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, (impure-)?Closure\(string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | Type                  | Message                                                                                                                                                                                                            |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, but (impure-)?Closure\(string\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::partition
@@ -659,8 +692,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                           |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, (impure-)?Closure\(int\):int(<0, 1>)? provided/ |
+      | Type                  | Message                                                                                                                                               |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::partition
@@ -684,8 +717,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                       |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::indexOf expects string, 1 provided |
+      | Type                  | Message                                                                                           |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::indexOf expects string, but 1 provided |
     And I see no other errors
 
   @Collection::indexOf
@@ -698,8 +731,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                  |
-      | InvalidScalarArgument | Argument 1 of strlen expects string, false\|int provided |
+      | Type                  | Message                                                      |
+      | InvalidScalarArgument | Argument 1 of strlen expects string, but false\|int provided |
     And I see no other errors
 
   @Collection::slice
@@ -712,8 +745,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                              |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::slice expects int, "string key" provided |
+      | Type                  | Message                                                                                                  |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::slice expects int, but "string key" provided |
     And I see no other errors
 
   @Collection::slice
@@ -726,8 +759,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                              |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::slice expects int\|null, "zzzz" provided |
+      | Type                  | Message                                                                                                  |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::slice expects int\|null, but "zzzz" provided |
     And I see no other errors
 
   @Collection::slice
@@ -743,9 +776,9 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                       |
-      | InvalidArgument | Argument 1 of atan expects float, array<int, string> provided |
-      | InvalidArgument | Argument 1 of atan expects float, array<int, string> provided |
-      | InvalidArgument | Argument 1 of atan expects float, array<int, string> provided |
+      | InvalidArgument | Argument 1 of atan expects float, but array<int, string> provided |
+      | InvalidArgument | Argument 1 of atan expects float, but array<int, string> provided |
+      | InvalidArgument | Argument 1 of atan expects float, but array<int, string> provided |
     And I see no other errors
 
   @Collections::ArrayAccess
@@ -791,8 +824,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                             |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float(1.1) provided |
+      | Type                  | Message                                                                                                 |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, but float(1.1) provided |
     And I see no other errors
 
   @Collections::ArrayAccess
@@ -805,8 +838,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                             |
-      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, float(1.1) provided |
+      | Type                  | Message                                                                                                 |
+      | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, but float(1.1) provided |
     And I see no other errors
 
   @Collections::ArrayAccess
@@ -819,8 +852,8 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, "10" provided |
+      | Type                  | Message                                                                                                    |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, but "10" provided |
     And I see no other errors
 
   @Collections::ArrayCollection

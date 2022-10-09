@@ -93,8 +93,8 @@ Feature: QueryBuilder
       """
     When I run Psalm
     Then I see these errors
-      | Type                 | Message                                                                                                                                                                                                                    |
-      | ImplicitToStringCast | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, Doctrine\ORM\Query\Expr\Andx provided with a __toString method |
+      | Type                 | Message                                                                                                                                                                                                                        |
+      | ImplicitToStringCast | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, but Doctrine\ORM\Query\Expr\Andx provided with a __toString method |
 
   @QueryBuilder
   Scenario: QueryBuilder::select() rejects wrong non-stringable arguments
@@ -104,8 +104,8 @@ Feature: QueryBuilder
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                                         |
-      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, float(2.2) provided |
+      | Type                  | Message                                                                                                                                                                             |
+      | InvalidScalarArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, but float(2.2) provided |
 
   @QueryBuilder
   Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept Expr\Comparison

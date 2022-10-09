@@ -25,7 +25,10 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
      */
     public static function getClassLikeNames(): array
     {
-        return ['Doctrine\Common\Collections\Collection'];
+        return [
+            'Doctrine\Common\Collections\Collection',
+            'Doctrine\Common\Collections\ReadableCollection',
+        ];
     }
 
     public static function getMethodReturnType(MethodReturnTypeProviderEvent $event): ?Type\Union
@@ -50,16 +53,18 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         $varParts[]    = $varStmt->name;
         $scopedVarName = '$' . implode('->', array_reverse($varParts)) . '->isempty()';
 
-        if ($event->getMethodNameLowercase() === 'add') {
-            $event->getContext()->vars_in_scope[$scopedVarName] = Type::getFalse();
+        if ($event->getFqClasslikeName() === 'Doctrine\Common\Collections\Collection') {
+            if ($event->getMethodNameLowercase() === 'add') {
+                $event->getContext()->vars_in_scope[$scopedVarName] = Type::getFalse();
 
-            return null;
-        }
+                return null;
+            }
 
-        if ($event->getMethodNameLowercase() === 'remove' || $event->getMethodNameLowercase() === 'removeelement') {
-            $event->getContext()->remove($scopedVarName);
+            if ($event->getMethodNameLowercase() === 'remove' || $event->getMethodNameLowercase() === 'removeelement') {
+                $event->getContext()->remove($scopedVarName);
 
-            return null;
+                return null;
+            }
         }
 
         if (
