@@ -41,18 +41,35 @@ Feature: Collections
 
 
   @Collection::add
-  Scenario: Adding an item of invalid type to the collection
+  Scenario: Adding an item of invalid type to the collection [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->add(1);
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                       |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, but 1 provided |
     And I see no other errors
+
+  @Collection::add
+  Scenario: Adding an item of invalid type to the collection [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->add(1);
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                       |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, but 1 provided |
+    And I see no other errors
+
 
   @Collection::add
   Scenario: Adding an item of a valid type to the collection
@@ -66,17 +83,33 @@ Feature: Collections
     Then I see no errors
 
   @Collection::contains
-  Scenario: Checking if collection contains an element of invalid type
+  Scenario: Checking if collection contains an element of invalid type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->contains(1);
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                            |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, but 1 provided |
+    And I see no other errors
+
+  @Collection::contains
+  Scenario: Checking if collection contains an element of invalid type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->contains(1);
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                            |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, but 1 provided |
     And I see no other errors
 
   @Collection::contains
@@ -91,17 +124,33 @@ Feature: Collections
     Then I see no errors
 
   @Collection::remove
-  Scenario: Removing element with an invalid key type from the collection
+  Scenario: Removing element with an invalid key type from the collection [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->remove("string key");
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                   |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, but "string key" provided |
+    And I see no other errors
+
+  @Collection::remove
+  Scenario: Removing element with an invalid key type from the collection [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->remove("string key");
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                   |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, but 'string key' provided |
     And I see no other errors
 
   @Collection::remove
@@ -119,17 +168,33 @@ Feature: Collections
     And I see no other errors
 
   @Collection::removeElement
-  Scenario: Removing element of an invalid type from the collection
+  Scenario: Removing element of an invalid type from the collection [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->removeElement(1);
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                 |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string, but 1 provided |
+    And I see no other errors
+
+  @Collection::removeElement
+  Scenario: Removing element of an invalid type from the collection [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->removeElement(1);
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                 |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string, but 1 provided |
     And I see no other errors
 
   @Collection::removeElement
@@ -147,17 +212,33 @@ Feature: Collections
     And I see no other errors
 
   @Collection::containsKey
-  Scenario: Checking if collection contains a key with invalid key type
+  Scenario: Checking if collection contains a key with invalid key type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->containsKey("string key");
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                        |
+      | Type                  | Message                                                                                                  |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::containsKey expects int, but "string key" provided |
+    And I see no other errors
+
+  @Collection::containsKey
+  Scenario: Checking if collection contains a key with invalid key type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->containsKey("string key");
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                  |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::containsKey expects int, but 'string key' provided |
     And I see no other errors
 
   @Collection::containsKey
@@ -172,17 +253,33 @@ Feature: Collections
     Then I see no errors
 
   @Collection::get
-  Scenario: Getting an element from the collection using invalid key type
+  Scenario: Getting an element from the collection using invalid key type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->get("string key");
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                |
+      | Type                  | Message                                                                                          |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::get expects int, but "string key" provided |
+    And I see no other errors
+
+  @Collection::get
+  Scenario: Getting an element from the collection using invalid key type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->get("string key");
+      """
+      And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                          |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::get expects int, but 'string key' provided |
     And I see no other errors
 
   @Collection::get
@@ -209,7 +306,7 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                              |
+      | Type            | Message                                                  |
       | InvalidArgument | Argument 1 of atan expects float, but list<int> provided |
     And I see no other errors
 
@@ -223,18 +320,19 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                 |
+      | Type            | Message                                                     |
       | InvalidArgument | Argument 1 of atan expects float, but list<string> provided |
     And I see no other errors
 
   @Collection::set
-  Scenario: Setting collection entry with invalid key
+  Scenario: Setting collection entry with invalid key [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->set("string key", "d");
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                |
@@ -242,17 +340,48 @@ Feature: Collections
     And I see no other errors
 
   @Collection::set
-  Scenario: Setting collection entry with invalid value
+  Scenario: Setting collection entry with invalid key [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->set("string key", "d");
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                          |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::set expects int, but 'string key' provided |
+    And I see no other errors
+
+  @Collection::set
+  Scenario: Setting collection entry with invalid value [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->set(1, 1);
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                       |
       | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::set expects string, but 1 provided |
+    And I see no other errors
+
+  @Collection::set
+  Scenario: Setting collection entry with invalid value [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->set(1, 1);
+      """
+    And I have Psalm older than "5.0" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                  |
+      | InvalidArgument | Argument 2 of Doctrine\Common\Collections\Collection::set expects string, but 1 provided |
     And I see no other errors
 
   @Collection::toArray
@@ -450,17 +579,33 @@ Feature: Collections
     And I see no other errors
 
   @Collection::exists
-  Scenario: Invoking exists with a closure having a wrong return type
+  Scenario: Invoking exists with a closure having a wrong return type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->exists(function(int $_k, string $_v): int { return rand(0,1); });
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                    |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
+    And I see no other errors
+
+  @Collection::exists
+  Scenario: Invoking exists with a closure having a wrong return type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->exists(function(int $_k, string $_v): int { return rand(0,1); });
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                                                                    |
+      | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::exists
@@ -514,17 +659,33 @@ Feature: Collections
     And I see no other errors
 
   @Collection::filter
-  Scenario: Invoking filter with a closure having wrong return type
+  Scenario: Invoking filter with a closure having wrong return type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->filter(function(string $_p): int { return rand(0,1); });
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                         |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, but (impure-)?Closure\(string\):int(<0, 1>)? provided/ |
+    And I see no other errors
+
+  @Collection::filter
+  Scenario: Invoking filter with a closure having wrong return type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->filter(function(string $_p): int { return rand(0,1); });
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                                                         |
+      | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, but (impure-)?Closure\(string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   # TODO: find out if this is applicable
@@ -580,17 +741,33 @@ Feature: Collections
     And I see no other errors
 
   @Collection::forAll
-  Scenario: Invoking forAll with a closure having wrong return type
+  Scenario: Invoking forAll with a closure having wrong return type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->forAll(function(int $_k, string $_v): int { return rand(0,1); });
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                    |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
+    And I see no other errors
+
+  @Collection::forAll
+  Scenario: Invoking forAll with a closure having wrong return type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->forAll(function(int $_k, string $_v): int { return rand(0,1); });
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                                                                    |
+      | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::forAll
@@ -683,17 +860,33 @@ Feature: Collections
     And I see no other errors
 
   @Collection::partition
-  Scenario: Invoking partition with a closure having wrong return type
+  Scenario: Invoking partition with a closure having wrong return type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->partition(function(int $_p): int { return rand(0,1); });
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                               |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int\):int(<0, 1>)? provided/ |
+    And I see no other errors
+
+  @Collection::partition
+  Scenario: Invoking partition with a closure having wrong return type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->partition(function(int $_p): int { return rand(0,1); });
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                                                               |
+      | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int\):int(<0, 1>)? provided/ |
     And I see no other errors
 
   @Collection::partition
@@ -708,18 +901,35 @@ Feature: Collections
     Then I see no errors
 
   @Collection::indexOf
-  Scenario: Invoking indexOf with a wrong type
+  Scenario: Invoking indexOf with a wrong type [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->indexOf(1);
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                           |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::indexOf expects string, but 1 provided |
     And I see no other errors
+
+  @Collection::indexOf
+  Scenario: Invoking indexOf with a wrong type [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->indexOf(1);
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                      |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::indexOf expects string, but 1 provided |
+    And I see no other errors
+
 
   @Collection::indexOf
   Scenario: Invoking indexOf with a proper type
@@ -736,13 +946,14 @@ Feature: Collections
     And I see no other errors
 
   @Collection::slice
-  Scenario: Invoking slice with a wrong start offset
+  Scenario: Invoking slice with a wrong start offset [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->slice("string key");
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                  |
@@ -750,17 +961,48 @@ Feature: Collections
     And I see no other errors
 
   @Collection::slice
-  Scenario: Invoking slice with a wrong length
+  Scenario: Invoking slice with a wrong start offset [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->slice("string key");
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                            |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::slice expects int, but 'string key' provided |
+    And I see no other errors
+
+  @Collection::slice
+  Scenario: Invoking slice with a wrong length [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->slice(1, "zzzz");
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                  |
       | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::slice expects int\|null, but "zzzz" provided |
+    And I see no other errors
+
+  @Collection::slice
+  Scenario: Invoking slice with a wrong length [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c->slice(1, "zzzz");
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                            |
+      | InvalidArgument | Argument 2 of Doctrine\Common\Collections\Collection::slice expects int\|null, but 'zzzz' provided |
     And I see no other errors
 
   @Collection::slice
@@ -815,13 +1057,14 @@ Feature: Collections
     Then I see no errors
 
   @Collections::ArrayAccess
-  Scenario: Adding an item of a wrong type with array-like push
+  Scenario: Adding an item of a wrong type with array-like push [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c[] = 1.1;
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                 |
@@ -829,13 +1072,30 @@ Feature: Collections
     And I see no other errors
 
   @Collections::ArrayAccess
-  Scenario: Adding an item using wrong type with array offset access
+  Scenario: Adding an item of a wrong type with array-like push [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c[] = 1.1;
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                 |
+      | InvalidArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, but float(1.1) provided |
+    And I see no other errors
+
+
+  @Collections::ArrayAccess
+  Scenario: Adding an item using wrong type with array offset access [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c[10] = 1.1;
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                 |
@@ -843,24 +1103,68 @@ Feature: Collections
     And I see no other errors
 
   @Collections::ArrayAccess
-  Scenario: Adding an item using wrong key type with array offset access
+  Scenario: Adding an item using wrong type with array offset access [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c[10] = 1.1;
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                                 |
+      | InvalidArgument | Argument 2 of Doctrine\Common\Collections\Collection::offsetSet expects string, but float(1.1) provided |
+    And I see no other errors
+
+  @Collections::ArrayAccess
+  Scenario: Adding an item using wrong key type with array offset access [Psalm 4]
     Given I have the following code
       """
       /** @var Collection<int,string> */
       $c = new ArrayCollection(["a", "b", "c"]);
       $c["10"] = "aaa";
       """
+    And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                    |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, but "10" provided |
     And I see no other errors
 
+  @Collections::ArrayAccess
+  Scenario: Adding an item using wrong key type with array offset access [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c["10"] = "aaa";
+      """
+    And I have Psalm newer than "4.99" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                              |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetGet expects int\|null, but '10' provided |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, but '10' provided |
+    And I see no other errors
+
   @Collections::ArrayCollection
-  Scenario: Extending ArrayCollection gives no error
+  Scenario: Extending ArrayCollection gives no error [Psalm 4]
     Given I have the following code
       """
       class MyCollection extends ArrayCollection {}
       """
+    And I have Psalm older than "5.0" (because of "template parameter requirements")
+    When I run Psalm
+    Then I see no errors
+
+  @Collections::ArrayCollection
+  Scenario: Extending ArrayCollection gives no error [Psalm 5]
+    Given I have the following code
+      """
+      /** @template-extends ArrayCollection<int, string> */
+      class MyCollection extends ArrayCollection {}
+      """
+    And I have Psalm newer than "4.99" (because of "template parameter requirements")
     When I run Psalm
     Then I see no errors
