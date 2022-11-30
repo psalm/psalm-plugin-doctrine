@@ -863,4 +863,4 @@ Feature: Collections
       class MyCollection extends ArrayCollection {}
       """
     When I run Psalm
-    Then I see no error
+    Then I see no errors
