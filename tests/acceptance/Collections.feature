@@ -51,7 +51,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                       |
+      | Type                  | Message                                                                                  |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, but 1 provided |
     And I see no other errors
 
@@ -66,7 +66,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                       |
+      | Type            | Message                                                                                  |
       | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::add expects string, but 1 provided |
     And I see no other errors
 
@@ -93,7 +93,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                            |
+      | Type                  | Message                                                                                       |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, but 1 provided |
     And I see no other errors
 
@@ -108,7 +108,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                            |
+      | Type            | Message                                                                                       |
       | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::contains expects string, but 1 provided |
     And I see no other errors
 
@@ -134,7 +134,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                   |
+      | Type                  | Message                                                                                             |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, but "string key" provided |
     And I see no other errors
 
@@ -149,7 +149,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                   |
+      | Type            | Message                                                                                             |
       | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::remove expects int, but 'string key' provided |
     And I see no other errors
 
@@ -178,7 +178,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                 |
+      | Type                  | Message                                                                                            |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string, but 1 provided |
     And I see no other errors
 
@@ -193,7 +193,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                 |
+      | Type            | Message                                                                                            |
       | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::removeElement expects string, but 1 provided |
     And I see no other errors
 
@@ -335,7 +335,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                |
+      | Type                  | Message                                                                                          |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::set expects int, but "string key" provided |
     And I see no other errors
 
@@ -365,7 +365,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                       |
+      | Type                  | Message                                                                                  |
       | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::set expects string, but 1 provided |
     And I see no other errors
 
@@ -424,7 +424,7 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                      |
+      | Type                  | Message                                               |
       | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
@@ -440,7 +440,7 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                      |
+      | Type                  | Message                                               |
       | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
@@ -457,7 +457,7 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                      |
+      | Type                  | Message                                               |
       | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
@@ -472,7 +472,7 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                      |
+      | Type                  | Message                                               |
       | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
@@ -502,7 +502,7 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                      |
+      | Type                  | Message                                               |
       | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
@@ -518,7 +518,7 @@ Feature: Collections
       """
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                      |
+      | Type                  | Message                                               |
       | InvalidScalarArgument | Argument 1 of atan expects float, but string provided |
     And I see no other errors
 
@@ -589,7 +589,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                    |
+      | Type                  | Message                                                                                                                                                             |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -604,7 +604,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                                                                    |
+      | Type            | Message                                                                                                                                                             |
       | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::exists expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -669,7 +669,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                         |
+      | Type                  | Message                                                                                                                                                  |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, but (impure-)?Closure\(string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -684,7 +684,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                                                         |
+      | Type            | Message                                                                                                                                                  |
       | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::filter expects Closure\(string=\):bool, but (impure-)?Closure\(string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -751,7 +751,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                                    |
+      | Type                  | Message                                                                                                                                                             |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -766,7 +766,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                                                                    |
+      | Type            | Message                                                                                                                                                             |
       | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::forAll expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int, string\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -870,7 +870,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                                                               |
+      | Type                  | Message                                                                                                                                                        |
       | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -885,7 +885,7 @@ Feature: Collections
     And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type            | Message                                                                                                                                               |
+      | Type            | Message                                                                                                                                                        |
       | InvalidArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::partition expects Closure\(int=, string=\):bool, but (impure-)?Closure\(int\):int(<0, 1>)? provided/ |
     And I see no other errors
 
@@ -911,7 +911,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                           |
+      | Type                  | Message                                                                                      |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::indexOf expects string, but 1 provided |
     And I see no other errors
 
@@ -956,7 +956,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                  |
+      | Type                  | Message                                                                                            |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::slice expects int, but "string key" provided |
     And I see no other errors
 
@@ -986,7 +986,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                  |
+      | Type                  | Message                                                                                            |
       | InvalidScalarArgument | Argument 2 of Doctrine\Common\Collections\Collection::slice expects int\|null, but "zzzz" provided |
     And I see no other errors
 
@@ -1128,7 +1128,7 @@ Feature: Collections
     And I have Psalm older than "5.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
-      | Type                  | Message                                                                                                    |
+      | Type                  | Message                                                                                              |
       | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, but "10" provided |
     And I see no other errors
 
