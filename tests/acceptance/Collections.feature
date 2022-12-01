@@ -377,7 +377,7 @@ Feature: Collections
       $c = new ArrayCollection(["a", "b", "c"]);
       $c->set(1, 1);
       """
-    And I have Psalm older than "5.0" (because of "changed issue type")
+    And I have Psalm newer than "4.99" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                  |
