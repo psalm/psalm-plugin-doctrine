@@ -27,7 +27,7 @@
     "require": {
         "php": "^7.2 || ^8",
         "composer/semver": "^1.4 || ^2.0 || ^3.0",
-        "vimeo/psalm": "^4.28"
+        "vimeo/psalm": "^4.28|^5.0"
     },
     "conflict": {
         "doctrine/collections": "<1.8",
@@ -48,7 +48,8 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "composer/package-versions-deprecated": true
         }
     },
     "extra": {

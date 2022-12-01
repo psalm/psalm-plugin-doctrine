@@ -97,15 +97,29 @@ Feature: QueryBuilder
       | ImplicitToStringCast | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, but Doctrine\ORM\Query\Expr\Andx provided with a __toString method |
 
   @QueryBuilder
-  Scenario: QueryBuilder::select() rejects wrong non-stringable arguments
+  Scenario: QueryBuilder::select() rejects wrong non-stringable arguments [Psalm 4]
     Given I have the following code
       """
       builder()->select(2.2)->distinct();
       """
+    And I have Psalm older than "5.0.0" (because of "changed issue type")
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                             |
       | InvalidScalarArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, but float(2.2) provided |
+
+  @QueryBuilder
+  Scenario: QueryBuilder::select() rejects wrong non-stringable arguments [Psalm 5]
+    Given I have the following code
+      """
+      builder()->select(2.2)->distinct();
+      """
+    And I have Psalm newer than "4.99.0" (because of "changed issue type")
+    When I run Psalm
+    Then I see these errors
+      | Type                  | Message                                                                                                                                                                             |
+      | InvalidArgument | Argument 1 of Doctrine\ORM\QueryBuilder::select expects Doctrine\ORM\Query\Expr\Func\|array<array-key, Doctrine\ORM\Query\Expr\Func\|string>\|null\|string, but float(2.2) provided |
+
 
   @QueryBuilder
   Scenario: QueryBuilder ::where(), ::orWhere() and ::andWhere accept Expr\Comparison

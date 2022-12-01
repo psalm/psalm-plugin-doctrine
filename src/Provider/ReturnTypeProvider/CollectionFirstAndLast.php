@@ -93,7 +93,7 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
                 return null;
             }
 
-            $childNode = $type->getChildNodes();
+            $childNode = $type->type_params;
             if (! isset($childNode[1]) || ! $childNode[1] instanceof Type\Union) {
                 return null;
             }
