@@ -17,4 +17,9 @@ class ArrayCollection implements Collection, Selectable
      * @psalm-mutation-free
      */
     public function isEmpty();
+
+    /**
+     * @return int<0, max>
+     */
+    public function count();
 }
