@@ -37,4 +37,14 @@ class EntityManager implements EntityManagerInterface
     public function getReference($entityName, $id)
     {
     }
+
+    /**
+     * @param object   $entity
+     * @param null|int $lockMode
+     *
+     * @return void
+     */
+    public function refresh($entity, $lockMode = null)
+    {
+    }
 }
