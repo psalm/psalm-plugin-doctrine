@@ -5,7 +5,7 @@ namespace Doctrine\ORM\Tools\Pagination;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
 /**
- * @template T
+ * @template-covariant T
  */
 class Paginator implements \Countable, \IteratorAggregate
 {
