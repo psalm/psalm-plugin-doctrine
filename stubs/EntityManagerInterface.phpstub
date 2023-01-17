@@ -34,4 +34,11 @@ interface EntityManagerInterface extends ObjectManager
      * @template T
      */
     public function getReference(string $entityName, $id);
+
+    /**
+     * @param object $entity
+     *
+     * @return void
+     */
+    public function refresh($entity, ?int $lockMode = null);
 }
