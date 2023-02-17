@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.com/weirdan/doctrine-psalm-plugin.svg?branch=master)](https://travis-ci.com/weirdan/doctrine-psalm-plugin)
 # doctrine-psalm-plugin
 
-A Doctrine plugin for [Psalm](https://github.com/vimeo/psalm) (requires Psalm v4).
+A Doctrine plugin for [Psalm](https://github.com/vimeo/psalm) (requires Psalm v4|v5).
 
 Installation:
 
