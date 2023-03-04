@@ -25,8 +25,8 @@ jobs:
             - name: Get Composer Cache Directories
               id: composer-cache
               run: |
-                  echo "::set-output name=files_cache::$(composer config cache-files-dir)"
-                  echo "::set-output name=vcs_cache::$(composer config cache-vcs-dir)"
+                  echo "files_cache=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+                  echo "vcs_cache=$(composer config cache-vcs-dir)" >> $GITHUB_OUTPUT
 
               # the way cache keys are set up will always cause a cache miss
               # but will restore the cache generated during the previous run
@@ -84,8 +84,8 @@ jobs:
             - name: Get Composer Cache Directories
               id: composer-cache
               run: |
-                  echo "::set-output name=files_cache::$(composer config cache-files-dir)"
-                  echo "::set-output name=vcs_cache::$(composer config cache-vcs-dir)"
+                  echo "files_cache=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+                  echo "vcs_cache=$(composer config cache-vcs-dir)" >> $GITHUB_OUTPUT
 
               # the way cache keys are set up will always cause a cache miss
               # but will restore the cache generated during the previous run
@@ -149,8 +149,8 @@ jobs:
             - name: Get Composer Cache Directories
               id: composer-cache
               run: |
-                  echo "::set-output name=files_cache::$(composer config cache-files-dir)"
-                  echo "::set-output name=vcs_cache::$(composer config cache-vcs-dir)"
+                  echo "files_cache=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+                  echo "vcs_cache=$(composer config cache-vcs-dir)" >> $GITHUB_OUTPUT
 
               # the way cache keys are set up will always cause a cache miss
               # but will restore the cache generated during the previous run
