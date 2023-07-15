@@ -51,14 +51,12 @@ class Plugin implements PluginEntryPointInterface
 
     /**
      * @throws OutOfBoundsException
+     *
+     * @psalm-suppress UnusedParam
      */
     private function getPackageVersion(string $packageName): string
     {
         if (class_exists(Versions::class)) {
-            /**
-             * @psalm-suppress RedundantCondition
-             * @psalm-suppress RedundantCast
-             */
             return (string) Versions::getVersion($packageName);
         }
 
