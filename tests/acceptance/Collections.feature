@@ -817,7 +817,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                              |
-      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::map expects Closure\(string=\):mixed, but (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::map expects Closure\(string=\):(bool\|mixed), but (impure-)?Closure\(int\):bool provided\|Type (int\|string) should be a subtype of (int\|string)/ |
     And I see no other errors
 
   @Collection::map
