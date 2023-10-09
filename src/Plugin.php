@@ -8,6 +8,8 @@ use PackageVersions\Versions;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
 use SimpleXMLElement;
+use Weirdan\DoctrinePsalmPlugin\Provider\ParamsProvider\RepositoryParamsProvider;
+use Weirdan\DoctrinePsalmPlugin\Provider\ParamsProvider\RepositoryParamsProviderClassPopulator;
 use Weirdan\DoctrinePsalmPlugin\Provider\ReturnTypeProvider\CollectionFirstAndLast;
 
 use function array_merge;
@@ -18,14 +20,22 @@ use function strpos;
 
 class Plugin implements PluginEntryPointInterface
 {
+    /** @var RegistrationInterface|null */
+    public static $registrationInterface = null;
+
     public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null): void
     {
+        self::$registrationInterface = $psalm;
+
         foreach ($this->getStubFiles() as $file) {
             $psalm->addStubFile($file);
         }
 
         if (class_exists(CollectionFirstAndLast::class)) {
             $psalm->registerHooksFromClass(CollectionFirstAndLast::class);
+        }
+        if (class_exists(RepositoryParamsProviderClassPopulator::class)) {
+            $psalm->registerHooksFromClass(RepositoryParamsProviderClassPopulator::class);
         }
     }
 
