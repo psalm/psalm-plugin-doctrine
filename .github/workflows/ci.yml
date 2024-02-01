@@ -32,7 +32,7 @@ jobs:
               # but will restore the cache generated during the previous run
               # based on partial match
             - name: Composer cache
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: |
                     ${{ steps.composer-cache.outputs.files_cache }}
@@ -45,7 +45,7 @@ jobs:
               # but will restore the cache generated during the previous run
               # based on partial match
             - name: Psalm cache
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   # we really need a way for Psalm to tell where cache is located
                   path: |
@@ -90,7 +90,7 @@ jobs:
               # the way cache keys are set up will always cause a cache miss
               # but will restore the cache generated during the previous run
             - name: Retrieve cached packages
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: |
                     ${{ steps.composer-cache.outputs.files_cache }}
@@ -103,7 +103,7 @@ jobs:
               # but will restore the cache generated during the previous run
               # based on partial match
             - name: Retrieve PHPCS cache
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: |
                       ~/.cache/phpcs
@@ -155,7 +155,7 @@ jobs:
               # the way cache keys are set up will always cause a cache miss
               # but will restore the cache generated during the previous run
             - name: Retrieve cached packages
-              uses: actions/cache@v3
+              uses: actions/cache@v4
               with:
                   path: |
                     ${{ steps.composer-cache.outputs.files_cache }}
