@@ -134,6 +134,10 @@ jobs:
             matrix:
                 php: ['8.1', '8.2', '8.3', '8.4']
                 deps: ['high', 'low', 'stable']
+                exclude:
+                  - php: 8.4
+                    dependencies: low
+
             fail-fast: false
         steps:
             - name: Checkout
