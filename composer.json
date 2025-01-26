@@ -2,6 +2,7 @@
     "name": "weirdan/doctrine-psalm-plugin",
     "type": "psalm-plugin",
     "description": "Stubs to let Psalm understand Doctrine better",
+    "minimum-stability": "dev",
     "keywords": [
         "php",
         "code",
