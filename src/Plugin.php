@@ -16,9 +16,7 @@ use function explode;
 use function glob;
 use function strpos;
 
-/**
- * @api
- */
+/** @psalm-api */
 class Plugin implements PluginEntryPointInterface
 {
     public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null): void

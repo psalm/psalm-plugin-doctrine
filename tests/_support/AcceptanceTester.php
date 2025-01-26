@@ -4,7 +4,7 @@ namespace Weirdan\DoctrinePsalmPlugin\Tests;
 
 use Codeception\Actor;
 
-/** @api */
+/** @psalm-api */
 class AcceptanceTester extends Actor
 {
     use _generated\AcceptanceTesterActions;
