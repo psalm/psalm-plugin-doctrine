@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.x-dev@910af758a30e31c2e20d3811fc6078957ef208b3">
+  <file src="src/Plugin.php">
+    <UnusedMethod>
+      <code><![CDATA[hasPackage]]></code>
+      <code><![CDATA[hasPackageOfVersion]]></code>
+    </UnusedMethod>
+  </file>
+  <file src="tests/_support/AcceptanceTester.php">
+    <UnusedClass>
+      <code><![CDATA[AcceptanceTester]]></code>
+    </UnusedClass>
+  </file>
+  <file src="tests/_support/Helper/Acceptance.php">
+    <UnusedClass>
+      <code><![CDATA[Acceptance]]></code>
+    </UnusedClass>
+  </file>
+</files>
