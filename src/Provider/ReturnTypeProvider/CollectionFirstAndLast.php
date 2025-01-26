@@ -20,9 +20,7 @@ use function is_string;
 
 class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
 {
-    /**
-     * @return array<string>
-     */
+    /** @return array<string> */
     public static function getClassLikeNames(): array
     {
         return [

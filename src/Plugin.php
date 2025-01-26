@@ -30,9 +30,9 @@ class Plugin implements PluginEntryPointInterface
     }
 
     /**
-     * @psalm-suppress RiskyTruthyFalsyComparison
+     * @return string[]
      *
-     * @return string[] 
+     * @psalm-suppress RiskyTruthyFalsyComparison
      */
     private function getStubFiles(): array
     {
