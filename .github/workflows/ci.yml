@@ -1,6 +1,8 @@
 name: CI
 on:
     push:
+      branches:
+        - 2.x
     pull_request:
     schedule:
         - cron: '0 4 * * 6' # Every Saturday on 4am
