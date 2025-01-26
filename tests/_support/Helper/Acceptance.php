@@ -64,7 +64,7 @@ class Acceptance extends Module
 
         $psalmModule->haveTheFollowingConfig(<<<XML
 <?xml version="1.0"?>
-  <psalm errorLevel="1">
+  <psalm errorLevel="1" findUnusedCode="false">
     <projectFiles>
       <directory name="."/>
       <ignoreFiles> <directory name="../../vendor"/> </ignoreFiles>
@@ -75,6 +75,7 @@ class Acceptance extends Module
       </pluginClass>
     </plugins>
     <issueHandlers>
+      <MissingClassConstType errorLevel="suppress" />
       $suppressedIssueHandlers
     </issueHandlers>
   </psalm>
