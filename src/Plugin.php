@@ -29,7 +29,11 @@ class Plugin implements PluginEntryPointInterface
         }
     }
 
-    /** @return string[] */
+    /**
+     * @psalm-suppress RiskyTruthyFalsyComparison
+     *
+     * @return string[] 
+     */
     private function getStubFiles(): array
     {
         return array_merge(

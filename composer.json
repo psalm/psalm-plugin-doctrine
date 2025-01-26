@@ -25,9 +25,9 @@
         }
     ],
     "require": {
-        "php": "^7.2 || ^8",
+        "php": "^8",
         "composer/semver": "^1.4 || ^2.0 || ^3.0",
-        "vimeo/psalm": "^4.28|^5.0|^6"
+        "vimeo/psalm": "^6"
     },
     "conflict": {
         "doctrine/collections": "<1.8",
