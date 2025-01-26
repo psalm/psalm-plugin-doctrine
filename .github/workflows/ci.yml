@@ -136,7 +136,7 @@ jobs:
                 deps: ['high', 'low', 'stable']
                 exclude:
                   - php: 8.4
-                    dependencies: low
+                    deps: low
 
             fail-fast: false
         steps:
