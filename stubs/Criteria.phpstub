@@ -1,0 +1,24 @@
+<?php
+
+namespace Doctrine\Common\Collections;
+
+class Criteria
+{
+    public const ASC = 'ASC';
+    public const DESC = 'DESC';
+    
+    /**
+     * @psalm-pure
+     */
+    public static function create()
+    {
+    }
+    
+    /**
+     * @psalm-external-mutation-free
+     * @param array<string, Criteria::ASC|Criteria::DESC>
+     */
+    public function orderBy(array $orderings)
+    {
+    }
+}
