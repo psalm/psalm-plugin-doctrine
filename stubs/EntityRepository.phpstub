@@ -16,19 +16,19 @@ class EntityRepository implements ObjectRepository, Selectable
 {
     /**
      * @var string
-     * @psalm-supress PropertyNotSetInConstructor
+     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $_entityName;
 
     /**
      * @var EntityManagerInterface
-     * @psalm-supress PropertyNotSetInConstructor
+     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $_em;
 
     /**
      * @var Mapping\ClassMetadata
-     * @psalm-supress PropertyNotSetInConstructor
+     * @psalm-suppress PropertyNotSetInConstructor
      */
     protected $_class;
 
