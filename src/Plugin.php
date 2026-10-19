@@ -4,6 +4,7 @@ namespace Weirdan\DoctrinePsalmPlugin;
 
 use Composer\Semver\Semver;
 use OutOfBoundsException;
+use Override;
 use PackageVersions\Versions;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
@@ -19,6 +20,7 @@ use function strpos;
 /** @psalm-api */
 class Plugin implements PluginEntryPointInterface
 {
+    #[Override]
     public function __invoke(RegistrationInterface $psalm, ?SimpleXMLElement $config = null): void
     {
         foreach ($this->getStubFiles() as $file) {

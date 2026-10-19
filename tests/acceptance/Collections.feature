@@ -454,7 +454,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                                           |
-      | InvalidScalarArgument |Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int=, string=):bool, but impure-Closure(int, int):bool provided |
+      | InvalidScalarArgument |Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure[impure](int=, string=):bool, but Closure[read-globals\|write-globals](int, int):bool provided |
     And I see no other errors
 
   @Collection::exists
@@ -469,7 +469,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                                                                                             |
-      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure(int=, string=):bool, but impure-Closure(int, string):int<0, 1> provided |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::exists expects Closure[impure](int=, string=):bool, but Closure[read-globals\|write-globals](int, string):int<0, 1> provided |
     And I see no other errors
 
   @Collection::exists
@@ -519,7 +519,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                                |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string=):bool, but impure-Closure(int):bool provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure[impure](string=):bool, but Closure[read-globals\|write-globals](int):bool provided |
     And I see no other errors
 
   @Collection::filter
@@ -534,7 +534,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                                                                                  |
-      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure(string=):bool, but impure-Closure(string):int<0, 1> provided |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::filter expects Closure[impure](string=):bool, but Closure[read-globals\|write-globals](string):int<0, 1> provided |
     And I see no other errors
 
   # TODO: find out if this is applicable
@@ -572,7 +572,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                                                 |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, but impure-Closure(string, string):bool provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure[impure](int=, string=):bool, but Closure[read-globals\|write-globals](string, string):bool provided |
     And I see no other errors
 
   @Collection::forAll
@@ -586,7 +586,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                                           |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, but impure-Closure(int, int):bool provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure[impure](int=, string=):bool, but Closure[read-globals\|write-globals](int, int):bool provided |
     And I see no other errors
 
   @Collection::forAll
@@ -601,7 +601,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                                                                                             |
-      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure(int=, string=):bool, but impure-Closure(int, string):int<0, 1> provided |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::forAll expects Closure[impure](int=, string=):bool, but Closure[read-globals\|write-globals](int, string):int<0, 1> provided |
     And I see no other errors
 
   @Collection::forAll
@@ -651,7 +651,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                              |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::map expects Closure(string=):bool, but impure-Closure(int):bool provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::map expects Closure[impure](string=):bool, but Closure[read-globals\|write-globals](int):bool provided |
     And I see no other errors
 
   @Collection::map
@@ -690,7 +690,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                                            |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(int=, string=):bool, but impure-Closure(string):bool provided |
+      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure[impure](int=, string=):bool, but Closure[read-globals\|write-globals](string):bool provided |
     And I see no other errors
 
   @Collection::partition
@@ -705,7 +705,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                                                                                        |
-      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure(int=, string=):bool, but impure-Closure(int):int<0, 1> provided |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::partition expects Closure[impure](int=, string=):bool, but Closure[read-globals\|write-globals](int):int<0, 1> provided |
     And I see no other errors
 
   @Collection::partition
@@ -885,7 +885,7 @@ Feature: Collections
     Given I have the following code
       """
       /** @template-extends ArrayCollection<int, string> */
-      class MyCollection extends ArrayCollection {}
+      final class MyCollection extends ArrayCollection {}
       """
     And I have Psalm newer than "4.99" (because of "template parameter requirements")
     When I run Psalm

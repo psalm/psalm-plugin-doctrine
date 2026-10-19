@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="6.x-dev@201e3b6e8bdf48c4e4aa565da02753a307d9bc86">
+<files psalm-version="dev-master@d45fb570798efbdf5ef393538b3f39d1a852d92b">
   <file src="src/Plugin.php">
     <UnusedMethod>
+      <code><![CDATA[getPackageVersion]]></code>
       <code><![CDATA[hasPackage]]></code>
       <code><![CDATA[hasPackageOfVersion]]></code>
     </UnusedMethod>
