@@ -10,8 +10,12 @@ Feature: ObjectRepository
       <?php
       use Doctrine\Persistence\ObjectRepository;
 
+      /** @psalm-mutable */
       interface I {
-        /** @return void */
+        /**
+         * @return void
+         * @psalm-impure
+         */
         public function doThings();
       }
       /**
@@ -19,10 +23,14 @@ Feature: ObjectRepository
        * @param class-string<T> $entityClass
        * @return ObjectRepository<T>
        * @psalm-suppress InvalidReturnType
+       * @psalm-capabilities read-props
        */
       function repo(string $entityClass) {}
 
-      /** @return void */
+      /**
+       * @return void
+       * @psalm-capabilities read-props
+       */
       function acceptsI(I $i) {}
       """
     # Psalm enables cache when there's a composer.lock file

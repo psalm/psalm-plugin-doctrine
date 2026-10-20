@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="dev-master@d45fb570798efbdf5ef393538b3f39d1a852d92b">
-  <file src="src/Plugin.php">
-    <UnusedMethod>
-      <code><![CDATA[getPackageVersion]]></code>
-      <code><![CDATA[hasPackage]]></code>
-      <code><![CDATA[hasPackageOfVersion]]></code>
-    </UnusedMethod>
-  </file>
   <file src="tests/_support/Helper/Acceptance.php">
     <UnusedClass>
       <code><![CDATA[Acceptance]]></code>

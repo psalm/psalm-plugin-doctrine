@@ -11,6 +11,7 @@ Feature: EntityManagerInterface
       use Doctrine\ORM\EntityManagerInterface;
       use Doctrine\ORM\EntityRepository;
 
+      /** @psalm-mutable */
       interface I {}
       """
     # Psalm enables cache when there's a composer.lock file

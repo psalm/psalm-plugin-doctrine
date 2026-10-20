@@ -10,11 +10,13 @@ Feature: ObjectManager
       <?php
       use Doctrine\Persistence\ObjectManager;
 
+      /** @psalm-mutable */
       interface I {}
 
       /**
        * @return ObjectManager
        * @psalm-suppress InvalidReturnType
+       * @psalm-capabilities read-props
        */
       function om() {}
 

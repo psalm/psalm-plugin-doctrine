@@ -27,7 +27,6 @@
     ],
     "require": {
         "php": "^8",
-        "composer/semver": "^1.4 || ^2.0 || ^3.0",
         "psalm/psalm-plugin-api": "^0.4",
         "vimeo/psalm": "^7|dev-master"
     },

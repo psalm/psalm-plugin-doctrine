@@ -2,10 +2,7 @@
 
 namespace Weirdan\DoctrinePsalmPlugin;
 
-use Composer\Semver\Semver;
-use OutOfBoundsException;
 use Override;
-use PackageVersions\Versions;
 use Psalm\Plugin\PluginEntryPointInterface;
 use Psalm\Plugin\RegistrationInterface;
 use SimpleXMLElement;
@@ -13,9 +10,7 @@ use Weirdan\DoctrinePsalmPlugin\Provider\ReturnTypeProvider\CollectionFirstAndLa
 
 use function array_merge;
 use function class_exists;
-use function explode;
 use function glob;
-use function strpos;
 
 /** @psalm-api */
 class Plugin implements PluginEntryPointInterface
@@ -43,44 +38,5 @@ class Plugin implements PluginEntryPointInterface
             glob(__DIR__ . '/../stubs/*.phpstub') ?: [],
             glob(__DIR__ . '/../stubs/DBAL/*.phpstub') ?: []
         );
-    }
-
-    private function hasPackage(string $packageName): bool
-    {
-        try {
-            $this->getPackageVersion($packageName);
-        } catch (OutOfBoundsException $e) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * @throws OutOfBoundsException
-     *
-     * @psalm-suppress UnusedParam
-     */
-    private function getPackageVersion(string $packageName): string
-    {
-        if (class_exists(Versions::class)) {
-            return (string) Versions::getVersion($packageName);
-        }
-
-        throw new OutOfBoundsException();
-    }
-
-    private function hasPackageOfVersion(string $packageName, string $constraints): bool
-    {
-        $packageVersion = $this->getPackageVersion($packageName);
-        if (strpos($packageVersion, '@') !== false) {
-            [$packageVersion] = explode('@', $packageVersion);
-        }
-
-        if (strpos($packageVersion, 'dev-') === 0) {
-            $packageVersion = '9999999-dev';
-        }
-
-        return Semver::satisfies($packageVersion, $constraints);
     }
 }

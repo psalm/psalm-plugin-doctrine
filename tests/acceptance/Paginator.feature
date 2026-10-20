@@ -10,13 +10,18 @@ Feature: Paginator
       <?php
           use Doctrine\ORM\Tools\Pagination\Paginator;
 
-          interface I { public function aMethod(): void; }
+          /** @psalm-mutable */
+          interface I {
+            /** @psalm-impure */
+            public function aMethod(): void;
+          }
 
           /**
            * @template T
            * @param class-string<T> $type
            * @return Paginator<T>
            * @psalm-suppress InvalidReturnType
+           * @psalm-capabilities read-props
            */
           function paginate(string $type) {}
 

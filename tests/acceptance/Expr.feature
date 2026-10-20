@@ -14,6 +14,7 @@ Feature: Expr
       /**
        * @psalm-suppress InvalidReturnType
        * @return QueryBuilder
+       * @psalm-capabilities read-props
        */
       function builder() {}
       """
