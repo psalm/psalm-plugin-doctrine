@@ -99,7 +99,7 @@ Feature: EntityManager
   Scenario: Can extend EntityManager
     Given I have the following code
       """
-      class MyManager extends EntityManager {}
+      final class MyManager extends EntityManager {}
       """
     When I run Psalm
     Then I see no errors

@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Weirdan\DoctrinePsalmPlugin\Provider\ReturnTypeProvider;
 
+use Override;
 use PhpParser\Node\Expr\MethodCall;
 use PhpParser\Node\Expr\PropertyFetch;
 use PhpParser\Node\Expr\Variable;
 use PhpParser\Node\Identifier;
+use Psalm\Plugin\EventHandler\AfterMethodCallAnalysisInterface;
+use Psalm\Plugin\EventHandler\Event\AfterMethodCallAnalysisEvent;
 use Psalm\Plugin\EventHandler\Event\MethodReturnTypeProviderEvent;
 use Psalm\Plugin\EventHandler\MethodReturnTypeProviderInterface;
 use Psalm\Type;
@@ -15,12 +18,19 @@ use Psalm\Type;
 use function array_reverse;
 use function count;
 use function current;
+use function explode;
 use function implode;
 use function is_string;
+use function strtolower;
 
-class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
+final class CollectionFirstAndLast implements MethodReturnTypeProviderInterface, AfterMethodCallAnalysisInterface
 {
-    /** @return array<string> */
+    /**
+     * @return array<string>
+     *
+     * @psalm-pure
+     */
+    #[Override]
     public static function getClassLikeNames(): array
     {
         return [
@@ -29,6 +39,7 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         ];
     }
 
+    #[Override]
     public static function getMethodReturnType(MethodReturnTypeProviderEvent $event): ?Type\Union
     {
         $stmt = $event->getStmt();
@@ -36,33 +47,9 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
             return null;
         }
 
-        // Get variable or property string
-        $varStmt  = $stmt->var;
-        $varParts = [];
-        while ($varStmt instanceof PropertyFetch && $varStmt->name instanceof Identifier) {
-            $varParts[] = $varStmt->name->name;
-            $varStmt    = $varStmt->var;
-        }
-
-        if (! $varStmt instanceof Variable || ! is_string($varStmt->name)) {
+        $scopedVarName = self::getIsEmptyVarName($stmt);
+        if ($scopedVarName === null) {
             return null;
-        }
-
-        $varParts[]    = $varStmt->name;
-        $scopedVarName = '$' . implode('->', array_reverse($varParts)) . '->isempty()';
-
-        if ($event->getFqClasslikeName() === 'Doctrine\Common\Collections\Collection') {
-            if ($event->getMethodNameLowercase() === 'add') {
-                $event->getContext()->vars_in_scope[$scopedVarName] = Type::getFalse();
-
-                return null;
-            }
-
-            if ($event->getMethodNameLowercase() === 'remove' || $event->getMethodNameLowercase() === 'removeelement') {
-                $event->getContext()->remove($scopedVarName);
-
-                return null;
-            }
         }
 
         if (
@@ -104,5 +91,53 @@ class CollectionFirstAndLast implements MethodReturnTypeProviderInterface
         }
 
         return null;
+    }
+
+    /**
+     * Runs after Psalm has forgotten the memoized `isEmpty()` of the collection the call mutates
+     */
+    #[Override]
+    public static function afterMethodCallAnalysis(AfterMethodCallAnalysisEvent $event): void
+    {
+        $expr = $event->getExpr();
+        if (! $expr instanceof MethodCall) {
+            return;
+        }
+
+        [$className, $methodName] = explode('::', $event->getMethodId());
+        if (strtolower($className) !== 'doctrine\\common\\collections\\collection') {
+            return;
+        }
+
+        $scopedVarName = self::getIsEmptyVarName($expr);
+        if ($scopedVarName === null) {
+            return;
+        }
+
+        if ($methodName === 'add') {
+            $event->getContext()->vars_in_scope[$scopedVarName] = Type::getFalse();
+        } elseif ($methodName === 'remove' || $methodName === 'removeelement') {
+            $event->getContext()->remove($scopedVarName);
+        }
+    }
+
+    /** @psalm-capabilities read-props */
+    private static function getIsEmptyVarName(MethodCall $stmt): ?string
+    {
+        // Get variable or property string
+        $varStmt  = $stmt->var;
+        $varParts = [];
+        while ($varStmt instanceof PropertyFetch && $varStmt->name instanceof Identifier) {
+            $varParts[] = $varStmt->name->name;
+            $varStmt    = $varStmt->var;
+        }
+
+        if (! $varStmt instanceof Variable || ! is_string($varStmt->name)) {
+            return null;
+        }
+
+        $varParts[] = $varStmt->name;
+
+        return '$' . implode('->', array_reverse($varParts)) . '->isempty()';
     }
 }

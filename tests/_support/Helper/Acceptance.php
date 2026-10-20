@@ -5,6 +5,7 @@ namespace Weirdan\DoctrinePsalmPlugin\Tests\Helper;
 use Codeception\Exception\ModuleRequireException;
 use Codeception\Module;
 use Codeception\TestInterface;
+use Override;
 
 use function array_map;
 use function explode;
@@ -14,17 +15,19 @@ use function sprintf;
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
-class Acceptance extends Module
+final class Acceptance extends Module
 {
     /**
      * @var mixed[]
      * @psalm-suppress NonInvariantDocblockPropertyType
      */
-    protected $config = ['default_dir' => 'tests/_run/'];
+    protected array $config = ['default_dir' => 'tests/_run/'];
 
     /** @var list<string> */
     private $suppressedIssueHandlers = [];
 
+    /** @psalm-capabilities read-props|write-this-props|write-refs */
+    #[Override]
     public function _before(TestInterface $test): void
     {
         $this->suppressedIssueHandlers = [
@@ -37,6 +40,7 @@ class Acceptance extends Module
     /**
      * @Given I have issue handler :issueHandlers suppressed
      * @Given I have issue handlers :issueHandlers suppressed
+     * @psalm-capabilities read-props|write-this-props|write-refs
      */
     public function configureIgnoredIssueHandlers(string $issueHandlers): void
     {
@@ -76,6 +80,10 @@ class Acceptance extends Module
     </plugins>
     <issueHandlers>
       <MissingClassConstType errorLevel="suppress" />
+      <MissingPureAnnotation errorLevel="suppress" />
+      <MissingAbstractPureAnnotation errorLevel="suppress" />
+      <MissingImmutableAnnotation errorLevel="suppress" />
+      <MissingInterfaceImmutableAnnotation errorLevel="suppress" />
       $suppressedIssueHandlers
     </issueHandlers>
   </psalm>

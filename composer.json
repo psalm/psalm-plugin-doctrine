@@ -28,7 +28,8 @@
     "require": {
         "php": "^8",
         "composer/semver": "^1.4 || ^2.0 || ^3.0",
-        "vimeo/psalm": "^6"
+        "psalm/psalm-plugin-api": "^0.4",
+        "vimeo/psalm": "^7|dev-master"
     },
     "conflict": {
         "doctrine/collections": "<1.8",
@@ -36,15 +37,16 @@
         "doctrine/persistence": "<2.0"
     },
     "require-dev": {
-        "codeception/codeception": "^4.0",
+        "codeception/codeception": "^5.0",
         "doctrine/coding-standard": "^9.0",
         "doctrine/collections": "^1.8 || ^2.0",
         "doctrine/doctrine-bundle": "^1.11 || ^2.0",
         "doctrine/orm": "^2.6",
         "doctrine/persistence": "^2.0",
         "phly/keep-a-changelog": "^2.1",
+        "phpunit/phpunit": "^9.6",
         "squizlabs/php_codesniffer": "^3.3",
-        "weirdan/codeception-psalm-module": "^0.13.1"
+        "weirdan/codeception-psalm-module": "^0.14"
     },
     "config": {
         "sort-packages": true,

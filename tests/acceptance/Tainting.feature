@@ -4,7 +4,9 @@ Feature: Tainting
   I need Psalm to spot taint sources and sinks
 
   Background:
-    Given I have Doctrine plugin enabled
+    # Psalm 7 also reports regular issues when running taint analysis
+    Given I have issue handlers "UnusedVariable, UnusedFunctionCall, UnusedParam, PossiblyInvalidOperand, DeprecatedMethod" suppressed
+    And I have Doctrine plugin enabled
     And I have the following code preamble
       """
       <?php
