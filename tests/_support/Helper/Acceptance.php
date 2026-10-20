@@ -80,10 +80,6 @@ final class Acceptance extends Module
     </plugins>
     <issueHandlers>
       <MissingClassConstType errorLevel="suppress" />
-      <MissingPureAnnotation errorLevel="suppress" />
-      <MissingAbstractPureAnnotation errorLevel="suppress" />
-      <MissingImmutableAnnotation errorLevel="suppress" />
-      <MissingInterfaceImmutableAnnotation errorLevel="suppress" />
       $suppressedIssueHandlers
     </issueHandlers>
   </psalm>

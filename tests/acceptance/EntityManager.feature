@@ -11,11 +11,13 @@ Feature: EntityManager
       use Doctrine\ORM\EntityRepository;
       use Doctrine\ORM\EntityManager;
 
+      /** @psalm-mutable */
       interface I {}
 
       /**
        * @psalm-suppress InvalidReturnType
        * @return EntityManager
+       * @psalm-capabilities read-props
        */
       function em() {}
 

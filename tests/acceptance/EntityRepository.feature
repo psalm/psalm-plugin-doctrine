@@ -12,6 +12,7 @@ Feature: EntityRepository
       use Doctrine\Common\Collections\Collection;
       use Doctrine\Common\Collections\Criteria;
 
+      /** @psalm-mutable */
       interface I {}
 
       /**
@@ -19,6 +20,7 @@ Feature: EntityRepository
        * @param class-string<T> $entityClass
        * @psalm-suppress InvalidReturnType
        * @return EntityRepository<T>
+       * @psalm-capabilities read-props
        */
       function repo(string $entityClass) {}
 
