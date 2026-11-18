@@ -18,7 +18,7 @@ jobs:
             - name: Set up PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.1'
+                  php-version: '8.2'
                   tools: composer:v2
                   coverage: none
               env:
@@ -77,7 +77,7 @@ jobs:
             - name: Set up PHP
               uses: shivammathur/setup-php@v2
               with:
-                  php-version: '8.1'
+                  php-version: '8.2'
                   tools: composer:v2, cs2pr
                   coverage: none
               env:
@@ -132,7 +132,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php: ['8.1', '8.2', '8.3', '8.4', '8.5']
+                php: ['8.2', '8.3', '8.4', '8.5']
                 deps: ['high', 'low', 'stable']
                 exclude:
                   - php: 8.4

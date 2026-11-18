@@ -26,10 +26,10 @@
         }
     ],
     "require": {
-        "php": "^8",
+        "php": "^8.2",
         "composer-runtime-api": "^2",
         "psalm/psalm-plugin-api": "^0.4",
-        "vimeo/psalm": "^7|dev-master"
+        "vimeo/psalm": "^7.0.0-rc28|dev-master"
     },
     "conflict": {
         "doctrine/collections": "<1.8",
