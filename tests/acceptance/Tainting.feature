@@ -107,9 +107,12 @@ Feature: Tainting
   Scenario Outline: A result of an ORM query is printed
     Given I have the following code
       """
-      function query(): \Doctrine\ORM\Query {
-        throw new \RuntimeException();
-      }
+      /**
+       * @psalm-suppress InvalidReturnType
+       * @return \Doctrine\ORM\Query
+       * @psalm-capabilities read-props
+       */
+      function query() {}
 
       echo (string) <expression>;
       """
