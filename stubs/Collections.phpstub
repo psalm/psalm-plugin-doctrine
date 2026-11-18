@@ -9,23 +9,23 @@ use ArrayAccess;
 
 /**
  * @template TKey as array-key
- * @template TValue
+ * @template T
  *
- * @template-extends ReadableCollection<TKey,TValue>
- * @template-extends ArrayAccess<TKey|null,TValue>
+ * @template-extends ReadableCollection<TKey,T>
+ * @template-extends ArrayAccess<TKey|null,T>
  */
 interface Collection extends ReadableCollection, ArrayAccess
 {
 
     /**
      * @param ?TKey $offset
-     * @param TValue $value
+     * @param T $value
      * @return void
      */
     public function offsetSet($offset, $value);
 
     /**
-     * @param TValue $element
+     * @param T $element
      * @return true
      */
     public function add($element);
@@ -37,47 +37,47 @@ interface Collection extends ReadableCollection, ArrayAccess
 
     /**
      * @param TKey $key
-     * @return TValue|null
+     * @return T|null
      */
     public function remove($key);
 
     /**
-     * @param TValue $element
+     * @param T $element
      * @return bool
      */
     public function removeElement($element);
 
     /**
      * @param TKey $key
-     * @param TValue $value
+     * @param T $value
      * @return void
      */
     public function set($key, $value);
 
     /**
-     * @param Closure(TValue=):bool $p
-     * @return Collection<TKey,TValue>
+     * @param Closure(T=):bool $p
+     * @return Collection<TKey,T>
      */
     public function filter(Closure $p);
 
     /**
-     * @param Closure(TKey=,TValue=):bool $p
-     * @return array{0:Collection<TKey,TValue>,1:Collection<TKey,TValue>}
+     * @param Closure(TKey=,T=):bool $p
+     * @return array{0:Collection<TKey,T>,1:Collection<TKey,T>}
      */
     public function partition(Closure $p);
 }
 
 /**
  * @template TKey as array-key
- * @template-covariant TValue
+ * @template-covariant T
  *
- * @template-extends IteratorAggregate<TKey,TValue>
+ * @template-extends IteratorAggregate<TKey,T>
  */
 interface ReadableCollection extends Countable, IteratorAggregate
 {
 
     /**
-     * @param TValue $element
+     * @param T $element
      * @return bool
      */
     public function contains($element);
@@ -96,7 +96,7 @@ interface ReadableCollection extends Countable, IteratorAggregate
 
     /**
      * @param TKey $key
-     * @return TValue|null
+     * @return T|null
      */
     public function get($key);
 
@@ -106,22 +106,22 @@ interface ReadableCollection extends Countable, IteratorAggregate
     public function getKeys();
 
     /**
-     * @return list<TValue>
+     * @return list<T>
      */
     public function getValues();
 
     /**
-     * @return array<TKey,TValue>
+     * @return array<TKey,T>
      */
     public function toArray();
 
     /**
-     * @return TValue|false
+     * @return T|false
      */
     public function first();
 
     /**
-     * @return TValue|false
+     * @return T|false
      */
     public function last();
 
@@ -131,55 +131,55 @@ interface ReadableCollection extends Countable, IteratorAggregate
     public function key();
 
     /**
-     * @return TValue|false
+     * @return T|false
      */
     public function current();
 
     /**
-     * @return TValue|false
+     * @return T|false
      */
     public function next();
 
     /**
      * @param int $offset
      * @param int|null $length
-     * @return array<TKey,TValue>
+     * @return array<TKey,T>
      */
     public function slice($offset, $length = null);
 
     /**
-     * @param Closure(TKey=,TValue=):bool $p
+     * @param Closure(TKey=,T=):bool $p
      * @return bool
      */
     public function exists(Closure $p);
 
     /**
-     * @param Closure(TValue=):bool $p
-     * @return ReadableCollection<TKey,TValue>
+     * @param Closure(T=):bool $p
+     * @return ReadableCollection<TKey,T>
      */
     public function filter(Closure $p);
 
     /**
-     * @template T
-     * @param Closure(TValue=):T $func
-     * @return Collection<TKey,T>
+     * @template U
+     * @param Closure(T=):U $func
+     * @return Collection<TKey,U>
      */
     public function map(Closure $func);
 
     /**
-     * @param Closure(TKey=,TValue=):bool $p
-     * @return array{0:ReadableCollection<TKey,TValue>,1:ReadableCollection<TKey,TValue>}
+     * @param Closure(TKey=,T=):bool $p
+     * @return array{0:ReadableCollection<TKey,T>,1:ReadableCollection<TKey,T>}
      */
     public function partition(Closure $p);
 
     /**
-     * @param Closure(TKey=,TValue=):bool $p
+     * @param Closure(TKey=,T=):bool $p
      * @return bool
      */
     public function forAll(Closure $p);
 
     /**
-     * @param TValue $element
+     * @param T $element
      * @return false|TKey
      */
     public function indexOf($element);
@@ -187,12 +187,12 @@ interface ReadableCollection extends Countable, IteratorAggregate
 
 /**
  * @template TKey as array-key
- * @template TValue
+ * @template T
  */
 interface Selectable
 {
     /**
-     * @return Collection<TKey,TValue>
+     * @return Collection<TKey,T>
      */
     public function matching(Criteria $criteria);
 }

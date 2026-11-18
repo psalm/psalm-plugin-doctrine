@@ -651,7 +651,7 @@ Feature: Collections
     When I run Psalm
     Then I see these errors
       | Type                  | Message                                                                                                                                                                                              |
-      | InvalidScalarArgument | Argument 1 of Doctrine\Common\Collections\Collection::map expects Closure[impure](string=):bool, but Closure[read-globals\|write-globals](int):bool provided |
+      | InvalidScalarArgument | /Argument 1 of Doctrine\\Common\\Collections\\Collection::map expects Closure\[impure\]\(string=?\):bool, but Closure\[read-globals\|write-globals\]\(int\):bool provided/ |
     And I see no other errors
 
   @Collection::map
