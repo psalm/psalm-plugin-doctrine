@@ -1,0 +1,174 @@
+<?php
+// phpcs:ignoreFile
+
+// What a database holds may have been written by other requests (stored input): the rows a result of doctrine/dbal 2
+// fetches are input.
+
+namespace Doctrine\DBAL\Driver
+{
+    use Traversable;
+
+    interface Result
+    {
+        /**
+         * Returns the next row of the result as a numeric array or FALSE if there are no more rows.
+         *
+         * @return array<int,mixed>|false
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchNumeric();
+
+        /**
+         * Returns the next row of the result as an associative array or FALSE if there are no more rows.
+         *
+         * @return array<string,mixed>|false
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchAssociative();
+
+        /**
+         * Returns the first value of the next row of the result or FALSE if there are no more rows.
+         *
+         * @return mixed|false
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchOne();
+
+        /**
+         * Returns an array containing all of the result rows represented as numeric arrays.
+         *
+         * @return array<int,array<int,mixed>>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchAllNumeric(): array;
+
+        /**
+         * Returns an array containing all of the result rows represented as associative arrays.
+         *
+         * @return array<int,array<string,mixed>>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchAllAssociative(): array;
+
+        /**
+         * Returns an array containing the values of the first column of the result.
+         *
+         * @return array<int,mixed>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchFirstColumn(): array;
+    }
+}
+
+namespace Doctrine\DBAL\Abstraction
+{
+    use Traversable;
+
+    interface Result extends \Doctrine\DBAL\Driver\Result
+    {
+        /**
+         * Returns an iterator over the result set rows represented as numeric arrays.
+         *
+         * @return Traversable<int,array<int,mixed>>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function iterateNumeric(): Traversable;
+
+        /**
+         * Returns an iterator over the result set rows represented as associative arrays.
+         *
+         * @return Traversable<int,array<string,mixed>>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function iterateAssociative(): Traversable;
+
+        /**
+         * Returns an iterator over the values of the first column of the result set.
+         *
+         * @return Traversable<int,mixed>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function iterateColumn(): Traversable;
+    }
+}
+
+namespace Doctrine\DBAL
+{
+    use Traversable;
+
+    interface Result extends \Doctrine\DBAL\Abstraction\Result
+    {
+        /**
+         * Returns an array containing the values of the first column of the result.
+         *
+         * @return array<mixed,mixed>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchAllKeyValue(): array;
+
+        /**
+         * Returns an associative array with the keys mapped to the first column and the values being
+         * an associative array representing the rest of the columns and their values.
+         *
+         * @return array<mixed,array<string,mixed>>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function fetchAllAssociativeIndexed(): array;
+
+        /**
+         * Returns an iterator over the result set with the values of the first column of the result
+         *
+         * @return Traversable<mixed,mixed>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function iterateKeyValue(): Traversable;
+
+        /**
+         * Returns an iterator over the result set with the keys mapped to the first column and the values being
+         * an associative array representing the rest of the columns and their values.
+         *
+         * @return Traversable<mixed,array<string,mixed>>
+         *
+         * @throws Exception
+         *
+         * @psalm-taint-source input
+         */
+        public function iterateAssociativeIndexed(): Traversable;
+    }
+}

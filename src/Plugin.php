@@ -24,8 +24,10 @@ class Plugin implements PluginEntryPointInterface
      * stubs => [package, operator of version_compare(), version]
      */
     private const VERSIONED_STUBS = [
+        'DBAL/before-3' => ['doctrine/dbal', '<', '3.0'],
+        'DBAL/since-3' => ['doctrine/dbal', '>=', '3.0'],
         'DBAL/before-4' => ['doctrine/dbal', '<', '4.0'],
-        'DBAL/4' => ['doctrine/dbal', '>=', '4.0'],
+        'DBAL/since-4' => ['doctrine/dbal', '>=', '4.0'],
         'ORM/before-3' => ['doctrine/orm', '<', '3.0'],
     ];
 
