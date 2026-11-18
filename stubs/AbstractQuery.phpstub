@@ -1,0 +1,57 @@
+<?php
+// phpcs:ignoreFile
+namespace Doctrine\ORM;
+
+/**
+ * What a database holds may have been written by other requests (stored input): the rows and scalars a query reads
+ * are input. The entities it hydrates carry what their properties are given.
+ */
+abstract class AbstractQuery
+{
+    /**
+     * Gets the array of results for the query.
+     *
+     * Alias for execute(null, HYDRATE_ARRAY).
+     *
+     * @return mixed[]
+     *
+     * @psalm-taint-source input
+     */
+    public function getArrayResult() {}
+
+    /**
+     * Gets one-dimensional array of results for the query.
+     *
+     * Alias for execute(null, HYDRATE_SCALAR_COLUMN).
+     *
+     * @return mixed[]
+     *
+     * @psalm-taint-source input
+     */
+    public function getSingleColumnResult() {}
+
+    /**
+     * Gets the scalar results for the query.
+     *
+     * Alias for execute(null, HYDRATE_SCALAR).
+     *
+     * @return mixed[]
+     *
+     * @psalm-taint-source input
+     */
+    public function getScalarResult() {}
+
+    /**
+     * Gets the single scalar result of the query.
+     *
+     * Alias for getSingleResult(HYDRATE_SINGLE_SCALAR).
+     *
+     * @return bool|float|int|string|null The scalar result.
+     *
+     * @throws NoResultException        If the query returned no result.
+     * @throws NonUniqueResultException If the query result is not unique.
+     *
+     * @psalm-taint-source input
+     */
+    public function getSingleScalarResult() {}
+}

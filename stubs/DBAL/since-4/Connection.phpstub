@@ -1,0 +1,283 @@
+<?php
+// phpcs:ignoreFile
+namespace Doctrine\DBAL;
+
+use Doctrine\DBAL\Cache\QueryCacheProfile;
+use Doctrine\DBAL\Types\Type;
+use Traversable;
+
+/**
+ * The queries of doctrine/dbal 4 are SQL sinks, and what a database holds may have been written by other requests
+ * (stored input): the rows a query fetches are input.
+ */
+class Connection
+{
+    /**
+     * Prepares an SQL statement.
+     *
+     * @param string $sql The SQL statement to prepare.
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $sql
+     */
+    public function prepare(string $sql): Statement {}
+
+    /**
+     * Executes an, optionally parameterized, SQL query.
+     *
+     * If the query is parametrized, a prepared statement is used.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $sql
+     */
+    public function executeQuery(
+        string $sql,
+        array $params = [],
+        array $types = [],
+        ?QueryCacheProfile $qcp = null,
+    ): Result {}
+
+    /**
+     * Executes an SQL statement with the given parameters and returns the number of affected rows.
+     *
+     * Could be used for:
+     *  - DML statements: INSERT, UPDATE, DELETE, etc.
+     *  - DDL statements: CREATE, DROP, ALTER, etc.
+     *  - DCL statements: GRANT, REVOKE, etc.
+     *  - Session control statements: ALTER SESSION, SET, DECLARE, etc.
+     *  - Other statements that don't yield a row set.
+     *
+     * This method supports PDO binding types as well as DBAL mapping types.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return int|numeric-string
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $sql
+     */
+    public function executeStatement(string $sql, array $params = [], array $types = []): int|string {}
+
+    /**
+     * The usage of this method is discouraged. Use prepared statements
+     * or {@see AbstractPlatform::quoteStringLiteral()} instead.
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-escape sql
+     * @psalm-flow ($value) -> return
+     */
+    public function quote(string $value): string {}
+
+    /**
+     * Prepares and executes an SQL query and returns the first row of the result
+     * as an associative array.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return array<string, mixed>|false False is returned if no rows are found.
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchAssociative(string $query, array $params = [], array $types = []): array|false {}
+
+    /**
+     * Prepares and executes an SQL query and returns the first row of the result
+     * as a numerically indexed array.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return list<mixed>|false False is returned if no rows are found.
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchNumeric(string $query, array $params = [], array $types = []): array|false {}
+
+    /**
+     * Prepares and executes an SQL query and returns the value of a single column
+     * of the first row of the result.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return mixed|false False is returned if no rows are found.
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchOne(string $query, array $params = [], array $types = []): mixed {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an array of numeric arrays.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return list<list<mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchAllNumeric(string $query, array $params = [], array $types = []): array {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an array of associative arrays.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return list<array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchAllAssociative(string $query, array $params = [], array $types = []): array {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an associative array with the keys
+     * mapped to the first column and the values mapped to the second column.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return array<mixed,mixed>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchAllKeyValue(string $query, array $params = [], array $types = []): array {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an associative array with the keys mapped
+     * to the first column and the values being an associative array representing the rest of the columns
+     * and their values.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return array<mixed,array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchAllAssociativeIndexed(string $query, array $params = [], array $types = []): array {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an array of the first column values.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return list<mixed>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function fetchFirstColumn(string $query, array $params = [], array $types = []): array {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an iterator over rows represented as numeric arrays.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return Traversable<int,list<mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function iterateNumeric(string $query, array $params = [], array $types = []): Traversable {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an iterator over rows represented
+     * as associative arrays.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return Traversable<int,array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function iterateAssociative(string $query, array $params = [], array $types = []): Traversable {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an iterator with the keys
+     * mapped to the first column and the values mapped to the second column.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return Traversable<mixed,mixed>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function iterateKeyValue(string $query, array $params = [], array $types = []): Traversable {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an iterator with the keys mapped
+     * to the first column and the values being an associative array representing the rest of the columns
+     * and their values.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return Traversable<mixed,array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function iterateAssociativeIndexed(string $query, array $params = [], array $types = []): Traversable {}
+
+    /**
+     * Prepares and executes an SQL query and returns the result as an iterator over the first column values.
+     *
+     * @param list<mixed>|array<string, mixed> $params
+     * @phpstan-param WrapperParameterTypeArray $types
+     *
+     * @return Traversable<int,mixed>
+     *
+     * @throws Exception
+     *
+     * @psalm-taint-sink sql $query
+     * @psalm-taint-source input
+     */
+    public function iterateColumn(string $query, array $params = [], array $types = []): Traversable {}
+}

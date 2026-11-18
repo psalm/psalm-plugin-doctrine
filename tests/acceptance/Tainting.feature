@@ -41,12 +41,15 @@ Feature: Tainting
     | method           |
     | prepare          |
     | executeStatement |
+    | executeQuery     |
+    | fetchOne         |
 
   @Connection::exec
   @Connection::query
   @Connection::executeUpdate
   Scenario Outline: Using user input on Connection's deprecated query methods
-    Given I have the following code
+    Given I have the "doctrine/dbal" package satisfying the "< 4.0"
+    And I have the following code
       """
       $untrusted = $_GET['untrusted'];
       if (is_string($untrusted)) {
@@ -70,8 +73,55 @@ Feature: Tainting
   Scenario: Using Connection's quote method on user input
     Given I have the following code
       """
-      $sql = 'SELECT * FROM sometable WHERE id=' . connection()->quote($_GET['untrusted']);
-      connection()->executeStatement($sql);
+      $untrusted = $_GET['untrusted'];
+      if (is_string($untrusted)) {
+        $sql = 'SELECT * FROM sometable WHERE id=' . connection()->quote($untrusted);
+        connection()->executeStatement($sql);
+      }
       """
     When I run Psalm with taint analysis
     Then I see no errors
+
+  @Connection::fetchOne
+  @Connection::fetchAssociative
+  @Connection::fetchAllAssociative
+  Scenario Outline: A row the connection fetches is printed
+    Given I have the following code
+      """
+      echo (string) <expression>;
+      """
+    When I run Psalm with taint analysis
+    Then I see these errors
+      | Type                  | Message                                    |
+      | TaintedHtml           | Detected tainted HTML                      |
+      | TaintedTextWithQuotes | Detected tainted text with possible quotes |
+    And I see no other errors
+  Examples:
+    | expression                                                                        |
+    | connection()->fetchOne('SELECT name FROM users')                                  |
+    | (connection()->fetchAllAssociative('SELECT name FROM users')[0] ?? [])['name']    |
+    | (connection()->executeQuery('SELECT name FROM users')->fetchAllAssociative()[0] ?? [])['name'] |
+    | connection()->executeQuery('SELECT name FROM users')->fetchOne()                  |
+
+  @AbstractQuery::getSingleScalarResult
+  Scenario Outline: A result of an ORM query is printed
+    Given I have the following code
+      """
+      /**
+       * @psalm-suppress InvalidReturnType
+       * @return \Doctrine\ORM\Query
+       * @psalm-capabilities read-props
+       */
+      function query() {}
+
+      echo (string) <expression>;
+      """
+    When I run Psalm with taint analysis
+    Then I see these errors
+      | Type                  | Message                                    |
+      | TaintedHtml           | Detected tainted HTML                      |
+      | TaintedTextWithQuotes | Detected tainted text with possible quotes |
+    And I see no other errors
+  Examples:
+    | expression                                     |
+    | query()->getSingleScalarResult()               |

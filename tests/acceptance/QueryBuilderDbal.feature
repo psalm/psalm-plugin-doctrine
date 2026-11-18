@@ -70,7 +70,7 @@ Feature: QueryBuilderDbal
 
   @QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::where, ::orWhere and ::andWhere accept CompositeExpression
-    Given I have the "doctrine/dbal" package satisfying the ">= 2.11.0"
+    Given I have the "doctrine/dbal" package satisfying the ">= 2.11.0 < 4.0"
     And I have the following code
       """
       $expr = builder()->expr();
@@ -132,7 +132,7 @@ Feature: QueryBuilderDbal
 
   @QueryBuilderDbal
   Scenario: Dbal QueryBuilder ::having, ::orHaving and ::andHaving accept CompositeExpression
-    Given I have the "doctrine/dbal" package satisfying the ">= 2.11.0"
+    Given I have the "doctrine/dbal" package satisfying the ">= 2.11.0 < 4.0"
     And I have the following code
       """
       $andx = builder()->expr()->andX('a = b');
