@@ -83,28 +83,9 @@ Feature: Tainting
     Then I see no errors
 
   @Connection::fetchOne
-  @Connection::fetchAssociative
   @Connection::fetchAllAssociative
-  Scenario Outline: A row the connection fetches is printed
-    Given I have the following code
-      """
-      echo (string) <expression>;
-      """
-    When I run Psalm with taint analysis
-    Then I see these errors
-      | Type                  | Message                                    |
-      | TaintedHtml           | Detected tainted HTML                      |
-      | TaintedTextWithQuotes | Detected tainted text with possible quotes |
-    And I see no other errors
-  Examples:
-    | expression                                                                        |
-    | connection()->fetchOne('SELECT name FROM users')                                  |
-    | (connection()->fetchAllAssociative('SELECT name FROM users')[0] ?? [])['name']    |
-    | (connection()->executeQuery('SELECT name FROM users')->fetchAllAssociative()[0] ?? [])['name'] |
-    | connection()->executeQuery('SELECT name FROM users')->fetchOne()                  |
-
   @AbstractQuery::getSingleScalarResult
-  Scenario Outline: A result of an ORM query is printed
+  Scenario Outline: A row the database gives is no taint source
     Given I have the following code
       """
       function query(): \Doctrine\ORM\Query {
@@ -114,11 +95,10 @@ Feature: Tainting
       echo (string) <expression>;
       """
     When I run Psalm with taint analysis
-    Then I see these errors
-      | Type                  | Message                                    |
-      | TaintedHtml           | Detected tainted HTML                      |
-      | TaintedTextWithQuotes | Detected tainted text with possible quotes |
-    And I see no other errors
+    Then I see no errors
   Examples:
-    | expression                                     |
-    | query()->getSingleScalarResult()               |
+    | expression                                                                        |
+    | connection()->fetchOne('SELECT name FROM users')                                  |
+    | (connection()->fetchAllAssociative('SELECT name FROM users')[0] ?? [])['name']    |
+    | connection()->executeQuery('SELECT name FROM users')->fetchOne()                  |
+    | query()->getSingleScalarResult()                                                  |

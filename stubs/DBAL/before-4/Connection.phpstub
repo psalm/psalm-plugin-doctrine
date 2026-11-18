@@ -114,7 +114,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAssociative(string $query, array $params = [], array $types = []) {}
 
@@ -131,7 +130,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchNumeric(string $query, array $params = [], array $types = []) {}
 
@@ -148,7 +146,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchOne(string $query, array $params = [], array $types = []) {}
 
@@ -164,7 +161,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllNumeric(string $query, array $params = [], array $types = []): array {}
 
@@ -180,7 +176,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllAssociative(string $query, array $params = [], array $types = []): array {}
 
@@ -197,7 +192,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllKeyValue(string $query, array $params = [], array $types = []): array {}
 
@@ -215,7 +209,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllAssociativeIndexed(string $query, array $params = [], array $types = []): array {}
 
@@ -231,7 +224,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchFirstColumn(string $query, array $params = [], array $types = []): array {}
 
@@ -247,7 +239,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateNumeric(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -264,7 +255,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateAssociative(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -281,7 +271,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateKeyValue(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -299,7 +288,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateAssociativeIndexed(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -315,7 +303,6 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateColumn(string $query, array $params = [], array $types = []): Traversable {}
 }

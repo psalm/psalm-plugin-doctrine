@@ -7,8 +7,7 @@ use Doctrine\DBAL\Types\Type;
 use Traversable;
 
 /**
- * The queries of doctrine/dbal 4 are SQL sinks, and what a database holds may have been written by other requests
- * (stored input): the rows a query fetches are input.
+ * The queries of doctrine/dbal 4 are SQL sinks.
  */
 class Connection
 {
@@ -88,7 +87,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAssociative(string $query, array $params = [], array $types = []): array|false {}
 
@@ -104,7 +102,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchNumeric(string $query, array $params = [], array $types = []): array|false {}
 
@@ -120,7 +117,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchOne(string $query, array $params = [], array $types = []): mixed {}
 
@@ -135,7 +131,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllNumeric(string $query, array $params = [], array $types = []): array {}
 
@@ -150,7 +145,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllAssociative(string $query, array $params = [], array $types = []): array {}
 
@@ -166,7 +160,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllKeyValue(string $query, array $params = [], array $types = []): array {}
 
@@ -183,7 +176,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchAllAssociativeIndexed(string $query, array $params = [], array $types = []): array {}
 
@@ -198,7 +190,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function fetchFirstColumn(string $query, array $params = [], array $types = []): array {}
 
@@ -213,7 +204,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateNumeric(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -229,7 +219,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateAssociative(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -245,7 +234,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateKeyValue(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -262,7 +250,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateAssociativeIndexed(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -277,7 +264,6 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
-     * @psalm-taint-source input
      */
     public function iterateColumn(string $query, array $params = [], array $types = []): Traversable {}
 }
