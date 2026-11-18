@@ -19,6 +19,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $sql
+     * @psalm-database-prepare $sql
      */
     public function prepare(string $sql): Statement {}
 
@@ -33,6 +34,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $sql
+     * @psalm-database-query $sql $params result
      */
     public function executeQuery(
         string $sql,
@@ -61,6 +63,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $sql
+     * @psalm-database-query $sql $params none
      */
     public function executeStatement(string $sql, array $params = [], array $types = []): int|string {}
 
@@ -87,6 +90,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params result
      */
     public function fetchAssociative(string $query, array $params = [], array $types = []): array|false {}
 
@@ -102,6 +106,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params result
      */
     public function fetchNumeric(string $query, array $params = [], array $types = []): array|false {}
 
@@ -117,6 +122,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params value
      */
     public function fetchOne(string $query, array $params = [], array $types = []): mixed {}
 
@@ -131,6 +137,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function fetchAllNumeric(string $query, array $params = [], array $types = []): array {}
 
@@ -145,6 +152,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function fetchAllAssociative(string $query, array $params = [], array $types = []): array {}
 
@@ -176,6 +184,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function fetchAllAssociativeIndexed(string $query, array $params = [], array $types = []): array {}
 
@@ -190,6 +199,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params column
      */
     public function fetchFirstColumn(string $query, array $params = [], array $types = []): array {}
 
@@ -204,6 +214,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function iterateNumeric(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -219,6 +230,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function iterateAssociative(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -250,6 +262,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function iterateAssociativeIndexed(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -264,6 +277,7 @@ class Connection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params column
      */
     public function iterateColumn(string $query, array $params = [], array $types = []): Traversable {}
 }
