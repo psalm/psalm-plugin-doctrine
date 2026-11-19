@@ -2,6 +2,7 @@
 
 namespace Doctrine\ORM;
 
+use Doctrine\DBAL\LockMode;
 use Doctrine\Persistence\ObjectManager;
 
 interface EntityManagerInterface extends ObjectManager
@@ -23,7 +24,7 @@ interface EntityManagerInterface extends ObjectManager
      *
      * @template T
      */
-    public function find(string $entityName, $id, ?int $lockMode = null, ?int $lockVersion = null);
+    public function find(string $entityName, $id, LockMode|int|null $lockMode = null, ?int $lockVersion = null);
 
     /**
      * @param class-string<T> $entityName
@@ -40,5 +41,5 @@ interface EntityManagerInterface extends ObjectManager
      *
      * @return void
      */
-    public function refresh($entity, ?int $lockMode = null);
+    public function refresh($entity, LockMode|int|null $lockMode = null);
 }
