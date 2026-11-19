@@ -2,6 +2,8 @@
 
 namespace Doctrine\ORM;
 
+use Doctrine\DBAL\LockMode;
+
 class EntityManager implements EntityManagerInterface
 {
     /**
@@ -18,7 +20,7 @@ class EntityManager implements EntityManagerInterface
      * @template T
      * @param class-string<T> $entityName
      * @param mixed           $id
-     * @param null|int        $lockMode
+     * @param LockMode|int|null $lockMode
      * @param null|int        $lockVersion
      *
      * @return null|T
@@ -39,8 +41,8 @@ class EntityManager implements EntityManagerInterface
     }
 
     /**
-     * @param object   $entity
-     * @param null|int $lockMode
+     * @param object            $entity
+     * @param LockMode|int|null $lockMode
      *
      * @return void
      */

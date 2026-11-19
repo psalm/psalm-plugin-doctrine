@@ -5,6 +5,7 @@ namespace Doctrine\ORM;
 use Doctrine\Common\Collections\Selectable;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\DBAL\LockMode;
 use Doctrine\Persistence\ObjectRepository;
 
 /**
@@ -38,7 +39,7 @@ class EntityRepository implements ObjectRepository, Selectable
     }
 
     /**
-     * @param ?int $lockMode
+     * @param LockMode|int|null $lockMode
      * @param ?int $lockVersion
      *
      * @return ?T
