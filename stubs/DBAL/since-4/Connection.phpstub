@@ -8,6 +8,12 @@ use Traversable;
 
 /**
  * The queries of doctrine/dbal 4 are SQL sinks.
+ *
+ * The stub replaces the docblock of the class, so it declares the type aliases of DBAL's own docblock that the
+ * methods use.
+ *
+ * @phpstan-type WrapperParameterType = string|Type|ParameterType|ArrayParameterType
+ * @phpstan-type WrapperParameterTypeArray = array<int<0, max>, WrapperParameterType>|array<string, WrapperParameterType>
  */
 class Connection
 {

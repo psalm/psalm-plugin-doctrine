@@ -87,3 +87,16 @@ Feature: EntityRepository
       """
     When I run Psalm
     Then I see no errors
+
+  @EntityRepository::find
+  Scenario: Finding an entity with a lock mode
+    Given I have the "doctrine/orm" package satisfying the ">= 3.0"
+    And I have the following code
+    """
+    atan(repo(I::class)->find(1, \Doctrine\DBAL\LockMode::PESSIMISTIC_WRITE, 1));
+    """
+    When I run Psalm
+    Then I see these errors
+        | Type            | Message                                                |
+        | InvalidArgument | Argument 1 of atan expects float, but I\|null provided |
+    And I see no other errors

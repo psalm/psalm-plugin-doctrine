@@ -105,3 +105,28 @@ Feature: EntityManager
       """
     When I run Psalm
     Then I see no errors
+
+  @EntityManager::find
+  Scenario: Finding an entity with a lock mode
+    Given I have the "doctrine/orm" package satisfying the ">= 3.0"
+    And I have the following code
+      """
+      atan(em()->find(I::class, 1, \Doctrine\DBAL\LockMode::PESSIMISTIC_WRITE, 1));
+      """
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                |
+      | InvalidArgument | Argument 1 of atan expects float, but I\|null provided |
+    And I see no other errors
+
+  @EntityManager::refresh
+  Scenario: Refreshing an entity with a lock mode
+    Given I have the "doctrine/orm" package satisfying the ">= 3.0"
+    And I have the following code
+      """
+      function f(I $entity): void {
+        em()->refresh($entity, \Doctrine\DBAL\LockMode::PESSIMISTIC_WRITE);
+      }
+      """
+    When I run Psalm
+    Then I see no errors
