@@ -47,7 +47,7 @@ Feature: Database taints
   Examples:
     | read                                                                     |
     | $db->fetchOne('SELECT author FROM comments')                             |
-    | ($db->fetchAssociative('SELECT author, body FROM comments') ?: [])['author'] |
+    | ($db->fetchAllAssociative('SELECT author, body FROM comments')[0]['author'] ?? '') |
     | $db->fetchOne('SELECT title FROM posts')                                 |
 
   Scenario: The rows of a prepared statement's result hold what an update with named parameters stored
