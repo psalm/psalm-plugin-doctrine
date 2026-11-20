@@ -872,7 +872,22 @@ Feature: Collections
       $c = new ArrayCollection(["a", "b", "c"]);
       $c["10"] = "aaa";
       """
+    And I have Psalm newer than "7.12.99" (because of "an assignment no longer reads the offset")
+    When I run Psalm
+    Then I see these errors
+      | Type            | Message                                                                                              |
+      | InvalidArgument | Argument 1 of Doctrine\Common\Collections\Collection::offsetSet expects int\|null, but '10' provided |
+    And I see no other errors
+
+  Scenario: Adding an item using wrong key type with array offset access, also read before Psalm 7.13 [Psalm 5]
+    Given I have the following code
+      """
+      /** @var Collection<int,string> */
+      $c = new ArrayCollection(["a", "b", "c"]);
+      $c["10"] = "aaa";
+      """
     And I have Psalm newer than "4.99" (because of "changed issue type")
+    And I have Psalm older than "7.13" (because of "an assignment no longer reads the offset")
     When I run Psalm
     Then I see these errors
       | Type            | Message                                                                                              |
