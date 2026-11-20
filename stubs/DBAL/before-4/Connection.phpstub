@@ -45,11 +45,13 @@ class Connection implements DriverConnection
     /**
      * @throws DBALException
      * @psalm-taint-sink sql $statement
+     * @psalm-database-prepare $statement
      */
     public function prepare(string $statement): Statement {}
 
     /**
      * @psalm-taint-sink sql $statement
+     * @psalm-database-query $statement none
      */
     public function exec(string $statement): int {}
 
@@ -67,6 +69,7 @@ class Connection implements DriverConnection
      *
      * @throws DBALException
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params none
      */
     public function executeUpdate(string $query, array $params = [], array $types = []): int {}
 
@@ -78,6 +81,7 @@ class Connection implements DriverConnection
      *
      * @throws DBALException
      * @psalm-taint-sink sql $sql
+     * @psalm-database-query $sql $params result
      */
     public function executeQuery($sql, array $params = [], $types = [], ?Cache\QueryCacheProfile $qcp = null) {}
 
@@ -87,6 +91,7 @@ class Connection implements DriverConnection
      *
      * @throws DBALException
      * @psalm-taint-sink sql $sql
+     * @psalm-database-query $sql $params none
      */
     public function executeStatement($sql, array $params = [], array $types = []): int {}
 
@@ -114,6 +119,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params result
      */
     public function fetchAssociative(string $query, array $params = [], array $types = []) {}
 
@@ -130,6 +136,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params result
      */
     public function fetchNumeric(string $query, array $params = [], array $types = []) {}
 
@@ -146,6 +153,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params value
      */
     public function fetchOne(string $query, array $params = [], array $types = []) {}
 
@@ -161,6 +169,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function fetchAllNumeric(string $query, array $params = [], array $types = []): array {}
 
@@ -176,6 +185,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function fetchAllAssociative(string $query, array $params = [], array $types = []): array {}
 
@@ -209,6 +219,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function fetchAllAssociativeIndexed(string $query, array $params = [], array $types = []): array {}
 
@@ -224,6 +235,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params column
      */
     public function fetchFirstColumn(string $query, array $params = [], array $types = []): array {}
 
@@ -239,6 +251,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function iterateNumeric(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -255,6 +268,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function iterateAssociative(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -288,6 +302,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params rows
      */
     public function iterateAssociativeIndexed(string $query, array $params = [], array $types = []): Traversable {}
 
@@ -303,6 +318,7 @@ class Connection implements DriverConnection
      * @throws Exception
      *
      * @psalm-taint-sink sql $query
+     * @psalm-database-query $query $params column
      */
     public function iterateColumn(string $query, array $params = [], array $types = []): Traversable {}
 }

@@ -1,0 +1,110 @@
+<?php
+// phpcs:ignoreFile
+namespace Doctrine\DBAL;
+
+use Traversable;
+
+/**
+ * What the rows of a result of doctrine/dbal 4 hold.
+ */
+class Result
+{
+    /**
+     * @return list<mixed>|false
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch result
+     */
+    public function fetchNumeric(): array|false {}
+
+    /**
+     * @return array<string, mixed>|false
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch result
+     */
+    public function fetchAssociative(): array|false {}
+
+    /**
+     * @return mixed|false
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch value
+     */
+    public function fetchOne(): mixed {}
+
+    /**
+     * @return list<list<mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch rows
+     */
+    public function fetchAllNumeric(): array {}
+
+    /**
+     * @return list<array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch rows
+     */
+    public function fetchAllAssociative(): array {}
+
+    /**
+     * @return array<mixed,array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch rows
+     */
+    public function fetchAllAssociativeIndexed(): array {}
+
+    /**
+     * @return list<mixed>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch column
+     */
+    public function fetchFirstColumn(): array {}
+
+    /**
+     * @return Traversable<int,list<mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch rows
+     */
+    public function iterateNumeric(): Traversable {}
+
+    /**
+     * @return Traversable<int,array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch rows
+     */
+    public function iterateAssociative(): Traversable {}
+
+    /**
+     * @return Traversable<mixed,array<string,mixed>>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch rows
+     */
+    public function iterateAssociativeIndexed(): Traversable {}
+
+    /**
+     * @return Traversable<int,mixed>
+     *
+     * @throws Exception
+     *
+     * @psalm-database-fetch column
+     */
+    public function iterateColumn(): Traversable {}
+}

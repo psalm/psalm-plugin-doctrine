@@ -1,0 +1,34 @@
+<?php
+// phpcs:ignoreFile
+namespace Doctrine\DBAL;
+
+/**
+ * What a prepared statement of doctrine/dbal 4 stores and reads.
+ */
+class Statement
+{
+    /**
+     * @psalm-database-bind $param $value
+     */
+    public function bindValue(
+        string|int $param,
+        mixed $value,
+        ParameterType $type = ParameterType::STRING,
+    ): void {}
+
+    /**
+     * @throws Exception
+     *
+     * @psalm-database-execute result
+     */
+    public function executeQuery(): Result {}
+
+    /**
+     * @return int|numeric-string
+     *
+     * @throws Exception
+     *
+     * @psalm-database-execute
+     */
+    public function executeStatement(): int|string {}
+}
