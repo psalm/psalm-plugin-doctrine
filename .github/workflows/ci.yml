@@ -59,7 +59,7 @@ jobs:
             - name: Install composer dependencies
               run: composer update --prefer-dist
               env:
-                  COMPOSER_ROOT_VERSION: dev-master
+                  COMPOSER_ROOT_VERSION: 2.x-dev
 
             - name: Generate aux code
               run: vendor/bin/codecept build
@@ -122,7 +122,7 @@ jobs:
             - name: Install composer dependencies
               run: composer update --prefer-dist
               env:
-                  COMPOSER_ROOT_VERSION: dev-master
+                  COMPOSER_ROOT_VERSION: 2.x-dev
 
             - name: Run PHPCodeSniffer
               run: vendor/bin/phpcs --report=checkstyle --cache=~/.cache/phpcs -q --parallel=1 | cs2pr
@@ -176,19 +176,19 @@ jobs:
               run: composer update --prefer-dist --no-interaction
               if: ${{ matrix.deps == 'high' }}
               env:
-                  COMPOSER_ROOT_VERSION: dev-master
+                  COMPOSER_ROOT_VERSION: 2.x-dev
 
             - name: Install composer dependencies (low deps)
               run: composer update --prefer-dist --no-interaction --prefer-stable --prefer-lowest
               if: ${{ matrix.deps == 'low' }}
               env:
-                  COMPOSER_ROOT_VERSION: dev-master
+                  COMPOSER_ROOT_VERSION: 2.x-dev
 
             - name: Install composer dependencies (stable deps)
               run: composer update --prefer-dist --no-interaction --prefer-stable
               if: ${{ matrix.deps == 'stable' }}
               env:
-                  COMPOSER_ROOT_VERSION: dev-master
+                  COMPOSER_ROOT_VERSION: 2.x-dev
 
             - name: Show Psalm version
               run: vendor/bin/psalm --version
