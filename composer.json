@@ -1,8 +1,8 @@
 {
     "name": "weirdan/doctrine-psalm-plugin",
-    "type": "psalm-plugin",
     "description": "Stubs to let Psalm understand Doctrine better",
-    "minimum-stability": "dev",
+    "license": "MIT",
+    "type": "psalm-plugin",
     "keywords": [
         "php",
         "code",
@@ -18,23 +18,21 @@
         "static-analysis",
         "extension"
     ],
-    "license": "MIT",
     "authors": [
         {
             "name": "Bruce Weirdan",
             "email": "weirdan@gmail.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/psalm/psalm-plugin-doctrine/issues",
+        "source": "https://github.com/psalm/psalm-plugin-doctrine"
+    },
     "require": {
         "php": "^8.2",
         "composer-runtime-api": "^2",
         "psalm/psalm-plugin-api": "^0.4 || ^0.5",
-        "vimeo/psalm": "^7.13|dev-master"
-    },
-    "conflict": {
-        "doctrine/collections": "<1.8",
-        "doctrine/orm": "<2.6",
-        "doctrine/persistence": "<2.0"
+        "vimeo/psalm": "^7.13 || dev-master"
     },
     "require-dev": {
         "codeception/codeception": "^5.0",
@@ -49,19 +47,12 @@
         "squizlabs/php_codesniffer": "^3.3",
         "weirdan/codeception-psalm-module": "^0.14.1"
     },
-    "config": {
-        "sort-packages": true,
-        "allow-plugins": {
-            "composer/package-versions-deprecated": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": true
-        }
+    "conflict": {
+        "doctrine/collections": "<1.8",
+        "doctrine/orm": "<2.6",
+        "doctrine/persistence": "<2.0"
     },
-    "extra": {
-        "psalm": {
-            "pluginClass": "Weirdan\\DoctrinePsalmPlugin\\Plugin"
-        }
-    },
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Weirdan\\DoctrinePsalmPlugin\\": "src"
@@ -73,6 +64,19 @@
                 "tests/_support",
                 "tests/acceptance"
             ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "php-http/discovery": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "psalm": {
+            "pluginClass": "Weirdan\\DoctrinePsalmPlugin\\Plugin"
         }
     },
     "scripts": {
